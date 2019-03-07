@@ -1,9 +1,14 @@
 package com.cms.jycms.controller;
 
 import com.cms.jycms.domain.HelloModel;
+import com.cms.jycms.domain.UserModel;
+import com.cms.jycms.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * @Auther: xuzhenxing
@@ -13,12 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("user")
 @Controller
 public class HelloController {
+    @Autowired
+    private UserMapper mapper;
+
     @RequestMapping("sayHello")
-    public String sayHello(Model model)
-    {
-        HelloModel helloModel=new HelloModel();
-        helloModel.setSayHello("hello jycms");
-        model.addAttribute("model",helloModel);
+    public String sayHello(Model model) {
+        List<UserModel> list = mapper.getList();
+        model.addAttribute("list", list);
         return "/user/sayHello";
     }
 }
