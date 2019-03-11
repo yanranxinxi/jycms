@@ -3,6 +3,7 @@ package com.cms.jycms.domain;
 public class UserModel {
     private int id;
     private String userName;
+    private String password;
 
     public int getId() {
         return id;
@@ -18,5 +19,14 @@ public class UserModel {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public UserModel setPassword(String password) {
+        this.password = password;
+        return this;
     }
 }

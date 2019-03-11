@@ -1,6 +1,5 @@
 package com.cms.jycms.controller;
 
-import com.cms.jycms.domain.HelloModel;
 import com.cms.jycms.domain.UserModel;
 import com.cms.jycms.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
