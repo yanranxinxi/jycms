@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     name: test
-    url: jdbc:mysql://127.0.0.1:3306/mydb
+    url: jdbc:mysql://127.0.0.1:3306/myjavadb
     username: root
     password: dmfuck
     type: com.alibaba.druid.pool.DruidDataSource
@@ -22,7 +22,18 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+  thymeleaf:
+    content-type: text/html
+    cache: false
+    mode: LEGACYHTML5
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.cms.jycms.domain
+
+web:
+  upload-path: D:/

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.jycms.dao.NewsInfoMapper">
+    <select id="selectByPrimaryKey" resultType="com.cms.jycms.domain.NewsInfo">
+    select 
+    id,title,classId,content,comeFrom,addDate,updateDate,isDel
+    from newsInfo
+    where id = #{id}
+  </select>
+    <select id="selectAll" resultType="com.cms.jycms.domain.NewsInfo">
+        select
+        a.id,a.title,a.classId,a.content,a.comeFrom,a.addDate,a.updateDate,a.isDel,b.className
+        from newsInfo a left join classInfo b on a.classId=b.id
+        where isDel=0
+        <if test="title!=null and title!=''">
+            and title like concat('%',#{title},'%')
+        </if>
+        <if test="start!=null and start!=''">
+            and addDate>=#{start}
+        </if>
+        <if test="end!=null and end!=''">
+            <![CDATA[
+      and addDate<#{end}
+    ]]>
+        </if>
+        <if test="classId!=null">
+            and a.classId=#{classId}
+        </if>
+        order by a.addDate desc
+        limit #{offset},#{pageSize}
+    </select>
+    <select id="selectCount" resultType="int">
+        select
+        count(0)
+        from newsInfo
+        where isDel=0
+        <if test="title!=null and title!=''">
+            and title like concat('%',#{title},'%')
+        </if>
+        <if test="start!=null and start!=''">
+            and addDate>=#{start}
+        </if>
+        <if test="end!=null and end!=''">
+            <![CDATA[
+      and addDate<#{end}
+    ]]>
+        </if>
+        <if test="classId!=null">
+            and classId=#{classId}
+        </if>
+    </select>
+    <delete id="delByIds">
+        delete from newsInfo where id in
+        <foreach collection="list" item="item" open="(" close=")" index="index" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+    <insert id="addContent">
+        insert into newsInfo(id,title,classId,content,comeFrom,addDate,isDel)
+        values(uuid(),#{title},#{classId},#{content},#{comeFrom},now(),0);
+    </insert>
+    <update id="updateContent">
+        update newsInfo set title=#{title},classId=#{classId},content=#{content},comeFrom=#{comeFrom},updateDate=now() where id=#{id}
+    </update>
+</mapper>
