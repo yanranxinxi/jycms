@@ -6,33 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserInfoService {
     @Autowired
     private UserInfoMapper mapper;
 
-    public int deleteByPrimaryKey(Integer id) {
-        return mapper.deleteByPrimaryKey(id);
+    public int insert(UserInfo model) {
+        return mapper.insert(model);
     }
 
-    public int insert(UserInfo record) {
-        return mapper.insert(record);
+    public int delete(List<String> ids) {
+        return mapper.delete(ids);
     }
 
-    public int insertSelective(UserInfo record) {
-        return mapper.insertSelective(record);
+    public int update(UserInfo model) {
+        return mapper.update(model);
     }
 
-    public UserInfo selectByPrimaryKey(Integer id) {
-        return mapper.selectByPrimaryKey(id);
+    public List<UserInfo> select(Map<String, Object> query) {
+        return mapper.select(query);
     }
 
-    public int updateByPrimaryKeySelective(UserInfo record) {
-        return mapper.updateByPrimaryKeySelective(record);
+    public int selectCount(Map<String, Object> query) {
+        return mapper.selectCount(query);
     }
 
-    public int updateByPrimaryKey(UserInfo record) {
-        return mapper.updateByPrimaryKey(record);
+    public int selectCountById(int id) {
+        return mapper.selectCountById(id);
+    }
+
+    public int selectcountByUserName(String userName) {
+        return mapper.selectcountByUserName(userName);
+    }
+
+    public  UserInfo selectById(int id)
+    {
+        return mapper.selectById(id);
     }
 }

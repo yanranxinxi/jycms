@@ -32,17 +32,27 @@ public class LoginController {
     }
 
     @RequestMapping("error")
-    public String error(){
+    public String error() {
         return "/admin/error";
     }
 
     @RequestMapping("systemManager")
-    public String systemManager(){
+    public String systemManager() {
         return "/admin/systemManager";
     }
 
     @RequestMapping("classManager")
-    public String classManager(){
+    public String classManager() {
         return "/admin/classManager";
+    }
+
+    @RequestMapping("userManager")
+    public String userManager() {
+        return "/admin/userManager";
+    }
+
+    @RequestMapping("userAdd")
+    public String userAdd() {
+        return "/admin/userAdd";
     }
 }
