@@ -62,7 +62,7 @@
             <label for="L_repass" class="layui-form-label">
             </label>
             <button class="layui-btn" lay-filter="add" lay-submit="">
-                发布
+                <i class="iconfont">&#xe747;</i> 发布
             </button>
         </div>
 </div>
@@ -109,9 +109,9 @@
                 "content": data.field.editorValue,
                 "classId": nodes[0].id
             };
-            var url = "/admin/api/addContent";
+            var url = "/admin/api/news/addContent";
             if (id != undefined) {
-                url = "/admin/api/updateContent";
+                url = "/admin/api/news/updateContent";
             }
             $.post(url, postData, function (data) {
                 if (data && data.code == 0) {
@@ -133,7 +133,7 @@
             simpleData: {
                 enable: true,
                 idKey: "id",
-                pIdKey: "pId",
+                pIdKey: "parentId",
                 rootPid: 0
             }
         },
@@ -145,7 +145,7 @@
     var id;
     var classId;
     $(function () {
-        $.get("/admin/api/classSelectAll", function (result) {
+        $.get("/admin/api/class/selectAll", function (result) {
             zNodes = result;
             zTreeObj = $.fn.zTree.init($("#classTree"), setting, zNodes);
             zTreeOnNodeCreated();
@@ -157,7 +157,7 @@
         id = getUrlParameter("id");
         classId = getUrlParameter("classId");
         if (id != undefined) {
-            $.get("/admin/api/getNewsById?id=" + id, function (result) {
+            $.get("/admin/api/news/getNewsById?id=" + id, function (result) {
                 if (result.data != undefined) {
                     $("#tbxTitle").val(result.data.title);
                     $("#tbxComeFrom").val(result.data.comeFrom);

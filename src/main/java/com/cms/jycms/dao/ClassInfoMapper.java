@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface ClassInfoMapper {
     List<ClassInfo> selectAll();
+    int delete(int id);
+    int update(ClassInfo model);
+    int insert(ClassInfo model);
 }

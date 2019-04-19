@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cms.jycms.dao.ClassInfoMapper">
  <select id="selectAll" resultType="com.cms.jycms.domain.ClassInfo">
-   select id,className as name,parentId as pId from classInfo
+   select id,name,parentId from classInfo
  </select>
+    <delete id="delete">
+        delete from classInfo where id=#{id}
+    </delete>
+    <update id="update">
+        update classInfo set name=#{name} where id=#{id}
+    </update>
+    <insert id="insert">
+        insert into classInfo(name,parentId)
+        values(#{name},#{parentId});
+    </insert>
 </mapper>

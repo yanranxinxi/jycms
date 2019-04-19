@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.jycms.dao.SystemConfigMapper">
+    <insert id="insert">
+        insert systemConfig(`key`,`value`)
+        values(#{key},#{value});
+    </insert>
+    <delete id="delete">
+        delete from systemConfig where `key`=#{key};
+    </delete>
+    <update id="update">
+        update systemConfig set `value`=#{value} where `key`=#{key};
+    </update>
+    <select id="select" resultType="com.cms.jycms.domain.SystemConfig">
+        select `key`,`value` from systemConfig where `key`=#{key}
+    </select>
+</mapper>

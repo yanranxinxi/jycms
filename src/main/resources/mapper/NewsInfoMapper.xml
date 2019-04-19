@@ -9,7 +9,7 @@
   </select>
     <select id="selectAll" resultType="com.cms.jycms.domain.NewsInfo">
         select
-        a.id,a.title,a.classId,a.content,a.comeFrom,a.addDate,a.updateDate,a.isDel,b.className
+        a.id,a.title,a.classId,a.content,a.comeFrom,a.addDate,a.updateDate,a.isDel,b.name as className
         from newsInfo a left join classInfo b on a.classId=b.id
         where isDel=0
         <if test="title!=null and title!=''">

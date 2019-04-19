@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+    <meta charset="UTF-8">
+    <title>系统配置</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <link rel="stylesheet" href="/lib/zTree_v3/css/metroStyle/metroStyle.css"/>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/cookie.js"></script>
+    <script type="text/javascript" src="/lib/zTree_v3/js/jquery.ztree.core.js"></script>
+    <script type="text/javascript" src="/lib/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/lib/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="">
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">网站管理</a>
+        <a>
+          <cite>系统配置</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="iconfont" style="line-height:30px">&#xe6aa;</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <label class="layui-form-label">网站名称</label>
+            <div class="layui-input-inline">
+                <input type="text" id="tbxTitle" name="tbxTitle" required="" lay-verify="required" placeholder="请输入网站名称"
+                       autocomplete="off" class="layui-input" style="width:500px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">关键词</label>
+            <div class="layui-input-inline">
+                <input type="text" id="tbxKeyword" name="tbxKeyword" required="" lay-verify="required"
+                       placeholder="请输入网站关键词"
+                       autocomplete="off" class="layui-input" style="width:500px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-inline">
+                <textarea id="tbxDescription" style="width:500px;height: 100px;" placeholder="请输入网站描述"
+                          class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">版本信息</label>
+            <div class="layui-input-inline">
+                <div id="editor" type="text/plain" style="width:800px;height:300px;"></div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center;">
+            <button type="button" id="btnSave" value="保存" class="layui-btn">
+                <i class="iconfont">&#xe747;</i> 保存
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var successCount = 0;
+    var ue = UE.getEditor('editor', {'autoFloatEnabled': false});
+    $(function () {
+        loadTitle();
+        loadKeyword();
+        loadDescription();
+        loadCopyright();
+        $("#btnSave").click(function () {
+            saveTitle();
+            saveKeyword();
+            saveDescription();
+            saveCopyright();
+        });
+    });
+
+    function loadTitle() {
+        var data = {"key": "title"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            $("#tbxTitle").val(result.data.value);
+        })
+    }
+
+    function saveTitle() {
+        var data = {"key": "title", "value": $("#tbxTitle").val()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function loadKeyword() {
+        var data = {"key": "keyword"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            $("#tbxKeyword").val(result.data.value);
+        })
+    }
+
+    function saveKeyword() {
+        var data = {"key": "keyword", "value": $("#tbxKeyword").val()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function loadDescription() {
+        var data = {"key": "description"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            $("#tbxDescription").val(result.data.value);
+        })
+    }
+
+    function saveDescription() {
+        var data = {"key": "description", "value": $("#tbxDescription").val()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function loadCopyright() {
+        var data = {"key": "copyright"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            ue.ready(function () {
+                ue.setContent(result.data.value, false);
+            });
+        });
+    }
+
+    function saveCopyright() {
+        var data = {"key": "copyright", "value": ue.getContent()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function isOk(code) {
+        if (code == 0) {
+            successCount++;
+            if (successCount == 4) {
+                successCount = 0;
+                layer.alert("保存成功", {icon: 1}, function (index) {
+                    layer.close(index);
+                });
+            }
+        }
+    }
+</script>

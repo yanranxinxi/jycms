@@ -3,7 +3,7 @@ package com.cms.jycms.domain;
 public class ClassInfo {
     private int id;
     private String name;
-    private int pId;
+    private int parentId;
 
     public int getId() {
         return id;
@@ -23,12 +23,12 @@ public class ClassInfo {
         return this;
     }
 
-    public int getpId() {
-        return pId;
+    public int getParentId() {
+        return parentId;
     }
 
-    public ClassInfo setpId(int pId) {
-        this.pId = pId;
+    public ClassInfo setParentId(int parentId) {
+        this.parentId = parentId;
         return this;
     }
 }

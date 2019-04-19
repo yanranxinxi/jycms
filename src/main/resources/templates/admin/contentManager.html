@@ -33,7 +33,7 @@
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+        <i class="iconfont" style="line-height:30px">&#xe6aa;</i></a>
 </div>
 <div style="float:left;width:20%;">
     <ul id="classTree" class="ztree"></ul>
@@ -98,7 +98,7 @@
                         }
                         layer.confirm('确定要删除这些数据吗？', {icon: 9, btn: ['确定', '取消']},
                             function (index, layero) {
-                                $.post("/admin/api/deleteByIds", {"ids": ids}, function (result) {
+                                $.post("/admin/api/news/deleteByIds", {"ids": ids}, function (result) {
                                     if (result.code == 0) {
                                         layer.alert("删除成功");
                                         reloadGrid();
@@ -147,7 +147,7 @@
         //第一个实例
         tableIns = table.render({
             elem: '#myGrid'
-            , url: '/admin/api/selectNews' //数据接口
+            , url: '/admin/api/news/selectNews' //数据接口
             , page: true //开启分页
             , cols: [[ //表头
                 {type: 'checkbox', title: 'id'},
@@ -166,7 +166,7 @@
             simpleData: {
                 enable: true,
                 idKey: "id",
-                pIdKey: "pId",
+                pIdKey: "parentId",
                 rootPid: 0
             }
         },
@@ -176,7 +176,7 @@
     };
     var zNodes;
     $(function () {
-        $.get("/admin/api/classSelectAll", function (result) {
+        $.get("/admin/api/class/selectAll", function (result) {
             zNodes = result;
             zTreeObj = $.fn.zTree.init($("#classTree"), setting, zNodes);
         });
@@ -192,7 +192,7 @@
             selectNode = nodes[0].id;
         }
         tableIns.reload({
-            url: '/admin/api/selectNews',
+            url: '/admin/api/news/selectNews',
             where: {
                 start: $("#start").val(),
                 end: $("#end").val(),

@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
-@RequestMapping("admin/api")
+@RequestMapping("admin/api/news")
 public class NewsController {
     @Autowired
     private NewsInfoService service;

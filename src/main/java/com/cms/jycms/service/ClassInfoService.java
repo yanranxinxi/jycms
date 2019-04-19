@@ -16,4 +16,16 @@ public class ClassInfoService {
     {
         return mapper.selectAll();
     }
+
+    public int delete(int id) {
+        return mapper.delete(id);
+    }
+
+    public int update(ClassInfo model) {
+        return mapper.update(model);
+    }
+
+    public int insert(ClassInfo model) {
+        return mapper.insert(model);
+    }
 }
