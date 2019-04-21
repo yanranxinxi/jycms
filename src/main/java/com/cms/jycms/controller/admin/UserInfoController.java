@@ -22,8 +22,6 @@ public class UserInfoController {
     @Autowired
     private UserInfoService service;
 
-    @Autowired
-
     @GetMapping("getList")
     public R getList(Integer page, Integer limit) {
         Map<String, Object> query = new HashMap<>();
