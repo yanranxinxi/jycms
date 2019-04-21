@@ -1,11 +1,20 @@
 package com.cms.jycms.controller.admin;
 
+import com.cms.jycms.common.R;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("admin")
 public class LoginController {
+
+    @RequestMapping("adminPring")
+    @ResponseBody
+    public R indexa() {
+        return R.error();
+    }
+
     @RequestMapping("login")
     public String login() {
         return "/admin/login";
