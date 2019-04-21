@@ -1,6 +1,5 @@
 package com.cms.jycms.controller.admin;
 
-import com.alibaba.fastjson.JSONObject;
 import com.cms.jycms.common.R;
 import com.cms.jycms.domain.ClassInfo;
 import com.cms.jycms.service.ClassInfoService;

@@ -31,7 +31,7 @@ public class LoginApiController {
             return R.error(-1, "用户名或密码不正确");
         }
 
-        String sign = Md5Util.sign(password);
+        String sign = userInfoService.passwordSign(password);
         if (sign.equalsIgnoreCase(userInfo.getPassword())) {
             adminLoginService.login(session, userInfo);
             return R.ok("/admin/index");

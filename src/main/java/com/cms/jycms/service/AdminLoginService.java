@@ -1,6 +1,7 @@
 package com.cms.jycms.service;
 
 import com.cms.jycms.domain.UserInfo;
+import com.cms.jycms.util.Md5Util;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -34,10 +35,24 @@ public class AdminLoginService {
         return true;
     }
 
+    /**
+     * 登录
+     *
+     * @param session
+     * @param userInfo
+     */
     public void login(HttpSession session, UserInfo userInfo) {
+        // 30分钟超时
+        session.setMaxInactiveInterval(30 * 60);
+        // 记录登录信息
         session.setAttribute(loginAttr, userInfo);
     }
 
+    /**
+     * 登出
+     *
+     * @param session
+     */
     public void loginOut(HttpSession session) {
         session.removeAttribute(loginAttr);
     }
@@ -51,10 +66,22 @@ public class AdminLoginService {
         return getLoginUserInfo(session) != null;
     }
 
+    /**
+     * 获取登录信息
+     *
+     * @param session
+     * @return
+     */
     public UserInfo getLoginUserInfo(HttpSession session) {
         return (UserInfo) session.getAttribute(loginAttr);
     }
 
+    /**
+     * 路径是否 api 接口
+     *
+     * @param path
+     * @return
+     */
     public boolean isApi(String path) {
         if (path.startsWith("/admin/api/")) {
             return true;

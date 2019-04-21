@@ -2,6 +2,7 @@ package com.cms.jycms.service;
 
 import com.cms.jycms.dao.UserInfoMapper;
 import com.cms.jycms.domain.UserInfo;
+import com.cms.jycms.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,16 @@ import java.util.Map;
 public class UserInfoService {
     @Autowired
     private UserInfoMapper mapper;
+
+    /**
+     * Admin User Pwd sign
+     *
+     * @param pwd
+     * @return
+     */
+    public String passwordSign(String pwd) {
+        return Md5Util.sign(pwd);
+    }
 
     public int insert(UserInfo model) {
         return mapper.insert(model);

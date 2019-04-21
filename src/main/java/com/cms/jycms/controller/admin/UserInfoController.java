@@ -1,10 +1,10 @@
 package com.cms.jycms.controller.admin;
 
 import com.cms.jycms.common.R;
-import com.cms.jycms.common.SecretUtils;
 import com.cms.jycms.domain.Query;
 import com.cms.jycms.domain.UserInfo;
 import com.cms.jycms.service.UserInfoService;
+import com.cms.jycms.util.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +21,8 @@ import java.util.Map;
 public class UserInfoController {
     @Autowired
     private UserInfoService service;
+
+    @Autowired
 
     @GetMapping("getList")
     public R getList(Integer page, Integer limit) {
@@ -49,7 +51,7 @@ public class UserInfoController {
 
     @PostMapping("addUser")
     public R addUser(UserInfo model) {
-        model.setPassword(new String(SecretUtils.encryptMode(model.getPassword().getBytes())));
+        model.setPassword(service.passwordSign(model.getPassword()));
         int result = service.insert(model);
         if (result > 0) {
             return R.ok();
@@ -59,7 +61,7 @@ public class UserInfoController {
 
     @PostMapping("updateUser")
     public R updateUser(UserInfo model) {
-        model.setPassword(new String(SecretUtils.encryptMode(model.getPassword().getBytes())));
+        model.setPassword(service.passwordSign(model.getPassword()));
         int result = service.update(model);
         if (result > 0) {
             return R.ok();
@@ -70,7 +72,7 @@ public class UserInfoController {
     @GetMapping("getUserInfoById")
     public R getUserInfoById(int id) {
         UserInfo model = service.selectById(id);
-        System.out.println(SecretUtils.decryptMode(model.getPassword().getBytes()));
+        model.setPassword("******");
         return R.ok().put("data", model);
     }
 }
