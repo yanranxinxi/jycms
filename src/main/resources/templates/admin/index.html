@@ -19,6 +19,10 @@
     <script>
         // 是否开启刷新记忆tab功能
         // var is_remember = false;
+        function loginOut(){
+            $.get("/admin/api/loginOut", function (result) {});
+            location.href ="/admin/login";
+        }
     </script>
 </head>
 <body>
@@ -37,7 +41,7 @@
             <a href="javascript:;">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                 <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">修改密码</a></dd>
-                <dd><a href="./login.html">退出</a></dd>
+                <dd><a href="javascript:loginOut();">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index"><a href="/" target="_blank">前台首页</a></li>

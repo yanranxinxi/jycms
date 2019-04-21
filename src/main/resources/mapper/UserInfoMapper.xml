@@ -30,4 +30,7 @@
   <select id="selectById" resultType="com.cms.jycms.domain.UserInfo">
     select id,userName,password from userInfo where id=#{id}
   </select>
+  <select id="selectByUserName" resultType="com.cms.jycms.domain.UserInfo">
+    select id,userName,password from userInfo where userName=#{userName}
+  </select>
 </mapper>

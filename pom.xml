@@ -16,6 +16,14 @@
         <version>1.5.9.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <start-class>com.cms.jycms.CmsApplication</start-class>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,7 +57,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.35</version>
+            <version>8.0.13</version>
         </dependency>
 
         <dependency>
@@ -69,18 +77,18 @@
         </dependency>
         <!--UEditor依赖的jar包 -->
         <dependency>
-            <groupId>org.json </groupId>
-            <artifactId>json </artifactId>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-fileupload </groupId>
-            <artifactId>commons-fileupload </artifactId>
-            <version>1.3.2 </version>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.2</version>
         </dependency>
         <dependency>
-            <groupId>commons-codec </groupId>
-            <artifactId>commons-codec </artifactId>
-            <version>1.9 </version>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
         </dependency>
     </dependencies>
     <build>

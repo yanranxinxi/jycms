@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("admin")
 public class LoginController {
 
-    @RequestMapping("adminPring")
-    @ResponseBody
-    public R indexa() {
-        return R.error();
-    }
-
     @RequestMapping("login")
     public String login() {
         return "/admin/login";

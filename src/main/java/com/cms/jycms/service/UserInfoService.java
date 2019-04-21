@@ -41,8 +41,11 @@ public class UserInfoService {
         return mapper.selectcountByUserName(userName);
     }
 
-    public  UserInfo selectById(int id)
-    {
+    public UserInfo selectById(int id) {
         return mapper.selectById(id);
+    }
+
+    public UserInfo selectByUserName(String userName) {
+        return mapper.selectByUserName(userName);
     }
 }

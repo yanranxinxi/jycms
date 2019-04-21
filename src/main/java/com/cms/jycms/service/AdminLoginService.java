@@ -1,13 +1,18 @@
 package com.cms.jycms.service;
 
+import com.cms.jycms.domain.UserInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpSession;
 
 @Service
 public class AdminLoginService {
 
     @Value("${hostName}")
     private String hostName;
+
+    private String loginAttr = "loginUserInfo";
 
     /**
      * path 是否需要登录
@@ -22,11 +27,19 @@ public class AdminLoginService {
         }
 
         // 登录界面 无需验证
-        if (path.startsWith("/admin/login")) {
+        if (path.startsWith("/admin/login") || path.startsWith("/admin/api/checkLogin")) {
             return false;
         }
 
         return true;
+    }
+
+    public void login(HttpSession session, UserInfo userInfo) {
+        session.setAttribute(loginAttr, userInfo);
+    }
+
+    public void loginOut(HttpSession session) {
+        session.removeAttribute(loginAttr);
     }
 
     /**
@@ -34,8 +47,12 @@ public class AdminLoginService {
      *
      * @return
      */
-    public boolean checkLogin() {
-        return false;
+    public boolean checkLogin(HttpSession session) {
+        return getLoginUserInfo(session) != null;
+    }
+
+    public UserInfo getLoginUserInfo(HttpSession session) {
+        return (UserInfo) session.getAttribute(loginAttr);
     }
 
     public boolean isApi(String path) {

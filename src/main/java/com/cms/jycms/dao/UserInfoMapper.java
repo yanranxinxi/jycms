@@ -14,4 +14,6 @@ public interface UserInfoMapper {
     int selectCountById(int id);
     int selectcountByUserName(String userName);
     UserInfo selectById(int id);
+
+    UserInfo selectByUserName(String userName);
 }

@@ -34,7 +34,7 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
         }
 
         // 验证是否已经登录
-        if (adminLoginService.checkLogin()) {
+        if (adminLoginService.checkLogin(request.getSession())) {
             return true;
         }
 
