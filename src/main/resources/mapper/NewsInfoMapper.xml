@@ -3,13 +3,13 @@
 <mapper namespace="com.cms.jycms.dao.NewsInfoMapper">
     <select id="selectByPrimaryKey" resultType="com.cms.jycms.domain.NewsInfo">
     select 
-    id,title,classId,content,comeFrom,addDate,updateDate,isDel
+    id,title,classId,content,comeFrom,addDate,updateDate,isDel,imageUrl
     from newsInfo
     where id = #{id}
   </select>
     <select id="selectAll" resultType="com.cms.jycms.domain.NewsInfo">
         select
-        a.id,a.title,a.classId,a.content,a.comeFrom,a.addDate,a.updateDate,a.isDel,b.name as className
+        a.id,a.title,a.classId,a.content,a.comeFrom,a.addDate,a.updateDate,a.isDel,a.imageUrl,b.name as className
         from newsInfo a left join classInfo b on a.classId=b.id
         where isDel=0
         <if test="title!=null and title!=''">
@@ -56,10 +56,10 @@
         </foreach>
     </delete>
     <insert id="addContent">
-        insert into newsInfo(id,title,classId,content,comeFrom,addDate,isDel)
-        values(uuid(),#{title},#{classId},#{content},#{comeFrom},now(),0);
+        insert into newsInfo(id,title,classId,content,comeFrom,addDate,isDel,imageUrl)
+        values(uuid(),#{title},#{classId},#{content},#{comeFrom},now(),0,#{imageUrl});
     </insert>
     <update id="updateContent">
-        update newsInfo set title=#{title},classId=#{classId},content=#{content},comeFrom=#{comeFrom},updateDate=now() where id=#{id}
+        update newsInfo set title=#{title},classId=#{classId},content=#{content},comeFrom=#{comeFrom},updateDate=now(),imageUrl=#{imageUrl} where id=#{id}
     </update>
 </mapper>
