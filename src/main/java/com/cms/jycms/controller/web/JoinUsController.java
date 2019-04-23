@@ -7,13 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class JoinUsController {
     @Autowired
     private NavComponent navComponent;
 
-    @RequestMapping("/")
-    public String index(Model model) {
+    @RequestMapping("joinUs")
+    public String joinUs(Model model)
+    {
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/index";
+        return "/web/joinUs";
     }
 }

@@ -4,6 +4,7 @@ public class ClassInfo {
     private int id;
     private String name;
     private int parentId;
+    private String url;
 
     public int getId() {
         return id;
@@ -29,6 +30,15 @@ public class ClassInfo {
 
     public ClassInfo setParentId(int parentId) {
         this.parentId = parentId;
+        return this;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public ClassInfo setUrl(String url) {
+        this.url = url;
         return this;
     }
 }

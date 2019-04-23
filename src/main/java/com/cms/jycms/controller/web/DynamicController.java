@@ -7,13 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class DynamicController {
     @Autowired
     private NavComponent navComponent;
 
-    @RequestMapping("/")
-    public String index(Model model) {
+    @RequestMapping("dynamic")
+    public String dynamic(Model model)
+    {
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/index";
+        return "/web/dynamic";
     }
 }

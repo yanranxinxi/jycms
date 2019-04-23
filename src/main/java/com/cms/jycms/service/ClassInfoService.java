@@ -17,6 +17,11 @@ public class ClassInfoService {
         return mapper.selectAll();
     }
 
+    public  List<ClassInfo> getNav()
+    {
+        return mapper.getNav();
+    }
+
     public int delete(int id) {
         return mapper.delete(id);
     }
