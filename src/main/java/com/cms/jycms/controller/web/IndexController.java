@@ -15,6 +15,6 @@ public class IndexController {
     @RequestMapping({"/","index"})
     public String index(Model model) {
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/index";
+        return "web/index";
     }
 }

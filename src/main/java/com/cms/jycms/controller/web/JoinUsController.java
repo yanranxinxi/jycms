@@ -15,6 +15,6 @@ public class JoinUsController {
     public String joinUs(Model model)
     {
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/joinUs";
+        return "web/joinUs";
     }
 }

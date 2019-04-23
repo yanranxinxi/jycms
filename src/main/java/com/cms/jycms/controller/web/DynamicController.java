@@ -15,6 +15,6 @@ public class DynamicController {
     public String dynamic(Model model)
     {
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/dynamic";
+        return "web/dynamic";
     }
 }

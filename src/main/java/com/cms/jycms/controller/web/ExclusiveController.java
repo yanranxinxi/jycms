@@ -15,6 +15,6 @@ public class ExclusiveController {
     public String exclusive(Model model)
     {
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/exclusive";
+        return "web/exclusive";
     }
 }

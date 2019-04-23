@@ -14,6 +14,6 @@ public class BrandController {
     @RequestMapping("brand")
     public String brand(Model model) {
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/brand";
+        return "web/brand";
     }
 }

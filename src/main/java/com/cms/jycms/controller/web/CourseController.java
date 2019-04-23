@@ -14,6 +14,6 @@ public class CourseController {
     @RequestMapping("course")
     public String course(Model model) {
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/course";
+        return "web/course";
     }
 }
