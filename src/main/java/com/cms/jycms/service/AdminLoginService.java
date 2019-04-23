@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 @Service
 public class AdminLoginService {
 
-    @Value("${hostName}")
+    @Value("${web.hostName}")
     private String hostName;
 
     private String loginAttr = "loginUserInfo";

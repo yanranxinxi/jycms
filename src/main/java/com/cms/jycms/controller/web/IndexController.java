@@ -7,11 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/")
 public class IndexController {
     @Autowired
     private NavComponent navComponent;
 
-    @RequestMapping("/")
+    @RequestMapping({"/","index"})
     public String index(Model model) {
         model.addAttribute("navList", navComponent.getNavList());
         return "/web/index";
