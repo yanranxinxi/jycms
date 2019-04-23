@@ -44,8 +44,7 @@ mybatis:
 web:
   upload-path: D:/
   imagesDir: jycms/upload
-
-hostName: ""
+  hostName: ""
 
 multipart:
   maxFileSize: 10Mb
