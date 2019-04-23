@@ -2,6 +2,9 @@ server:
   port: 9999
 
 spring:
+  application:
+    name: jycms
+    index: 0
   datasource:
     name: test
     url: jdbc:mysql://127.0.0.1:3306/myjavadb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
