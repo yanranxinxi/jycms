@@ -42,7 +42,7 @@ public class LoginApiController {
     @RequestMapping("loginOut")
     public R loginOut() {
         adminLoginService.loginOut(session);
-        return R.ok("/admin/index");
+        return R.ok("/admin/login");
     }
 
 }

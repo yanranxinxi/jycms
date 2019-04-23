@@ -41,5 +41,4 @@ mybatis:
 
 web:
   upload-path: D:/
-
-hostName: http://localhost:9999
+  hostName: ""
