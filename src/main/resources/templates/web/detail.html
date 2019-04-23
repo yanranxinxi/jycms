@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>联系我们</title>
+    <title th:text="${newsInfo.title}"></title>
     <meta name="keywords" content="蔚蓝星少儿英语成长乐园,深圳少儿英语培训" />
     <meta property="qc:admins" content="2771704753463535131636" />
     <meta name="description" content="Bluestar 是专注于2-6岁孩子英文学习的生态系统。来自英国的先进教学理念，为不同年龄段孩子量身定制的沉浸式学习环境，让孩子轻松自如掌握英文听说读写的语言技能。同时丰富多样的课程元素，发掘和激发孩子的八大智能和21世纪5C技能和成长心态。" />
@@ -30,47 +29,6 @@
 <body>
 
 
-
-<!--
-<script type="text/javascript" src="/web/template/default/skin/images/kefu/jquery-1.8.0.min.js"></script>
-<script type="text/javascript" src="/web/template/default/skin/images/kefu/lrtk.js"></script>
-<div class="scrollsidebar" id="scrollsidebar">
-    <div class="side_content">
-        <div class="side_list">
-            <div class="side_title"><a title="隐藏" class="close_btn"><span>关闭</span></a></div>
-            <div class="side_center">
-                <div class="custom_service">
-                    <p>
-                        客服 <a title="点击这里给我发消息" href="http://wpa.qq.com/msgrd?v=3&amp;uin=413124852&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=2:413124852:41"></a>
-                    </p>
-                </div>
-                <div class="other">
-                    <p><img src="/web/template/default/skin/images/kefu/quickmark.jpg" /></p>
-                    <p>客户服务热线</p>
-                    <p>0755-21044580</p>
-                </div>
-                <div class="msgserver">
-                    <p><a href="index.php?case=guestbook&act=index" target="_blank">给我们留言</a></p>
-                </div>
-            </div>
-            <div class="side_bottom"></div>
-        </div>
-    </div>
-    <div class="show_btn"><span>在线客服</span></div>
-</div>
-
-<script type="text/javascript">
-$(function() {
-$("#scrollsidebar").fix({
-float : 'right',	//default.left or right
-//minStatue : true,
-skin : 'blue',	//default.gray or blue
-durationTime : 600
-});
-});
-</script>
--->
-
 <div id="header">
 
     <div class="top">
@@ -78,10 +36,6 @@ durationTime : 600
             <img src="/web/template/default/skin/images/top.jpg" />
         </div>
     </div>
-
-
-
-
 
     <div class="menu">
         <!-- 网站导航 -->
@@ -97,43 +51,33 @@ durationTime : 600
     </div>
 
 
+
 </div>
 
 
 <div style="height: 161px;"></div>
-<div class="banner5"></div><div id="main">
-    <div class="lr">
-        <div class="wuneiye2">
-            <ul>
-                <li class="wuneiye_hover" style="width:649px;"><a href="/index.php?case=archive&act=list&catid=22">联系我们</a></li>
-                <li style="width:649px;"><a href="/index.php?case=archive&act=list&catid=23">加入我们</a></li>
-            </ul>
-            <div style="clear:both"></div>
+<div class="banner3"></div><div id="main">
+    <div class="lr" style="padding-top:40px;">
+
+
+
+
+        <!-- 内容标题 -->
+        <div class="r_boxww"><h1 th:text="${newsInfo.title}"></h1></div>
+        <div class="contentinfo">作者：<a th:text="${newsInfo.comeFrom}"></a>&nbsp;&nbsp; 添加时间：<label th:text="${newsInfo.addDate}"></label>&nbsp;&nbsp; </div>
+        <div id="content" class="clear" th:utext="${newsInfo.content}">
+
         </div>
 
-
-        <!-- 内容 -->
-        <table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-top:60px;margin-left:160px;">
-            <tbody>
-            <tr>
-                <td>
-                    <p style="line-height:50px; font-size: 16px;"><strong>蔚蓝星少儿英语成长乐园</strong><br />
-                        地址：深圳市龙华区民治街道民泰社区玖龙玺一层<br />
-                        联系人：杨小姐<br />
-                        电话：0755-2104 4580<br />
-                        邮箱：Capital@bluestarkids.com<br />
-                        网址：www.bluestarkids.com</p>
-                </td>
-                <td><img src="/web/template/default/skin/images/call_bg.jpg" alt="" /></td>
-            </tr>
-            </tbody>
-        </table>
         <div class="blank30"></div>
-        <div class="clear"></div>
 
-
-
-        <iframe src="/map" width="1300" height="400" frameborder="0" scrolling="no"></iframe>
+        <!-- 上下页开始 -->
+        <div id="page">
+            <strong>上一篇：</strong><a href="/index.php?case=archive&act=show&aid=37">充满未来感的蔚蓝星课程体系，让孩子爱上学习</a>
+            <div class="clear"></div>
+            <strong>下一篇：</strong><a href="/index.php?case=archive&act=show&aid=39">震惊！英语居然这个时段学最好？</a>
+        </div>
+        <!-- 上下页结束 -->
 
     </div>
 </div>
@@ -209,25 +153,5 @@ durationTime : 600
 
 <!-- 在线客服 -->
 <!-- 短信 -->
-
-
-
-
-
-<script>
-    function checkmail(str)
-    {
-        var strreg="email";
-        var r;
-        var strtext=document.all(str).value;
-//strreg=/^w+((-w+)|(.w+))*@[a-za-z0-9]+((.|-)[a-za-z0-9]+)*.[a-za-z0-9]+$/i;
-        strreg=/^w+((-w+)|(.w+))*@{1}w+.{1}w{2,4}(.{0,1}w{2}){0,1}/ig;
-        r=strtext.search(strreg);
-        if(r==-1) {
-            alert("邮箱格式错误!");
-            document.all(str).focus();
-        }
-    }
-</script>
 </body>
 </html>

@@ -7,7 +7,6 @@
     <meta property="qc:admins" content="2771704753463535131636"/>
     <meta name="description"
           content="Bluestar 是专注于2-6岁孩子英文学习的生态系统。来自英国的先进教学理念，为不同年龄段孩子量身定制的沉浸式学习环境，让孩子轻松自如掌握英文听说读写的语言技能。同时丰富多样的课程元素，发掘和激发孩子的八大智能和21世纪5C技能和成长心态。"/>
-    <meta name="author" content="CmsEasy Team"/>
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <!-- 调用样式表 -->
@@ -119,21 +118,21 @@
         <div style=" margin:0 auto; width:1300px;">
             <ul>
                 <li>
-                    <a href="/index.php?case=archive&act=list&catid=15">
+                    <a href="/brand">
                         <img src="/web/template/default/skin/images/pic05.jpg"/>
                         <h2>M：母语习得法</h2>
                         <p>Multimethod</p>
                     </a>
                 </li>
                 <li>
-                    <a href="/index.php?case=archive&act=list&catid=15">
+                    <a href="/brand">
                         <img src="/web/template/default/skin/images/pic06.jpg"/>
                         <h2>I：八大智能</h2>
                         <p>Inteliengence</p>
                     </a>
                 </li>
                 <li>
-                    <a href="/index.php?case=archive&act=list&catid=15">
+                    <a href="/brand">
                         <img src="/web/template/default/skin/images/pic07.jpg"/>
                         <h2>C：21世纪5c技能</h2>
                         <p>Century</p>
@@ -150,28 +149,28 @@
             <div class="wu04_title"><img src="/web/template/default/skin/images/pic12.jpg"/></div>
             <ul>
                 <li>
-                    <a href="/index.php?case=archive&act=list&catid=12">
+                    <a href="/course">
                         <img src="/web/template/default/skin/images/pic08.jpg"/>
                         <h2>蔚蓝星课堂 （2-6岁）</h2>
                         <p>为蔚蓝星的英文主体课程。抓住孩子0-6岁的语言敏感期，通过...</p>
                     </a>
                 </li>
                 <li>
-                    <a href="/index.php?case=archive&act=list&catid=12">
+                    <a href="/course">
                         <img src="/web/template/default/skin/images/pic09.jpg"/>
                         <h2>中子星课堂 （3-6岁）</h2>
                         <p>中子星课堂 （3-6岁）为蔚蓝星的手工艺术课，通过手工、游戏...</p>
                     </a>
                 </li>
                 <li>
-                    <a href="/index.php?case=archive&act=list&catid=12">
+                    <a href="/course">
                         <img src="/web/template/default/skin/images/pic10.jpg"/>
                         <h2>双子星课堂 （3-6岁）</h2>
                         <p>双子星课堂 （3-6岁）为蔚蓝星的短剧表演课，通过一个阶段的...</p>
                     </a>
                 </li>
                 <li>
-                    <a href="/index.php?case=archive&act=list&catid=12">
+                    <a href="/course">
                         <img src="/web/template/default/skin/images/pic11.jpg"/>
                         <h2>超新星课堂（2-3岁）</h2>
                         <p>超新星课堂（2-3岁）专门为2-3岁的宝宝们设置，此课程主要...</p>
@@ -179,7 +178,7 @@
                 </li>
             </ul>
             <div style="clear:both"></div>
-            <div class="wumore"><a href="/index.php?case=archive&act=list&catid=12">了解更多+</a></div>
+            <div class="wumore"><a href="/course">了解更多+</a></div>
         </div>
     </div>
 
@@ -188,36 +187,16 @@
         <div style=" margin:0 auto; width:1300px;">
             <div class="wu04_title"><img src="/web/template/default/skin/images/pic13.jpg"/></div>
             <ul>
-                <li>
-                    <a href="/index.php?case=archive&act=show&aid=39">
-                        <img src="" width="400px;" height="200px"/>
-                        <h2>震惊！英语居然这个时段学最好？</h2>
-                        <p>
-
-                            为什么英语非母语的儿童应该在2-6岁开始学习英语？
-
-                            在众多针对此年</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.php?case=archive&act=show&aid=38">
-                        <img src="" width="400px;" height="200px"/>
-                        <h2>蔚蓝星独创MIC教育理念</h2>
-                        <p>
-                            学习英文的方式有很多，可是万变不离其宗的还是需要强调环境和实用，在重复的过程</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/index.php?case=archive&act=show&aid=37">
-                        <img src="" width="400px;" height="200px"/>
-                        <h2>充满未来感的蔚蓝星课程体系，让</h2>
-                        <p>
-                            其实每一个孩子都是拥有无限潜能的。而我们真正需要做的，不是去教授更多，而是帮</p>
+                <li th:each="newsItem:${newsList}">
+                    <a th:href="'/detail/'+${newsItem.id}">
+                        <img th:src="${newsItem.imageUrl}" width="400px;" height="200px"/>
+                        <h2 th:text="${newsItem.title}"></h2>
+                        <p></p>
                     </a>
                 </li>
             </ul>
             <div style="clear:both"></div>
-            <div class="wumore"><a href="/index.php?case=archive&act=list&catid=2">了解更多+</a></div>
+            <div class="wumore"><a href="/dynamic">了解更多+</a></div>
         </div>
     </div>
 
@@ -270,11 +249,7 @@
 </script>
 
 <!--返回头部结束-->
-
-
-<div style="display:none">Powered by <a href="http://www.cmseasy.cn" title="CmsEasy企业网站系统" target="_blank">CmsEasy</a>
-</div>
-<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/web/template/default/skin/js/common.js"></script>
 
 <script type="text/javascript">
     // 公告滚动js
