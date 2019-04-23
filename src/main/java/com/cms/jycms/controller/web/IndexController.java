@@ -30,6 +30,6 @@ public class IndexController {
         List<NewsInfo> newsList = newsInfoService.selectAll(map);
         model.addAttribute("newsList", newsList);
         model.addAttribute("navList", navComponent.getNavList());
-        return "/web/index";
+        return "web/index";
     }
 }

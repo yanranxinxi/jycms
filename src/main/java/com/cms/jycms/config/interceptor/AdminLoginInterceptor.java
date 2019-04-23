@@ -27,8 +27,6 @@ public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // 验证是否需要登录
         String uri = request.getRequestURI();
-        String hostName = request.getServerName();
-        logger.warn(hostName);
         if (!adminLoginService.isNeedLogin(uri)) {
             return true;
         }
