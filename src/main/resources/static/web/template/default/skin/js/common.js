@@ -1,9 +1,14 @@
+var pathName = "";
 $(function () {
-    var pathName = window.location.pathname;
+    pathName = window.location.pathname;
     for (var i = 0; i < $("#nav li a").length; i++) {
-        if ($("#nav li a")[i].pathname == pathName) {
-            $($("#nav li")[i]).addClass("on")
+        if (pathName.indexOf($("#nav li a")[i].pathname) > -1 && $("#nav li a")[i].pathname!="/") {
+            $($("#nav li")[i]).addClass("on");
             break;
+        }
+        if(pathName=="/")
+        {
+            $($("#nav li")[0]).addClass("on");
         }
     }
 });

@@ -5,6 +5,9 @@ public class ClassInfo {
     private String name;
     private int parentId;
     private String url;
+    private int order;
+    private String keyword;
+    private String description;
 
     public int getId() {
         return id;
@@ -39,6 +42,33 @@ public class ClassInfo {
 
     public ClassInfo setUrl(String url) {
         this.url = url;
+        return this;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public ClassInfo setOrder(int order) {
+        this.order = order;
+        return this;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public ClassInfo setKeyword(String keyword) {
+        this.keyword = keyword;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ClassInfo setDescription(String description) {
+        this.description = description;
         return this;
     }
 }

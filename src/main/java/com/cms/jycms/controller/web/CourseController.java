@@ -16,4 +16,17 @@ public class CourseController {
         model.addAttribute("navList", navComponent.getNavList());
         return "web/course";
     }
+    @RequestMapping("/course/3-6")
+    public String course36(Model model)
+    {
+        model.addAttribute("navList", navComponent.getNavList());
+        return "web/course_3_6";
+    }
+
+    @RequestMapping("/course/2-6")
+    public String course26(Model model)
+    {
+        model.addAttribute("navList", navComponent.getNavList());
+        return "web/course_2_6";
+    }
 }

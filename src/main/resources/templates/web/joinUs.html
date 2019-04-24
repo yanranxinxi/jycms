@@ -27,7 +27,7 @@
     <script type="text/javascript" src="/web/template/default/skin/js/js/MSClass.js"></script>
     <!--<script type="text/javascript" src="/web/template/default/skin/js/js/JQuery.js"></script>-->
 </head>
-<body>
+<body style="overflow-x:hidden;">
 
 
 
@@ -105,29 +105,15 @@ durationTime : 600
     <div class="lr">
         <div class="wuneiye2">
             <ul>
-                <li class="wuneiye_hover" style="width:649px;"><a href="/index.php?case=archive&act=list&catid=22">联系我们</a></li>
-                <li style="width:649px;"><a href="/index.php?case=archive&act=list&catid=23">加入我们</a></li>
+                <li class="wuneiye_hover" style="width:649px;"><a href="/joinUs">联系我们</a></li>
+                <li style="width:649px;"><a href="/joinUs/contact">加入我们</a></li>
             </ul>
             <div style="clear:both"></div>
         </div>
 
 
         <!-- 内容 -->
-        <table border="0" cellspacing="0" cellpadding="0" width="100%" style="margin-top:60px;margin-left:160px;">
-            <tbody>
-            <tr>
-                <td>
-                    <p style="line-height:50px; font-size: 16px;"><strong>蔚蓝星少儿英语成长乐园</strong><br />
-                        地址：深圳市龙华区民治街道民泰社区玖龙玺一层<br />
-                        联系人：杨小姐<br />
-                        电话：0755-2104 4580<br />
-                        邮箱：Capital@bluestarkids.com<br />
-                        网址：www.bluestarkids.com</p>
-                </td>
-                <td><img src="/web/template/default/skin/images/call_bg.jpg" alt="" /></td>
-            </tr>
-            </tbody>
-        </table>
+        <div th:utext="${newsInfo.content}"></div>
         <div class="blank30"></div>
         <div class="clear"></div>
 

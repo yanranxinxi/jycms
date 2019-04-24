@@ -62,7 +62,7 @@
     <div class="lr">
         <div class="wuneiye2">
             <ul>
-                <li class="wuneiye_hover"><a href="/brand">教育理念（MIC）</a></li>
+                <li><a href="/brand">教育理念（MIC）</a></li>
                 <li><a href="/brand/curriculumSystem">课程体系</a></li>
                 <li><a href="/brand/story">蔚蓝星故事</a></li>
                 <li><a href="/brand/aboutUs">关于我们</a></li>
@@ -72,37 +72,8 @@
 
 
         <div class="pingpai">
-            <div class="pingpai_title">教育理念（MIC )</div>
-            <ul>
-                <li>
-                    <h2>母语习得法</h2>
-                    <img src="/web/template/default/skin/images/pic22.jpg" width="594px;"/>
-                    <a href="/brand/educationalConcept/17">了解更多</a>
-                    <!--<p>微蓝星完全遵循母语习得法，通过上万种的真实语言环境，提供同级语言教学。在有效的语言环境下，通过画面和场景，鼓励孩子大胆猜测和联想的能力，形成声音和画面的条件反射，从而提升孩子的英文理解能力即听的能力。（有效的语言环境，是指70~80%为已知内容，20~30%为未知内容。）再通过大量模仿，对话，歌谣等形式，提升
-                    孩子的口语能力。通过世界权威语言学专家研究表明，语言通过17次以上不同场景重复，会形成自然语言听说的条件反射，即语言思维的形成。</p>-->
-                </li>
-                <li style="margin-right:0px;">
-                    <h2>八大智能</h2>
-                    <img src="/web/template/default/skin/images/pic23.jpg" width="594px;"/>
-                    <a href="/brand/educationalConcept/18">了解更多</a>
-                    <!--<p>八十年代，美国著名发展心理学家、哈佛大学教授霍华德·加德纳博士提出多元智能理论，二十多年来该理论已经广泛应用于欧美国家和亚洲许多国家的幼儿教育上，并且获得了极大的成功。霍华德·加德纳博士指出，人类的智能是多元化而非单一的，主要是由语言智能、数学逻辑智能、空间智能、身体运动智能、音乐智能、人际智能、自我认
-                    知智能、自然认知智能八项组成，每个人都拥有不同的智能优势组合。在蔚蓝星，通过四大主体学科英文学习使每一个孩子的智能优势都会被完美的发掘和激发。</p>-->
-                </li>
-                <li>
-                    <h2>21世纪5C技能</h2>
-                    <img src="/web/template/default/skin/images/pic24.jpg" width="594px;"/>
-                    <a href="/brand/educationalConcept/19">了解更多</a>
-                    <!--<p>面对21世纪的机遇与挑战，蔚蓝星的孩子们需要具备21世纪5C技能，即文化理解与传承的能力，合作能力，创新能力，批判性思维和解决问题的能力</p>-->
-                </li>
-                <li style="margin-right:0px;">
-                    <h2>成长心态</h2>
-                    <img src="/web/template/default/skin/images/pic25.jpg" width="594px;"/>
-                    <a href="/brand/educationalConcept/20">了解更多</a>
-                    <!--<p>蔚蓝星英语学习建立在成长心态框架上，这个框架是由斯坦福大学教授及心理学卡罗尔德维克开开发的。具有成长心态世界观的人认为，需要付出努力才能创造才华。需要逐年累月不断尝试，不断犯错才能掌握技能。成长成长心态鼓励人们无所畏惧地开展学习，探求新知。而固定心态世界观的人认为，聪明才智等基本个人素质与生俱来，永
-                    久不变。具有固定心态的人努力维护自己所感知的能力。避不接受挑战，不愿承担失败的风险。蔚蓝星课程对孩子们的付出给与鼓励，鼓励学生拓展能力，应对新的挑战。在学习新的语言项目和掌握生活技能方面，失败被视为成功的基石。我们相信，在成长心态框架中开展学习，可以培养儿童的适应力，增强儿童的自尊心，让他们终生热爱学习。</p>
-                      -->
-                </li>
-            </ul>
+            <div class="pingpai_title" th:text="${newsInfo.title}"></div>
+            <div th:utext="${newsInfo.content}"></div>
             <div style="clear:both"></div>
         </div>
 
@@ -162,6 +133,22 @@
 <script type="text/javascript" src="/web/template/default/skin/js/common.js"></script>
 
 <script type="text/javascript">
+    $(function(){
+        switch (pathName) {
+            case "/brand/curriculumSystem":
+                $($(".wuneiye2 li")[1]).addClass("wuneiye_hover");
+                break;
+            case "/brand/story":
+                $($(".wuneiye2 li")[2]).addClass("wuneiye_hover");
+                break;
+            case "/brand/aboutUs":
+                $($(".wuneiye2 li")[3]).addClass("wuneiye_hover");
+                break;
+            default:
+                $($(".wuneiye2 li")[0]).addClass("wuneiye_hover");
+                break;
+        }
+    });
     // 公告滚动js
     var t = setInterval(myfunc, 1000);
     var oBox = document.getElementById("announ");

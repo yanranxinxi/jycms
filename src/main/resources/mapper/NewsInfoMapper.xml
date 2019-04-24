@@ -56,10 +56,17 @@
         </foreach>
     </delete>
     <insert id="addContent">
-        insert into newsInfo(id,title,classId,content,comeFrom,addDate,isDel,imageUrl)
-        values(uuid(),#{title},#{classId},#{content},#{comeFrom},now(),0,#{imageUrl});
+        insert into newsInfo(title,classId,content,comeFrom,addDate,isDel,imageUrl)
+        values(#{title},#{classId},#{content},#{comeFrom},now(),0,#{imageUrl});
     </insert>
     <update id="updateContent">
         update newsInfo set title=#{title},classId=#{classId},content=#{content},comeFrom=#{comeFrom},updateDate=now(),imageUrl=#{imageUrl} where id=#{id}
     </update>
+    <select id="selectUpDown" resultType="com.cms.jycms.domain.NewsInfo">
+        <![CDATA[
+        SELECT id,title FROM newsinfo
+        WHERE classId=#{classId} and id IN (SELECT CASE WHEN SIGN(id - #{id}) > 0 THEN MIN(id) WHEN SIGN(id - #{id}) < 0 THEN MAX(id) END AS id
+        FROM newsinfo WHERE classId=#{classId} and id <> #{id} GROUP BY SIGN(id - #{id}) ORDER BY SIGN(id - #{id})) ORDER BY id ASC;
+        ]]>
+    </select>
 </mapper>

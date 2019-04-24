@@ -17,4 +17,6 @@ public interface NewsInfoMapper {
     int addContent(NewsInfo model);
 
     int updateContent(NewsInfo model);
+
+    List<NewsInfo> selectUpDown(NewsInfo model);
 }

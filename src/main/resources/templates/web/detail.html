@@ -73,9 +73,11 @@
 
         <!-- 上下页开始 -->
         <div id="page">
-            <strong>上一篇：</strong><a href="/index.php?case=archive&act=show&aid=37">充满未来感的蔚蓝星课程体系，让孩子爱上学习</a>
+            <strong>上一篇：</strong><a th:if="${up!=null}" th:text="${up.title}" th:href="''+${up.id}"></a>
+            <span th:if="${up==null}" th:text="没有了"></span>
             <div class="clear"></div>
-            <strong>下一篇：</strong><a href="/index.php?case=archive&act=show&aid=39">震惊！英语居然这个时段学最好？</a>
+            <strong>下一篇：</strong><a th:if="${down!=null}" th:text="${down.title}" th:href="''+${down.id}"></a>
+            <span th:if="${down==null}" th:text="没有了"></span>
         </div>
         <!-- 上下页结束 -->
 

@@ -40,4 +40,8 @@ public class NewsInfoService {
     {
         return mapper.updateContent(model);
     }
+    public List<NewsInfo> selectUpDown(NewsInfo model)
+    {
+        return mapper.selectUpDown(model);
+    }
 }

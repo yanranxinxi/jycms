@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class NewsInfo implements Serializable {
-    private String id;
+    private int id;
 
     private String title;
 
@@ -17,8 +17,8 @@ public class NewsInfo implements Serializable {
 
     private String comeFrom;
 
-    private LocalDateTime addDate;
-    private LocalDateTime updateDate;
+    private String addDate;
+    private String updateDate;
 
     private Boolean isDel;
 
@@ -26,11 +26,11 @@ public class NewsInfo implements Serializable {
 
     private String imageUrl;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public NewsInfo setId(String id) {
+    public NewsInfo setId(int id) {
         this.id = id;
         return this;
     }
@@ -72,25 +72,19 @@ public class NewsInfo implements Serializable {
     }
 
     public String getAddDate() {
-        if (addDate != null) {
-            return addDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        }
-        return "";
+        return addDate;
     }
 
-    public NewsInfo setAddDate(LocalDateTime addDate) {
+    public NewsInfo setAddDate(String addDate) {
         this.addDate = addDate;
         return this;
     }
 
     public String getUpdateDate() {
-        if (updateDate != null) {
-            return updateDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        }
-        return "";
+        return updateDate;
     }
 
-    public NewsInfo setUpdateDate(LocalDateTime updateDate) {
+    public NewsInfo setUpdateDate(String updateDate) {
         this.updateDate = updateDate;
         return this;
     }

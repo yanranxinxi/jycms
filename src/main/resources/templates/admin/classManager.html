@@ -39,11 +39,57 @@
     <ul id="classTree" class="ztree"></ul>
 </div>
 <div class="x-body" style="float:left;width:76%;">
-    <div class="layui-row">
-        <input class="layui-input" autocomplete="off" placeholder="标题" name="tbxTitle" id="tbxTitle">
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            ID:
+        </label>
+        <div class="layui-input-inline">
+            <input class="layui-input" autocomplete="off" placeholder="ID" name="tbxID" id="tbxID"
+                   style="width:400px; " readonly>
+        </div>
     </div>
-    <div class="layui-row" style="margin-top:10px;">
-        <input class="layui-input" autocomplete="off" placeholder="Url" name="tbxUrl" id="tbxUrl">
+    <div class="layui-form-item">
+        <label for="tbxTitle" class="layui-form-label">
+            <span class="x-red">*</span>标题:
+        </label>
+        <div class="layui-input-inline">
+            <input class="layui-input" autocomplete="off" placeholder="标题" name="tbxTitle" id="tbxTitle"
+                   style="width:400px;">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            Url:
+        </label>
+        <div class="layui-input-inline">
+            <input class="layui-input" autocomplete="off" placeholder="Url" name="tbxUrl" id="tbxUrl"
+                   style="width:400px;">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            排序:
+        </label>
+        <div class="layui-input-inline">
+            <input class="layui-input" autocomplete="off" placeholder="排序" name="tbxOrder" id="tbxOrder"
+                   style="width:400px;"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            关键字:
+        </label>
+        <div class="layui-input-inline">
+            <input class="layui-input" autocomplete="off" placeholder="关键字" name="tbxKeyword" id="tbxKeyword"
+                   style="width:400px;"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            描述:
+        </label>
+        <div class="layui-input-inline">
+            <input class="layui-input" autocomplete="off" placeholder="描述" name="tbxDescription" id="tbxDescription"
+                   style="width:400px;">
+        </div>
     </div>
     <div class="layui-row" style="margin-top:10px;">
         <button class="layui-btn" id="btnAdd">
@@ -88,7 +134,18 @@
                 return false;
             }
             layer.confirm('确定要新增子节点吗？', {icon: 3, title: '提示'}, function (index) {
-                var data = {"name": $("#tbxTitle").val(), "parentId": selectedNode.id, "url": $("#tbxUrl").val()};
+                var order = $("#tbxOrder").val();
+                if (order == undefined || order == null || order == "") {
+                    order = 0;
+                }
+                var data = {
+                    "name": $("#tbxTitle").val(),
+                    "parentId": selectedNode.id,
+                    "url": $("#tbxUrl").val(),
+                    "order": order,
+                    "keyword": $("#tbxKeyword").val(),
+                    "description": $("#tbxDescription").val()
+                };
                 $.post("/admin/api/class/insert", data, function (result) {
                     if (result.code == 0) {
                         layer.alert("新增成功", {icon: 1}, function (index) {
@@ -125,7 +182,18 @@
                 return false;
             }
             layer.confirm('确定要保存修改吗？', {icon: 3, title: '提示'}, function (index) {
-                var data = {"name": $("#tbxTitle").val(), "id": selectedNode.id, "url": $("#tbxUrl").val()};
+                var order = $("#tbxOrder").val();
+                if (order == undefined || order == null || order == "") {
+                    order = 0;
+                }
+                var data = {
+                    "name": $("#tbxTitle").val(),
+                    "id": selectedNode.id,
+                    "url": $("#tbxUrl").val(),
+                    "order": order,
+                    "keyword": $("#tbxKeyword").val(),
+                    "description": $("#tbxDescription").val()
+                };
                 $.post("/admin/api/class/update", data, function (result) {
                     if (result.code == 0) {
                         layer.alert("编辑成功", {icon: 1}, function (index) {
@@ -149,11 +217,27 @@
 
     function selectNode() {
         var selectedNode = getSelectNode();
+        $("#tbxID").val(selectedNode.id);
         $("#tbxTitle").val(selectedNode.name);
-        if (selectedNode.url != null && selectedNode != undefined) {
+        if (selectedNode.url != null && selectedNode.url != undefined) {
             $("#tbxUrl").val(selectedNode.url);
         } else {
             $("#tbxUrl").val("");
+        }
+        if (selectedNode.order != null && selectedNode.order != undefined) {
+            $("#tbxOrder").val(selectedNode.order);
+        } else {
+            $("#tbxOrder").val("0");
+        }
+        if (selectedNode.keyword != null && selectedNode.keyword != undefined) {
+            $("#tbxKeyword").val(selectedNode.keyword);
+        } else {
+            $("#tbxKeyword").val("");
+        }
+        if (selectedNode.description != null && selectedNode.description != undefined) {
+            $("#tbxDescription").val(selectedNode.description);
+        } else {
+            $("#tbxDescription").val("");
         }
     }
 

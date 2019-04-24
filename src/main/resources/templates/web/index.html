@@ -188,7 +188,7 @@
             <div class="wu04_title"><img src="/web/template/default/skin/images/pic13.jpg"/></div>
             <ul>
                 <li th:each="newsItem:${newsList}">
-                    <a th:href="'/detail/'+${newsItem.id}">
+                    <a th:href="'/dynamic/detail/'+${newsItem.id}">
                         <img th:src="${newsItem.imageUrl}" width="400px;" height="200px"/>
                         <h2 th:text="${newsItem.title}"></h2>
                         <p></p>
