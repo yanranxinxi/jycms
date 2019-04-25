@@ -1,10 +1,6 @@
 package com.cms.jycms.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class NewsInfo implements Serializable {
     private int id;
@@ -25,6 +21,8 @@ public class NewsInfo implements Serializable {
     private String className;
 
     private String imageUrl;
+
+    private String description;
 
     public int getId() {
         return id;
@@ -113,6 +111,15 @@ public class NewsInfo implements Serializable {
 
     public NewsInfo setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public NewsInfo setDescription(String description) {
+        this.description = description;
         return this;
     }
 }

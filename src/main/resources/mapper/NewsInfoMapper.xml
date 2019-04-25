@@ -3,13 +3,13 @@
 <mapper namespace="com.cms.jycms.dao.NewsInfoMapper">
     <select id="selectByPrimaryKey" resultType="com.cms.jycms.domain.NewsInfo">
     select 
-    id,title,classId,content,comeFrom,addDate,updateDate,isDel,imageUrl
+    id,title,classId,content,comeFrom,addDate,updateDate,isDel,imageUrl,description
     from newsInfo
     where id = #{id}
   </select>
     <select id="selectAll" resultType="com.cms.jycms.domain.NewsInfo">
         select
-        a.id,a.title,a.classId,a.content,a.comeFrom,a.addDate,a.updateDate,a.isDel,a.imageUrl,b.name as className
+        a.id,a.title,a.classId,a.content,a.comeFrom,a.addDate,a.updateDate,a.isDel,a.imageUrl,a.description,b.name as className
         from newsInfo a left join classInfo b on a.classId=b.id
         where isDel=0
         <if test="title!=null and title!=''">
@@ -56,17 +56,23 @@
         </foreach>
     </delete>
     <insert id="addContent">
-        insert into newsInfo(title,classId,content,comeFrom,addDate,isDel,imageUrl)
-        values(#{title},#{classId},#{content},#{comeFrom},now(),0,#{imageUrl});
+        insert into newsInfo(title,classId,content,comeFrom,addDate,isDel,imageUrl,description)
+        values(#{title},#{classId},#{content},#{comeFrom},now(),0,#{imageUrl},#{description});
     </insert>
     <update id="updateContent">
-        update newsInfo set title=#{title},classId=#{classId},content=#{content},comeFrom=#{comeFrom},updateDate=now(),imageUrl=#{imageUrl} where id=#{id}
+        update newsInfo set title=#{title},classId=#{classId},content=#{content},comeFrom=#{comeFrom},updateDate=now(),imageUrl=#{imageUrl},description=#{description} where id=#{id}
     </update>
     <select id="selectUpDown" resultType="com.cms.jycms.domain.NewsInfo">
         <![CDATA[
-        SELECT id,title FROM newsinfo
-        WHERE classId=#{classId} and id IN (SELECT CASE WHEN SIGN(id - #{id}) > 0 THEN MIN(id) WHEN SIGN(id - #{id}) < 0 THEN MAX(id) END AS id
-        FROM newsinfo WHERE classId=#{classId} and id <> #{id} GROUP BY SIGN(id - #{id}) ORDER BY SIGN(id - #{id})) ORDER BY id ASC;
+        select id,title from newsinfo where id in
+(select max(t.id) as id from (
+select case when sign(id-#{id})<0 then min(id) end as id from newsinfo where classid=#{classId} and id<>#{id} group by id
+) t
+union all
+select min(t.id) as id from (
+select case when sign(id-#{id})>0 then min(id) end as id from newsinfo where classid=#{classId} and id<>#{id} group by id
+) t
+)
         ]]>
     </select>
 </mapper>

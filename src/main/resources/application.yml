@@ -42,7 +42,7 @@ mybatis:
   type-aliases-package: com.cms.jycms.domain
 
 web:
-  upload-path: D:/
+  upload-path: uploadData
   imagesDir: jycms/upload
   hostName: ""
 
