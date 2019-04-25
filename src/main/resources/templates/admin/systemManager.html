@@ -96,7 +96,7 @@
     function loadTitle() {
         var data = {"key": "title"};
         $.get("/admin/api/systemConfig/select", data, function (result) {
-            $("#tbxTitle").val(result.data.value);
+            $("#tbxTitle").val(result.data);
         })
     }
 
@@ -110,7 +110,7 @@
     function loadKeyword() {
         var data = {"key": "keyword"};
         $.get("/admin/api/systemConfig/select", data, function (result) {
-            $("#tbxKeyword").val(result.data.value);
+            $("#tbxKeyword").val(result.data);
         })
     }
 
@@ -124,7 +124,7 @@
     function loadDescription() {
         var data = {"key": "description"};
         $.get("/admin/api/systemConfig/select", data, function (result) {
-            $("#tbxDescription").val(result.data.value);
+            $("#tbxDescription").val(result.data);
         })
     }
 
@@ -139,7 +139,7 @@
         var data = {"key": "copyright"};
         $.get("/admin/api/systemConfig/select", data, function (result) {
             ue.ready(function () {
-                ue.setContent(result.data.value, false);
+                ue.setContent(result.data, false);
             });
         });
     }

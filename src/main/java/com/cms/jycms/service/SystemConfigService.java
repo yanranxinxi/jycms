@@ -22,7 +22,7 @@ public class SystemConfigService {
         return mapper.update(model);
     }
 
-    public SystemConfig select(String key) {
+    public String select(String key) {
         return mapper.select(key);
     }
 }

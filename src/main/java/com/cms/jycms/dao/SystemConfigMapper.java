@@ -6,5 +6,5 @@ public interface SystemConfigMapper {
     int insert(SystemConfig model);
     int delete(String key);
     int update(SystemConfig model);
-    SystemConfig select(String key);
+    String select(String key);
 }
