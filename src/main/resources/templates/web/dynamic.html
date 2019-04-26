@@ -73,7 +73,7 @@
                 <dd>
                     <h3><a th:href="'/dynamic/detail/'+${item.id}" th:text="${item.title}"></a></h3>
                     <div style="clear:both"></div>
-                    <p>
+                    <p th:text="${#strings.abbreviate(item.description,30)}">
                     </p>
                     <div class="wutime" th:text="${item.addDate}"></div>
                 </dd>

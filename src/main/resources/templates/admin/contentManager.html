@@ -148,6 +148,14 @@
         tableIns = table.render({
             elem: '#myGrid'
             , url: '/admin/api/news/selectNews' //数据接口
+            , parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.total, //解析数据长度
+                    "data": res.data //解析数据列表
+                };
+            }
             , page: true //开启分页
             , cols: [[ //表头
                 {type: 'checkbox', title: 'id'},
@@ -183,6 +191,7 @@
         $.get("/admin/api/class/selectAll", function (result) {
             zNodes = result;
             zTreeObj = $.fn.zTree.init($("#classTree"), setting, zNodes);
+            zTreeObj.expandAll(true);
         });
         $("#btnSearch").click(function () {
             reloadGrid();

@@ -84,7 +84,8 @@ public class NewsController {
             newsInfo.setAddDate(LocalDateTime.now())
                     .setUpdateDate(LocalDateTime.now())
                     .setDel(false)
-                    .setImageUrl(imageNameDTO.getUrl());
+                    .setImageUrl(imageNameDTO.getUrl())
+                    .setDescription("");
             service.addContent(newsInfo);
         }
         return R.ok();

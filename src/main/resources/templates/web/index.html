@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>蔚蓝星少儿英语成长乐园</title>
-    <meta name="keywords" content="蔚蓝星少儿英语成长乐园,深圳少儿英语培训"/>
-    <meta property="qc:admins" content="2771704753463535131636"/>
-    <meta name="description"
-          content="Bluestar 是专注于2-6岁孩子英文学习的生态系统。来自英国的先进教学理念，为不同年龄段孩子量身定制的沉浸式学习环境，让孩子轻松自如掌握英文听说读写的语言技能。同时丰富多样的课程元素，发掘和激发孩子的八大智能和21世纪5C技能和成长心态。"/>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <div th:replace="/web/head"></div>
     <!-- 调用样式表 -->
     <link rel="stylesheet" href="/web/template/default/skin/base.css" type="text/css" media="all"/>
     <link rel="stylesheet" href="/web/template/default/skin/reset.css" type="text/css" media="all"/>
@@ -202,17 +195,7 @@
 
 
 </div>
-<div id="footer">
-
-
-    <div class="message">
-        <div class="message_copyright">
-            <p><a href="http://www.blustarkids.com">蔚蓝星少儿英语成长乐园</a> www.bluestarkids.com &copy; 版权所有 Copyright 2018-2019
-                All rights reserved <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备18118799号</a><br/>
-                电话：0755-2104 4580 地址：深圳市龙华区民治街道民泰社区玖龙玺一层<br/>
-                Bluestar 蔚蓝星少儿英文成长乐园 亿万颗星球里，只有一颗蔚蓝星！您的孩子就是我们的全世界！</p></div>
-    </div>
-
+<div id="footer" th:include="/web/footer::copy">
 
 </div>
 

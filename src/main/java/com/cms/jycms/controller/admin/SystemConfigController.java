@@ -44,7 +44,7 @@ public class SystemConfigController {
 
     @GetMapping("select")
     public R select(String key) {
-        SystemConfig model = service.select(key);
-        return R.ok().put("data", model);
+        String value = service.select(key);
+        return R.ok().put("data", value);
     }
 }

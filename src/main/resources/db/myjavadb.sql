@@ -3,12 +3,14 @@ CREATE TABLE `classinfo` (
   `name` varchar(100) NOT NULL,
   `parentId` int(11) NOT NULL,
   `url` varchar(200) DEFAULT NULL,
+  `order` int(11) DEFAULT '0',
+  `keyword` varchar(200) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
-
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `newsinfo` (
-  `id` varchar(36) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `classId` int(11) NOT NULL,
   `content` text NOT NULL,
@@ -18,13 +20,12 @@ CREATE TABLE `newsinfo` (
   `isDel` bit(1) NOT NULL DEFAULT b'0',
   `imageUrl` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `systemconfig` (
   `key` varchar(50) DEFAULT NULL,
   `value` varchar(500) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 
 
 

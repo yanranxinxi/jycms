@@ -23,6 +23,8 @@ public class NewsInfo implements Serializable {
 
     private String imageUrl;
 
+    private String description;
+
     public int getId() {
         return id;
     }
@@ -110,6 +112,15 @@ public class NewsInfo implements Serializable {
 
     public NewsInfo setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public NewsInfo setDescription(String description) {
+        this.description = description;
         return this;
     }
 }
