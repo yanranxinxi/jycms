@@ -2,13 +2,18 @@ package com.cms.jycms.util;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class CommUtil {
-    public static boolean base64ToImage(String imageIo, String path){
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommUtil.class);
+
+    public static boolean base64ToImage(String imageIo, String path) {
         boolean imageFlag = false;
         FileOutputStream fileOutputStream = null;
         try {
@@ -23,7 +28,7 @@ public class CommUtil {
             IOUtils.write(faceBytes, fileOutputStream);
             imageFlag = true;
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("base64ToImage", e);
         } finally {
             IOUtils.closeQuietly(fileOutputStream);
         }

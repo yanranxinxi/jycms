@@ -1,8 +1,10 @@
 package com.cms.jycms.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.cms.jycms.common.R;
 import com.cms.jycms.domain.NewsInfo;
 import com.cms.jycms.domain.Query;
+import com.cms.jycms.dto.ImageNameDTO;
 import com.cms.jycms.service.NewsInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("admin/api/news")
@@ -64,18 +70,36 @@ public class NewsController {
         return R.error();
     }
 
+    @PostMapping("batchAddContent")
+    public R batchAddContent(Integer classId, String files) {
+        List<ImageNameDTO> list = JSON.parseArray(files, ImageNameDTO.class);
+
+        for (ImageNameDTO imageNameDTO : list) {
+            String name = imageNameDTO.getName();
+            NewsInfo newsInfo = new NewsInfo();
+            newsInfo.setClassId(classId);
+            newsInfo.setTitle(name);
+            newsInfo.setContent("<p>" + name + "</p>");
+            newsInfo.setComeFrom(name);
+            newsInfo.setAddDate(LocalDateTime.now())
+                    .setUpdateDate(LocalDateTime.now())
+                    .setDel(false)
+                    .setImageUrl(imageNameDTO.getUrl());
+            service.addContent(newsInfo);
+        }
+        return R.ok();
+    }
+
     @GetMapping("getNewsById")
     public R getNewsById(String id) {
         NewsInfo model = service.selectByPrimaryKey(id);
-        return R.ok().put("data",model);
+        return R.ok().put("data", model);
     }
 
     @PostMapping("updateContent")
-    public R updateContent(NewsInfo model)
-    {
-        int result=service.updateContent(model);
-        if(result>0)
-        {
+    public R updateContent(NewsInfo model) {
+        int result = service.updateContent(model);
+        if (result > 0) {
             return R.ok();
         }
         return R.error();

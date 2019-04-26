@@ -1,10 +1,7 @@
 package com.cms.jycms.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class NewsInfo implements Serializable {
     private int id;
@@ -17,8 +14,8 @@ public class NewsInfo implements Serializable {
 
     private String comeFrom;
 
-    private String addDate;
-    private String updateDate;
+    private LocalDateTime addDate;
+    private LocalDateTime updateDate;
 
     private Boolean isDel;
 
@@ -71,20 +68,20 @@ public class NewsInfo implements Serializable {
         return this;
     }
 
-    public String getAddDate() {
+    public LocalDateTime getAddDate() {
         return addDate;
     }
 
-    public NewsInfo setAddDate(String addDate) {
+    public NewsInfo setAddDate(LocalDateTime addDate) {
         this.addDate = addDate;
         return this;
     }
 
-    public String getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
-    public NewsInfo setUpdateDate(String updateDate) {
+    public NewsInfo setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
         return this;
     }

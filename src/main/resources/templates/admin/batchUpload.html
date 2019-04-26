@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+<head>
+    <meta charset="UTF-8">
+    <title>批量上传</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" href="./css/font.css"/>
+    <link rel="stylesheet" href="./css/xadmin.css"/>
+    <link rel="stylesheet" href="/lib/zTree_v3/css/metroStyle/metroStyle.css"/>
+    <link rel="stylesheet" href="/lib/jqueryFileUpload/css/jquery.fileupload.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/cookie.js"></script>
+    <script type="text/javascript" src="/lib/zTree_v3/js/jquery.ztree.core.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/lib/jqueryFileUpload/js/vendor/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/lib/jqueryFileUpload/js/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="/lib/jqueryFileUpload/js/jquery.fileupload.js"></script>
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/comm/comm.js"></script>
+</head>
+
+<body>
+<div style="width:150px;height: 450px; border-right:0px #ccc solid;overflow: auto; float:left; position:fixed;"></h3>
+    <ul id="classTree" class="ztree"></ul>
+</div>
+<div class="x-body" style="float: left;margin-left:160px;padding:0;margin-top:20px;">
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                封面
+            </label>
+            <div class="layui-input-inline">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>请选择图片</span>
+                    <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </span>
+                <br>
+                <br>
+                <!-- The global progress bar -->
+                <div id="progress" class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+                <!-- The container for the uploaded files -->
+                <div id="files" class="files"></div>
+                <div id="showImage"></div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <button class="layui-btn" lay-filter="add" lay-submit="">
+                <i class="iconfont">&#xe747;</i> 发布
+            </button>
+        </div>
+</div>
+</form>
+</div>
+<script>
+    var files = {};
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+        var form = layui.form
+            , layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({
+            nikename: function (value) {
+                if (value.length < 5) {
+                    return '昵称至少得5个字符啊';
+                }
+            }
+            , pass: [/(.+){6,12}$/, '密码必须6到12位']
+            , repass: function (value) {
+                if ($('#L_pass').val() != $('#L_repass').val()) {
+                    return '两次密码不一致';
+                }
+            }
+        });
+
+        //监听提交
+        form.on('submit(add)', function (data) {
+            var nodes = zTreeObj.getSelectedNodes();
+            if (nodes == undefined || nodes.length <= 0) {
+                layer.alert("请先选择分类", {icon: 7});
+                return false;
+            }
+
+            var postData = {
+                    "classId": nodes[0].id,
+                    "files": JSON.stringify(files)
+                };
+            var url = "/admin/api/news/batchAddContent";
+            // if (id != undefined) {
+            //     url = "/admin/api/news/updateContent";
+            // }
+            $.post(url, postData, function (data) {
+                if (data && data.code == 0) {
+                    layer.alert("发布成功", {icon: 1}, function () {
+                        //关闭当前frame
+                        // x_admin_close();
+                        // parent.reloadGrid();
+                        window.location.reload();
+                    });
+                }else {
+                    layer.msg(result.msg, function () {
+                        window.location.reload();
+                    });
+                }
+            });
+
+            return false;
+        });
+    });
+
+    var zTreeObj;
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "id",
+                pIdKey: "parentId",
+                rootPid: 0
+            },
+            key: {
+                url: "x"
+            }
+        },
+        callback: {
+            //beforeAsync:zTreeOnNodeCreated
+        }
+    };
+    var zNodes;
+    var id;
+    var classId;
+    $(function () {
+        $("#progress").hide();
+        $.get("/admin/api/class/selectAll", function (result) {
+            zNodes = result;
+            zTreeObj = $.fn.zTree.init($("#classTree"), setting, zNodes);
+            zTreeOnNodeCreated();
+        });
+        // Change this to the location of your server-side upload handler:
+        var url = '/admin/api/uploadFile/batchAdd',
+            uploadButton = $('<button/>')
+                .addClass('btn btn-primary')
+                .prop('disabled', true)
+                .text('上传中...')
+                .on('click', function () {
+                    var $this = $(this),
+                        data = $this.data();
+                    $this
+                        .off('click')
+                        .text('Abort')
+                        .on('click', function () {
+                            $this.remove();
+                            data.abort();
+                        });
+                    data.submit().always(function () {
+                        $this.remove();
+                    });
+                });
+        $('#fileupload').fileupload({
+            url: url,
+            singleFileUploads: false,
+            dataType: 'json',
+            autoUpload: true,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            maxFileSize: 999000,
+            // Enable image resizing, except for Android and Opera,
+            // which actually support image resizing, but fail to
+            // send Blob objects via XHR requests:
+            disableImageResize: /Android(?!.*Chrome)|Opera/
+                .test(window.navigator.userAgent),
+            previewMaxWidth: 100,
+            previewMaxHeight: 100,
+            previewCrop: true
+        }).on('fileuploadadd', function (e, data) {
+            $("#progress").show();
+            if (data.files.length < 1) {
+                layer.alert('请选择图片');
+                return false;
+            }
+            var uploadErrors = [];
+            var acceptFileTypes = /(\.|\/)(gif|jpe?g|png)$/i;
+            if (!acceptFileTypes.test(data.files[0].name)) {
+                layer.alert("请上传图片文件!");
+                return false;
+            }
+            if (data.originalFiles[0]['size'].length && data.originalFiles[0]['size'] > 5000000) {
+                layer.alert("文件大小不要超过5M!");
+                return false;
+            }
+
+            data.context = $('<div/>').appendTo('#files');
+            $.each(data.files, function (index, file) {
+                var node = $('<p/>')
+                    .append($('<span/>').text(file.name));
+                if (!index) {
+                    node
+                        .append('<br>')
+                        .append(uploadButton.clone(true).data(data));
+                }
+                node.appendTo(data.context);
+            });
+        }).on('fileuploadprocessalways', function (e, data) {
+            var index = data.index,
+                file = data.files[index],
+                node = $(data.context.children()[index]);
+            if (file.preview) {
+                node
+                    .prepend('<br>')
+                    .prepend(file.preview);
+            }
+            if (file.error) {
+                node
+                    .append('<br>')
+                    .append($('<span class="text-danger"/>').text(file.error));
+            }
+            if (index + 1 === data.files.length) {
+                data.context.find('button')
+                    .text('Upload')
+                    .prop('disabled', !!data.files.error);
+            }
+        }).on('fileuploadprogressall', function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .progress-bar').css(
+                'width',
+                progress + '%'
+            );
+        }).on('fileuploaddone', function (e, data) {
+            $("#files").html("");
+            $("#progress").hide();
+            var imgSrclist = '';
+            $.each(data.result.files, function (index, file) {
+                imgSrclist = imgSrclist + "<span><image id='imgSrc' src='" + data.result.files[index].url + "' style='width:100px;height:auto;' /></span>";
+            });
+            files = data.result.files;
+            $("#showImage").html(imgSrclist);
+
+
+            // $.each(data.result.files, function (index, file) {
+            //     if (file.url) {
+            //         var link = $('<a>')
+            //             .attr('target', '_blank')
+            //             .prop('href', file.url);
+            //         $(data.context.children()[index])
+            //             .wrap(link);
+            //     } else if (file.error) {
+            //         var error = $('<span class="text-danger"/>').text(file.error);
+            //         $(data.context.children()[index])
+            //             .append('<br>')
+            //             .append(error);
+            //     }
+            // });
+        }).on('fileuploadfail', function (e, data) {
+            // $.each(data.files, function (index) {
+            //     var error = $('<span class="text-danger"/>').text('File upload failed.');
+            //     $(data.context.children()[index])
+            //         .append('<br>')
+            //         .append(error);
+            // });
+        }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    });
+
+    function zTreeOnNodeCreated() {
+        // id = getUrlParameter("id");
+        classId = getUrlParameter("classId");
+        // if (id != undefined) {
+        //     $("#progress").hide();
+        //     $.get("/admin/api/news/getNewsById?id=" + id, function (result) {
+        //         if (result.data != undefined) {
+        //             $("#tbxTitle").val(result.data.title);
+        //             $("#tbxComeFrom").val(result.data.comeFrom);
+        //             ue.ready(function () {
+        //                 ue.setContent(result.data.content, false);
+        //             });
+        //             var selectNode = zTreeObj.getNodeByParam('id', result.data.classId, null)
+        //             zTreeObj.selectNode(selectNode);
+        //             $("#showImage").html("<image id='imgSrc' src='" + result.data.imageUrl + "' style='width:200px;height:auto;' />");
+        //         }
+        //     });
+        // }
+        if (classId != undefined) {
+            var selectNode = zTreeObj.getNodeByParam('id', classId, null)
+            zTreeObj.selectNode(selectNode);
+        }
+    }
+</script>
+</body>
+</html>
