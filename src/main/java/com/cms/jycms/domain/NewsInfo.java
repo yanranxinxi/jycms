@@ -1,5 +1,7 @@
 package com.cms.jycms.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -13,8 +15,14 @@ public class NewsInfo implements Serializable {
     private String content;
 
     private String comeFrom;
+    private String enTitle;
+    private String enContent;
+    private String enComeFrom;
+    private String enDescription;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime addDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateDate;
 
     private Boolean isDel;
@@ -24,6 +32,8 @@ public class NewsInfo implements Serializable {
     private String imageUrl;
 
     private String description;
+
+    private int recommend;
 
     public int getId() {
         return id;
@@ -121,6 +131,51 @@ public class NewsInfo implements Serializable {
 
     public NewsInfo setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getEnTitle() {
+        return enTitle;
+    }
+
+    public NewsInfo setEnTitle(String enTitle) {
+        this.enTitle = enTitle;
+        return this;
+    }
+
+    public String getEnContent() {
+        return enContent;
+    }
+
+    public NewsInfo setEnContent(String enContent) {
+        this.enContent = enContent;
+        return this;
+    }
+
+    public String getEnComeFrom() {
+        return enComeFrom;
+    }
+
+    public NewsInfo setEnComeFrom(String enComeFrom) {
+        this.enComeFrom = enComeFrom;
+        return this;
+    }
+
+    public String getEnDescription() {
+        return enDescription;
+    }
+
+    public NewsInfo setEnDescription(String enDescription) {
+        this.enDescription = enDescription;
+        return this;
+    }
+
+    public int getRecommend() {
+        return recommend;
+    }
+
+    public NewsInfo setRecommend(int recommend) {
+        this.recommend = recommend;
         return this;
     }
 }

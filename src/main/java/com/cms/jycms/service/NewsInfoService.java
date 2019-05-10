@@ -17,31 +17,31 @@ public class NewsInfoService {
         return mapper.selectByPrimaryKey(id);
     }
 
-    public List<NewsInfo> selectAll(Map<String,Object> query)
-    {
+    public List<NewsInfo> selectAll(Map<String, Object> query) {
         return mapper.selectAll(query);
     }
 
-    public int selectCount(Map<String,Object> query)
-    {
+    public List<NewsInfo> selectByClassId(Map<String, Object> query) {
+        return mapper.selectByClassId(query);
+    }
+
+    public int selectCount(Map<String, Object> query) {
         return mapper.selectCount(query);
     }
 
-    public  int delByIds(List<String> ids)
-    {
+    public int delByIds(List<String> ids) {
         return mapper.delByIds(ids);
     }
 
-    public  int addContent(NewsInfo model){
+    public int addContent(NewsInfo model) {
         return mapper.addContent(model);
     }
 
-    public  int updateContent(NewsInfo model)
-    {
+    public int updateContent(NewsInfo model) {
         return mapper.updateContent(model);
     }
-    public List<NewsInfo> selectUpDown(NewsInfo model)
-    {
+
+    public List<NewsInfo> selectUpDown(NewsInfo model) {
         return mapper.selectUpDown(model);
     }
 }

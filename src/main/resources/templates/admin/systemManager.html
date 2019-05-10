@@ -63,9 +63,58 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">版本信息</label>
+            <label class="layui-form-label">手机</label>
+            <div class="layui-input-inline">
+                <input type="text" id="tbxTel" name="tbxKeyword" required="" lay-verify="required"
+                       placeholder="手机"
+                       autocomplete="off" class="layui-input" style="width:500px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">底部版权</label>
             <div class="layui-input-inline">
                 <div id="editor" type="text/plain" style="width:800px;height:300px;"></div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">侧边栏联系我们</label>
+            <div class="layui-input-inline">
+                <div id="editorLeft" type="text/plain" style="width:800px;height:300px;"></div>
+            </div>
+        </div>
+        <!--英文版-->
+        <div class="layui-form-item">
+            <label class="layui-form-label">网站名称(en)</label>
+            <div class="layui-input-inline">
+                <input type="text" id="tbxTitleEn" name="tbxTitleEn" required="" lay-verify="required" placeholder="请输入网站名称"
+                       autocomplete="off" class="layui-input" style="width:500px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">关键词(en)</label>
+            <div class="layui-input-inline">
+                <input type="text" id="tbxKeywordEn" name="tbxKeywordEn" required="" lay-verify="required"
+                       placeholder="请输入网站关键词"
+                       autocomplete="off" class="layui-input" style="width:500px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述(en)</label>
+            <div class="layui-input-inline">
+                <textarea id="tbxDescriptionEn" style="width:500px;height: 100px;" placeholder="请输入网站描述"
+                          class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">底部版权(en)</label>
+            <div class="layui-input-inline">
+                <div id="editorEn" type="text/plain" style="width:800px;height:300px;"></div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">侧边栏联系我们(en)</label>
+            <div class="layui-input-inline">
+                <div id="editorLeftEn" type="text/plain" style="width:800px;height:300px;"></div>
             </div>
         </div>
         <div class="layui-form-item" style="text-align: center;">
@@ -80,16 +129,33 @@
 <script type="text/javascript">
     var successCount = 0;
     var ue = UE.getEditor('editor', {'autoFloatEnabled': false});
+    var ueLeft=UE.getEditor('editorLeft',{'autoFloatEnabled':false});
+    var ueEn = UE.getEditor('editorEn', {'autoFloatEnabled': false});
+    var ueLeftEn=UE.getEditor('editorLeftEn',{'autoFloatEnabled':false});
     $(function () {
         loadTitle();
         loadKeyword();
         loadDescription();
         loadCopyright();
+        loadContactUsLeft();
+        loadTitleEn();
+        loadKeywordEn();
+        loadDescriptionEn();
+        loadCopyrightEn();
+        loadContactUsLeftEn();
+        loadTel();
         $("#btnSave").click(function () {
             saveTitle();
             saveKeyword();
             saveDescription();
             saveCopyright();
+            saveContactUsLeft();
+            saveTel();
+            saveTitleEn();
+            saveKeywordEn();
+            saveDescriptionEn();
+            saveCopyrightEn();
+            saveContactUsLeftEn();
         });
     });
 
@@ -151,10 +217,113 @@
         })
     }
 
+    function loadContactUsLeft() {
+        var data = {"key": "leftContactUs"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            ueLeft.ready(function () {
+                ueLeft.setContent(result.data, false);
+            });
+        });
+    }
+    function saveContactUsLeft(){
+        var data = {"key": "leftContactUs", "value": ueLeft.getContent()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function loadTel() {
+        var data = {"key": "tel"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            $("#tbxTel").val(result.data);
+        })
+    }
+
+    function saveTel() {
+        var data = {"key": "tel", "value": $("#tbxTel").val()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    // 英文版
+    function loadTitleEn() {
+        var data = {"key": "enTitle"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            $("#tbxTitleEn").val(result.data);
+        })
+    }
+
+    function saveTitleEn() {
+        var data = {"key": "enTitle", "value": $("#tbxTitleEn").val()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function loadKeywordEn() {
+        var data = {"key": "enKeyword"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            $("#tbxKeywordEn").val(result.data);
+        })
+    }
+
+    function saveKeywordEn() {
+        var data = {"key": "enKeyword", "value": $("#tbxKeywordEn").val()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function loadDescriptionEn() {
+        var data = {"key": "enDescription"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            $("#tbxDescriptionEn").val(result.data);
+        })
+    }
+
+    function saveDescriptionEn() {
+        var data = {"key": "enDescription", "value": $("#tbxDescriptionEn").val()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function loadCopyrightEn() {
+        var data = {"key": "enCopyright"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            ueEn.ready(function () {
+                ueEn.setContent(result.data, false);
+            });
+        });
+    }
+
+    function saveCopyrightEn() {
+        var data = {"key": "enCopyright", "value": ueEn.getContent()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
+    function loadContactUsLeftEn() {
+        var data = {"key": "enLeftContactUs"};
+        $.get("/admin/api/systemConfig/select", data, function (result) {
+            ueLeftEn.ready(function () {
+                ueLeftEn.setContent(result.data, false);
+            });
+        });
+    }
+    function saveContactUsLeftEn(){
+        var data = {"key": "enLeftContactUs", "value": ueLeftEn.getContent()};
+        $.post("/admin/api/systemConfig/update", data, function (result) {
+            isOk(result.code);
+        })
+    }
+
     function isOk(code) {
         if (code == 0) {
             successCount++;
-            if (successCount == 4) {
+            if (successCount == 11) {
                 successCount = 0;
                 layer.alert("保存成功", {icon: 1}, function (index) {
                     layer.close(index);

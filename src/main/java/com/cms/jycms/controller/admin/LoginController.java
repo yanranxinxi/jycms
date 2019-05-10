@@ -56,4 +56,14 @@ public class LoginController {
     public String userAdd() {
         return "admin/userAdd";
     }
+
+    @RequestMapping("linksManager")
+    public String linksManager()
+    {
+        return "admin/linksManager";
+    }
+    @RequestMapping("linksAdd")
+    public String linksAdd() {
+        return "admin/linksAdd";
+    }
 }

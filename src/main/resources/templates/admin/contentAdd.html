@@ -69,6 +69,14 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">
+                <span class="x-red"></span>
+            </label>
+            <div class="layui-input-inline">
+                <input id="cbxCommend" name="cbxCommend" type="checkbox" lay-skin="switch" lay-text="推荐|不推荐">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
                 封面
             </label>
             <div class="layui-input-inline">
@@ -107,17 +115,55 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
+            <label for="tbxTitleEn" class="layui-form-label">
+                <span class="x-red">*</span>标题(en)
             </label>
-            <button class="layui-btn" lay-filter="add" lay-submit="">
-                <i class="iconfont">&#xe747;</i> 发布
-            </button>
+            <div class="layui-input-inline">
+                <input type="text" id="tbxTitleEn" name="tbxTitleEn" placeholder="Please enter a title"
+                       autocomplete="off" class="layui-input" required="" lay-verify="required" style="width:500px;">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="tbxComeFromEn" class="layui-form-label">
+                <span class="x-red">*</span>作者(en)
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="tbxComeFromEn" required="" lay-verify="required" name="tbxComeFromEn"
+                       placeholder="Please enter the author" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="editor" class="layui-form-label">
+                简介(en)
+            </label>
+            <div class="layui-input-inline">
+                <textarea id="textDescEn" name="textDescEn" style="width:460px;height:70px;"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="editorEn" class="layui-form-label">
+                内容(en)
+            </label>
+            <div class="layui-input-inline">
+                <div id="editorEn" type="text/plain" style="width:800px;height:300px;"></div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="editorEn" class="layui-form-label">
+
+            </label>
+            <div class="layui-input-inline">
+                <button class="layui-btn" lay-filter="add" lay-submit="">
+                    <i class="iconfont">&#xe747;</i> 发布
+                </button>
+            </div>
         </div>
 </div>
 </form>
 </div>
 <script>
     var ue = UE.getEditor('editor', {'autoFloatEnabled': false});
+    var ueEn = UE.getEditor('editorEn', {'autoFloatEnabled': false});
     layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
         var form = layui.form
@@ -149,15 +195,23 @@
                 layer.alert("请输入内容", {icon: 7});
                 return false;
             }
-
+            var recommend = 0;
+            if ($("#cbxCommend").prop("checked")) {
+                recommend = 1;
+            }
             var postData = {
                     "id": id,
                     "title": data.field.tbxTitle,
                     "comeFrom": data.field.tbxComeFrom,
-                    "content": data.field.editorValue,
+                    "content": ue.getContent(),
                     "description": data.field.textDesc,
+                    "enTitle": data.field.tbxTitleEn,
+                    "enComeFrom": data.field.tbxComeFromEn,
+                    "enContent": ueEn.getContent(),
+                    "enDescription": data.field.textDescEn,
                     "classId": nodes[0].id,
-                    "imageUrl": $("#imgSrc").attr("src")
+                    "imageUrl": $("#imgSrc").attr("src"),
+                    "recommend": recommend
                 }
             ;
             var url = "/admin/api/news/addContent";
@@ -176,6 +230,8 @@
 
             return false;
         });
+
+        zTreeOnNodeCreated(form);
     });
 
     var zTreeObj;
@@ -204,7 +260,7 @@
             zNodes = result;
             zTreeObj = $.fn.zTree.init($("#classTree"), setting, zNodes);
             zTreeObj.expandAll(true);
-            zTreeOnNodeCreated();
+            // zTreeOnNodeCreated();
         });
         // Change this to the location of your server-side upload handler:
         var url = '/admin/api/uploadFile/add',
@@ -323,7 +379,7 @@
             .parent().addClass($.support.fileInput ? undefined : 'disabled');
     });
 
-    function zTreeOnNodeCreated() {
+    function zTreeOnNodeCreated(form) {
         id = getUrlParameter("id");
         classId = getUrlParameter("classId");
         if (id != undefined) {
@@ -333,19 +389,33 @@
                     $("#tbxTitle").val(result.data.title);
                     $("#tbxComeFrom").val(result.data.comeFrom);
                     $("#textDesc").val(result.data.description);
+                    $("#tbxTitleEn").val(result.data.enTitle);
+                    $("#tbxComeFromEn").val(result.data.enComeFrom);
+                    $("#textDescEn").val(result.data.enDescription);
+                    if (result.data.recommend == 1) {
+                        $("#cbxCommend").prop("checked", true);
+                    } else {
+                        $("#cbxCommend").prop("checked", false);
+                    }
                     ue.ready(function () {
                         ue.setContent(result.data.content, false);
                     });
-                    var selectNode = zTreeObj.getNodeByParam('id', result.data.classId, null)
+                    ueEn.ready(function () {
+                        if (result.data.enContent != null) {
+                            ueEn.setContent(result.data.enContent, false);
+                        }
+                    });
+                    var selectNode = zTreeObj.getNodeByParam('id', result.data.classId, null);
                     zTreeObj.selectNode(selectNode);
                     if (result.data.imageUrl != "null") {
                         $("#showImage").html("<image id='imgSrc' src='" + result.data.imageUrl + "' style='width:200px;height:auto;' />");
                     }
+                    form.render();
                 }
             });
         }
         if (classId != undefined) {
-            var selectNode = zTreeObj.getNodeByParam('id', classId, null)
+            var selectNode = zTreeObj.getNodeByParam('id', classId, null);
             zTreeObj.selectNode(selectNode);
         }
     }

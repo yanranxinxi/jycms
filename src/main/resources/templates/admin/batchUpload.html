@@ -36,7 +36,7 @@
 </head>
 
 <body>
-<div style="width:150px;height: 450px; border-right:0px #ccc solid;overflow: auto; float:left; position:fixed;"></h3>
+<div style="width:200px;height: 100%; border-right:0px #ccc solid;overflow: auto; float:left; position:fixed;"></h3>
     <ul id="classTree" class="ztree"></ul>
 </div>
 <div class="x-body" style="float: left;margin-left:160px;padding:0;margin-top:20px;">
@@ -50,9 +50,12 @@
                 <span class="btn btn-success fileinput-button">
         <i class="glyphicon glyphicon-plus"></i>
         <span>请选择图片</span>
-                    <!-- The file input field used as target for the file upload widget -->
+                <!-- The file input field used as target for the file upload widget -->
         <input id="fileupload" type="file" name="files[]" multiple>
-    </span>
+        </span>
+                <button style="margin-left:10px;" class="layui-btn" lay-filter="add" lay-submit="">
+                    <i class="iconfont">&#xe747;</i> 发布
+                </button>
                 <br>
                 <br>
                 <!-- The global progress bar -->
@@ -63,14 +66,6 @@
                 <div id="files" class="files"></div>
                 <div id="showImage"></div>
             </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label for="L_repass" class="layui-form-label">
-            </label>
-            <button class="layui-btn" lay-filter="add" lay-submit="">
-                <i class="iconfont">&#xe747;</i> 发布
-            </button>
         </div>
 </div>
 </form>
@@ -106,9 +101,9 @@
             }
 
             var postData = {
-                    "classId": nodes[0].id,
-                    "files": JSON.stringify(files)
-                };
+                "classId": nodes[0].id,
+                "files": JSON.stringify(files)
+            };
             var url = "/admin/api/news/batchAddContent";
             // if (id != undefined) {
             //     url = "/admin/api/news/updateContent";
@@ -121,7 +116,7 @@
                         // parent.reloadGrid();
                         window.location.reload();
                     });
-                }else {
+                } else {
                     layer.msg(result.msg, function () {
                         window.location.reload();
                     });
@@ -158,6 +153,7 @@
             zNodes = result;
             zTreeObj = $.fn.zTree.init($("#classTree"), setting, zNodes);
             zTreeOnNodeCreated();
+            zTreeObj.expandAll(true);
         });
         // Change this to the location of your server-side upload handler:
         var url = '/admin/api/uploadFile/batchAdd',
@@ -252,7 +248,7 @@
             $("#progress").hide();
             var imgSrclist = '';
             $.each(data.result.files, function (index, file) {
-                imgSrclist = imgSrclist + "<span><image id='imgSrc' src='" + data.result.files[index].url + "' style='width:100px;height:auto;' /></span>";
+                imgSrclist = imgSrclist + "<div style='float:left;width:250px; margin-top:10px;'><image id='imgSrc' src='" + data.result.files[index].url + "' style='width:250px;height:auto;' /></div>";
             });
             files = data.result.files;
             $("#showImage").html(imgSrclist);
@@ -302,7 +298,7 @@
         //     });
         // }
         if (classId != undefined) {
-            var selectNode = zTreeObj.getNodeByParam('id', classId, null)
+            var selectNode = zTreeObj.getNodeByParam('id', classId, null);
             zTreeObj.selectNode(selectNode);
         }
     }

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="web/en/layout">
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row productList">
+            <div class="col-md-3 hidden-xs">
+                <!--产品分类-->
+                <div class="productClass wow slideInLeft">
+                    <div class="productTitle">
+                        Product Categories
+                    </div>
+                    <div class="productTitleEn">PRODUCTS</div>
+                    <div class="proClassShow">
+                        <div class="proClassNormal" th:each="item:${productList}">
+                            <a th:href="'/en/productCenter/'+${item.id}" th:text="${item.enName}"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 wow slideInRight">
+                <div class="row">
+                    <div class="col-xs-6 productGoodTitle">
+                        <h3><span class="glyphicon glyphicon-thumbs-up"></span> Products Recommended</span></h3>
+                    </div>
+                    <div class="col-xs-6 productMore">
+                        <a href="/en/productCenter"><img src="/images/ysb_28.jpg"/></a>
+                    </div>
+                </div>
+                <div class="row productContent">
+                    <div class="media">
+                        <a th:href="'/en/productCenter/detail/'+${topPro.id}" class="media-left media-middle media-bottom hidden-xs">
+                            <img th:src="${topPro.imageUrl}" width="380" height="380"/>
+                        </a>
+                        <div class="media-body">
+                            <h2 th:text="${topPro.enTitle}"></h2>
+                            <div class="line"></div>
+                            <h4>Product introduction：</h4>
+                            <p th:text="${topPro.enDescription}"></p>
+                            <p>
+                                <button class="btn">Consult now</button>
+                                <a class="btn btn-danger" th:href="'/en/productCenter/detail/'+${topPro.id}">details</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row rowMarginTop wow bounceInUp">
+            <div class="col-md-3 hidden-xs">
+                <div class="kefuShow">
+                    <div class="kefuImg">
+                        <img src="/images/kefu_53.jpg"/>
+                    </div>
+                    <div class="contactUsBlock" th:utext="${base.enLeftContactUs}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 clearPadding" th:each="proItem:${productRecommendList}">
+                <div class="thumbnail">
+                    <a th:href="'/en/productCenter/detail/'+${proItem.id}"><img th:src="${proItem.imageUrl}" th:alt="${proItem.enTitle}"
+                                                    style="width:272px;height:250px;"/></a>
+                    <div class="caption captionOverride">
+                        <div><a th:href="'/en/productCenter/detail/'+${proItem.id}" th:text="${proItem.enTitle}"></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row hidden-xs wow bounceInUp rowMarginTop">
+            <div class="col-md-12 textCenter rowMarginTop">
+                <img src="/images/en_03.jpg"/>
+            </div>
+        </div>
+    </div>
+    <div class="container wow bounceInUp">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="/images/ysb_64.jpg"/>
+            </div>
+            <div class="col-md-8 marginTop80">
+
+                <!--图片滚动-->
+                <div class='silder-box silder-box-1'>
+                    <div class='silder'>
+                        <ul>
+                            <li th:each="hImgItem:${cooperationList}">
+                                <img th:src="${hImgItem.imageUrl}">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class='silder-button btl'></div>
+                    <div class='silder-button btr'></div>
+                </div>
+                <!--图片滚动-->
+            </div>
+        </div>
+    </div>
+    <div class="container wow bounceInUp">
+        <div class="row">
+            <img src="/images/en_07.jpg"/>
+        </div>
+    </div>
+    <div class="container-fluid wow bounceInUp">
+        <div class="row youshiImgEn">
+        </div>
+    </div>
+    <div class="container-fluid youshiBackground rowPaddingBottom wow bounceInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 wow bounceInLeft" data-wow-delay="1s">
+                    <div class="row youshi1">
+                        <div class="col-md-3">
+                            <img src="/images/ysb_91.jpg"/>
+                        </div>
+                        <div class="col-md-9">
+                            <h3>强大的生产基地，打造优质产品</h3>
+                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                            <div class="doubleLine"></div>
+                        </div>
+                    </div>
+                    <div class="row rowMarginTop">
+                        <div class="col-md-2 textRight">
+                            <img src="/images/ysb_96.jpg"/>
+                        </div>
+                        <div class="col-md-10 youshiContent">
+                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
+                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
+                            <div class="youshi1_3">拥有高技术、多功能的热处理厂、钢材机加工厂，是中国华南地区最具影响力的优质特殊模具钢材供应基地之一。</div>
+                            <div class="youshi_button">
+                                <button class="youshi_button_1"></button>
+                                <button
+                                        class="youshi_button_2"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 wow bounceInRight" data-wow-delay="0.5s">
+                    <img src="/images/ysb_87.jpg"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 rowMarginTop wow bounceInLeft" data-wow-delay="0.5s">
+                    <img src="/images/ysb_110.jpg"/>
+                </div>
+                <div class="col-md-6">
+                    <div class="row youshi1 wow bounceInRight" data-wow-delay="1s">
+                        <div class="col-md-3">
+                            <img src="/images/ysb_108.jpg"/>
+                        </div>
+                        <div class="col-md-9">
+                            <h3>强大的生产基地，打造优质产品</h3>
+                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                            <div class="doubleLine"></div>
+                        </div>
+                    </div>
+                    <div class="row rowMarginTop wow bounceInRight" data-wow-delay="1s">
+                        <div class="col-md-2 textRight">
+                            <img src="/images/ysb_114.jpg"/>
+                        </div>
+                        <div class="col-md-10 youshiContent">
+                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
+                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
+                        </div>
+                    </div>
+                    <div class="row youshi1 wow bounceInRight" data-wow-delay="1s">
+                        <div class="col-md-3">
+                            <img src="/images/ysb_131.jpg"/>
+                        </div>
+                        <div class="col-md-9">
+                            <h3>强大的生产基地，打造优质产品</h3>
+                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                            <div class="doubleLine"></div>
+                        </div>
+                    </div>
+                    <div class="row rowMarginTop wow bounceInRight" data-wow-delay="1s">
+                        <div class="col-md-2 textRight">
+                            <img src="/images/ysb_96.jpg"/>
+                        </div>
+                        <div class="col-md-10 youshiContent">
+                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
+                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
+                            <div class="youshi1_3">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 wow bounceInLeft" data-wow-delay="0.5s">
+                    <div class="row youshi1">
+                        <div class="col-md-3">
+                            <img src="/images/ysb_118.jpg"/>
+                        </div>
+                        <div class="col-md-9">
+                            <h3>强大的生产基地，打造优质产品</h3>
+                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                            <div class="doubleLine"></div>
+                        </div>
+                    </div>
+                    <div class="row rowMarginTop">
+                        <div class="col-md-2 textRight">
+                            <img src="/images/ysb_96.jpg"/>
+                        </div>
+                        <div class="col-md-10 youshiContent">
+                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
+                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
+                            <div class="youshi1_3">拥有高技术、多功能的热处理厂、钢材机加工厂，是中国华南地区最具影响力的优质特殊模具钢材供应基地之一。</div>
+                            <div class="youshi_button">
+                                <button class="youshi_button_1"></button>
+                                <button
+                                        class="youshi_button_2"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 wow bounceInRight" data-wow-delay="0.5s">
+                    <img src="/images/ysb_126.jpg"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid wow bounceInUp">
+        <div class="row changjiaImgEn">
+        </div>
+    </div>
+    <div class="container textCenter rowMarginTop rowPaddingBottom wow bounceInUp">
+        <img src="/images/en_13.jpg"/>
+    </div>
+    <!--客户见证-->
+    <div class="container wow bounceInUp">
+        <div class="row">
+            <div id="divCustom" class="col-md-3 clearPadding" th:each="customItem:${customList}">
+                <div class="customShowNormal">
+                    <img class="img-circle" th:src="${customItem.imageUrl}">
+                    <div class="">
+                        <h4 th:text="${#strings.abbreviate(customItem.enTitle,20)}"></h4>
+                        <h5 th:text="${#strings.abbreviate(customItem.enDescription,50)}"></h5>
+                    </div>
+                </div>
+                <div class="customButtonNormal" th:onclick="'window.location.href=\''+${'/en/news/'+customItem.id}+'\''">details</div>
+            </div>
+        </div>
+    </div>
+    <!--客户见证-->
+    <!--咨询报价-->
+    <div class="container textCenter roMarginTopBetter rowPaddingBottom wow bounceInUp">
+        <div class="row callMeEn">
+            <div class="col-md-7 textRight"><span th:text="${base.tel}"></span></div>
+            <div class="col-md-5 text-left">
+
+            </div>
+        </div>
+    </div>
+    <!--咨询报价-->
+    <!--新闻资讯-->
+    <div class="container-fluid newinfo wow bounceInUp">
+        <div class="container textCenter rowMarginTop rowPaddingBottom">
+            <img src="/images/en_17.jpg"/>
+        </div>
+        <div class="container rowMarginTop rowPaddingBottom">
+            <div class="col-md-6">
+                <div class="row">
+                    <ul class="newsType">
+                        <li id="li_newTop" class="active"><a>Headlines</a></li>
+                        <li id="li_companyDynamicsList"><a>News</a></li>
+                    </ul>
+                </div>
+
+                <div id="newTop" class="row rowMarginTop rowPaddingBottom">
+                    <div th:each="newsItem:${topNewsList}">
+                        <div class="newsList" th:onclick="'showNewsDetail('+${newsItem.id}+')'">
+                            <div class="newsDate">
+                                <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
+                                <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
+                            </div>
+                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.enTitle,28)}"></div>
+                            <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
+                                    src="/images/jiantouright_03.png"/></div>
+                        </div>
+                        <div class="row rowMarginTop rowPaddingBottom" id="newsDetail_"
+                             th:id="'newsDetail_'+${newsItem.id}" style="display: none;">
+                            <div class="col-md-6">
+                                <img th:src="${newsItem.imageUrl}" class="newsImg"/>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.enTitle,20)}"></div>
+                                <div class="row newsContent">
+                                    <p th:text="${#strings.abbreviate(newsItem.enDescription,60)}"></p>
+                                </div>
+                                <div class="row">
+                                    <a class="btn btn-primary active" th:href="${'/en/news/'+newsItem.id}"
+                                       target="_blank">More+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="companyDynamicsList" style="display: none;" class="row rowMarginTop rowPaddingBottom">
+                    <div th:each="newsItem:${companyDynamicsList}">
+                        <div class="newsList" th:onclick="'showNewsDetail('+${newsItem.id}+')'">
+                            <div class="newsDate">
+                                <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
+                                <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
+                            </div>
+                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.enTitle,28)}"></div>
+                            <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
+                                    src="/images/jiantouright_03.png"/></div>
+                        </div>
+                        <div class="row rowMarginTop rowPaddingBottom" id="newsDetail_"
+                             th:id="'newsDetail_'+${newsItem.id}" style="display: none;">
+                            <div class="col-md-6">
+                                <img th:src="${newsItem.imageUrl}" class="newsImg"/>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.enTitle,20)}"></div>
+                                <div class="row newsContent">
+                                    <p th:text="${#strings.abbreviate(newsItem.enDescription,60)}"></p>
+                                </div>
+                                <div class="row">
+                                    <a class="btn btn-primary active" th:href="${'/en/news/'+newsItem.id}"
+                                       target="_blank">More+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dayiTitle">
+                    <span class="dayiTitle-1">Technical answer / </span><span class="dayiTitle-2">Technical response</span><span
+                        class="dayiTitle-3"><a href="/en/question">More>></a></span>
+                </div>
+                <div class="dayiList" th:each="item:${questionList}">
+                    <div class="dayiCTitle"><img src="/images/dayi_160.jpg"> <a th:href="${'/en/news/'+item.id}" target="_blank"><span
+                            th:text="${#strings.abbreviate(item.enTitle,30)}"></span></a></div>
+                    <div class="dayiContent" th:text="${#strings.abbreviate(item.enDescription,100)}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--新闻资讯-->
+    <!--关于我们-->
+    <div class="container text-center wow bounceInUp">
+        <img src="/images/en_23.jpg"/>
+    </div>
+    <div class="container-fluid aboutUsA wow bounceInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="row aboutUsTitle">
+                        ABOUT US
+                    </div>
+                    <div class="row aboutUsTitleCn">Dongguan Yishengbai Heat Treatment Co., Ltd.</div>
+                    <div class="row aboutUsTitleLine"></div>
+                    <div class="row aboutUsTitleEn">Dongguan Yishengbai Heat Treatment Co., Ltd.</div>
+                    <div class="row aboutUsContent" th:utext="${aboutusContent.enContent}">
+
+                    </div>
+                    <div>
+                        <a class="btn btn-danger" href="/en/aboutUs">More+</a>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="aboutUsBg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--关于我们-->
+    <div class="container wow bounceInUp">
+        <div class="row gongchengLine">
+        </div>
+        <div class="row chongchangBtn">
+            <div class="col-md-offset-4 col-md-2"><input type="button" id="btnFactory" value="Factory environment"
+                                                         class="btn btn-block btnBgColorActive"/></div>
+            <div class="col-md-2"><input type="button" value="Honor" id="btnHonor"
+                                         class="btn btn-block btnBgColorNormal"/></div>
+        </div>
+        <div class="row">
+            <!--图片滚动-->
+            <div class='silder-box silder-box-2'>
+                <div class='silder'>
+                    <ul>
+                        <li th:each="hImgItem:${factoryList}">
+                            <a th:href="'/en/productCenter/detail/'+${hImgItem.id}"><img th:src="${hImgItem.imageUrl}"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class='silder-button btl'></div>
+                <div class='silder-button btr'></div>
+            </div>
+            <!--图片滚动-->
+            <!--图片滚动-->
+            <div class='silder-box silder-box-3' style="display: none;">
+                <div class='silder'>
+                    <ul>
+                        <li th:each="hImgItem:${honorList}">
+                            <a th:href="'/en/productCenter/detail/'+${hImgItem.id}"><img th:src="${hImgItem.imageUrl}"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class='silder-button btl'></div>
+                <div class='silder-button btr'></div>
+            </div>
+            <!--图片滚动-->
+        </div>
+    </div>
+    <script type="text/javascript">
+        wow = new WOW(
+            {
+                animateClass: 'animated',
+                offset: 100
+            }
+        );
+        wow.init();
+    </script>
+</div>
+</html>

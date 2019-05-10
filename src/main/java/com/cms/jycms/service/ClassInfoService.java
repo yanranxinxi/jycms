@@ -12,14 +12,16 @@ public class ClassInfoService {
     @Autowired
     private ClassInfoMapper mapper;
 
-    public List<ClassInfo> selectAll()
-    {
+    public List<ClassInfo> selectAll() {
         return mapper.selectAll();
     }
 
-    public  List<ClassInfo> getNav()
-    {
+    public List<ClassInfo> getNav() {
         return mapper.getNav();
+    }
+
+    public List<ClassInfo> getNavByParentId(int parentId) {
+        return mapper.getNavByParentId(parentId);
     }
 
     public int delete(int id) {

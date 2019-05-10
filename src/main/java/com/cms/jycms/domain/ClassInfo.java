@@ -8,6 +8,7 @@ public class ClassInfo {
     private int order;
     private String keyword;
     private String description;
+    private String enName;
 
     public int getId() {
         return id;
@@ -69,6 +70,15 @@ public class ClassInfo {
 
     public ClassInfo setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getEnName() {
+        return enName;
+    }
+
+    public ClassInfo setEnName(String enName) {
+        this.enName = enName;
         return this;
     }
 }

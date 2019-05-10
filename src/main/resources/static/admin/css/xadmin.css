@@ -781,3 +781,12 @@ table th, table td {
     color: #393D49;
 }
 
+.layui-form-label {
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    width: 85px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}

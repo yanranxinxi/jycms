@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="web/layout">
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row rowMarginTop rowPaddingBottom">
+            <div class="row" th:utext="${art.content}">
+
+            </div>
+        </div>
+    </div>
+</html>

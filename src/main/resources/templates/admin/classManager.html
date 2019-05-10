@@ -58,6 +58,15 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label for="tbxTitle" class="layui-form-label">
+            <span class="x-red">*</span>标题(英文版):
+        </label>
+        <div class="layui-input-inline">
+            <input class="layui-input" autocomplete="off" placeholder="title" name="tbxEnTitle" id="tbxEnTitle"
+                   style="width:400px;">
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">
             Url:
         </label>
@@ -74,7 +83,7 @@
             <input class="layui-input" autocomplete="off" placeholder="排序" name="tbxOrder" id="tbxOrder"
                    style="width:400px;"></div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item" style="display: none;">
         <label class="layui-form-label">
             关键字:
         </label>
@@ -82,7 +91,7 @@
             <input class="layui-input" autocomplete="off" placeholder="关键字" name="tbxKeyword" id="tbxKeyword"
                    style="width:400px;"></div>
     </div>
-    <div class="layui-form-item">
+    <div class="layui-form-item" style="display: none;">
         <label class="layui-form-label">
             描述:
         </label>
@@ -140,6 +149,7 @@
                 }
                 var data = {
                     "name": $("#tbxTitle").val(),
+                    "enName":$("#tbxEnTitle").val(),
                     "parentId": selectedNode.id,
                     "url": $("#tbxUrl").val(),
                     "order": order,
@@ -188,6 +198,7 @@
                 }
                 var data = {
                     "name": $("#tbxTitle").val(),
+                    "enName":$("#tbxEnTitle").val(),
                     "id": selectedNode.id,
                     "url": $("#tbxUrl").val(),
                     "order": order,
@@ -219,6 +230,7 @@
         var selectedNode = getSelectNode();
         $("#tbxID").val(selectedNode.id);
         $("#tbxTitle").val(selectedNode.name);
+        $("#tbxEnTitle").val(selectedNode.enName);
         if (selectedNode.url != null && selectedNode.url != undefined) {
             $("#tbxUrl").val(selectedNode.url);
         } else {

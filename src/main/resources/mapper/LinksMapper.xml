@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cms.jycms.dao.LinksMapper">
+    <insert id="insert">
+  insert into links(title,url,enTitle)
+  values(#{title},#{url},#{enTitle});
+</insert>
+    <delete id="delete">
+        delete from links where id in
+        <foreach collection="list" item="item" open="(" close=")" index="index" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+    <update id="update">
+    update links set title=#{title},url=#{url},enTitle=#{enTitle} where id=#{id}
+  </update>
+    <select id="selectAll" resultType="com.cms.jycms.domain.Links">
+    select id,title,url,enTitle from links
+    limit #{offset},#{pageSize}
+  </select>
+    <select id="selectCount" resultType="int">
+    select count(0) from links
+  </select>
+    <select id="selectById" resultType="com.cms.jycms.domain.Links">
+    select id,title,url,enTitle from links where id=#{id}
+  </select>
+</mapper>

@@ -2,19 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cms.jycms.dao.ClassInfoMapper">
  <select id="selectAll" resultType="com.cms.jycms.domain.ClassInfo">
-   select id,name,parentId,url,`order`,keyword,description from classInfo order by parentId asc,`order` asc
+   select id,name,enName,parentId,url,`order`,keyword,description from classInfo order by parentId asc,`order` asc
  </select>
     <select id="getNav" resultType="com.cms.jycms.domain.ClassInfo">
-        select name,url from classInfo where parentId=0 order by `order` asc
+        select name,enName,url from classInfo where parentId=0 order by `order` asc
+    </select>
+    <select id="getNavByParentId" resultType="com.cms.jycms.domain.ClassInfo">
+        select id,`name`,enName,parentId,url,`order`,keyword,description from classInfo where parentId=#{parentId} order by `order` asc
     </select>
     <delete id="delete">
         delete from classInfo where id=#{id}
     </delete>
     <update id="update">
-        update classInfo set name=#{name},url=#{url},`order`=#{order},keyword=#{keyword},description=#{description} where id=#{id}
+        update classInfo set name=#{name},enName=#{enName},url=#{url},`order`=#{order},keyword=#{keyword},description=#{description} where id=#{id}
     </update>
     <insert id="insert">
-        insert into classInfo(name,parentId,url,`order`,keyword,description)
-        values(#{name},#{parentId},#{url},#{order},#{keyword},#{description});
+        insert into classInfo(name,enName,parentId,url,`order`,keyword,description)
+        values(#{name},#{enName},#{parentId},#{url},#{order},#{keyword},#{description});
     </insert>
 </mapper>

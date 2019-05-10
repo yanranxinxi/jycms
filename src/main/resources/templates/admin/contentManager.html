@@ -131,10 +131,9 @@
                     if (nodes.length > 0) {
                         selectNode = nodes[0].id;
                     }
-                    x_admin_show('发布信息', './contentAdd.html?classId=' + selectNode, 600, 500, true)
+                    x_admin_show('发布信息', './contentAdd.html?classId=' + selectNode, 600, 500, true);
                     break;
             }
-            ;
         });
     });
     layui.use('form', function () {
@@ -163,6 +162,15 @@
                 {field: 'title', title: '标题'},
                 {field: 'className', title: '分类'},
                 {field: 'comeFrom', title: '来源'},
+                {
+                    field: 'recommend', title: '推荐', templet: function (d) {
+                        if (d.recommend == 0) {
+                            return "否";
+                        } else {
+                            return "是";
+                        }
+                    }
+                },
                 {field: 'addDate', title: '新增时间'},
                 {field: 'updateDate', title: '更新时间'}
             ]],

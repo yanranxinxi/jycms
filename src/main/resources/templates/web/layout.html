@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title th:text="${base.title}"></title>
+    <meta name="keywords" th:attr="content=${base.keyword}"/>
+    <meta name="description" th:attr="content=${base.description}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link href=/css/web.css type="text/css" rel="stylesheet"/>
+    <link href="/css/animate.css" rel="stylesheet" />
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/comm/jquery-browser.js"></script>
+    <script type="text/javascript" src="/comm/mySystem.js"></script>
+    <script type="text/javascript" src="/comm/public.js"></script>
+    <script src="/comm/wow.min.js"></script>
+</head>
+
+<body>
+<!--头部开始-->
+<div class="container-fluid">
+    <div class="row top">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-7">您好，欢迎访问东莞市一胜百热处理有限公司</div>
+        <div class="col-sm-4 headLink"> 在线留言 | <a href="/aboutUs">关于一胜百</a> &nbsp;&nbsp;&nbsp;&nbsp;选择语言：<a href="/en">English</a> | <a href="/">中文</a></div>
+    </div>
+    <div class="row topShow visible-lg-block visible-md-block">
+        <div class="col-md-1"></div>
+        <div class="col-md-8 logo">
+            <div class="row">
+                <div class="col-md-4 logoImage">
+                    <img src="/images/logo_03.png">
+                    <img src="/images/logo_split_03.png" class="logoSplit">
+                </div>
+                <div class="col-md-8 logoTitle">
+                    <div class="row">
+                        <h2>东莞市一胜百热处理有限公司</h2>
+                    </div>
+                    <div class="row">
+                        <h4>专注超纯净模具钢材、全程数控真空热处理、精板加工</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 logo">
+            <div class="col-md-3 tel">
+                <img src="/images/tel_06.png">
+            </div>
+            <div class="col-md-7 telNumber">
+                <div class="row">
+                    <h5 class="telTitle">24小时咨询热线</h5>
+                </div>
+                <div class="row">
+                    <h3 class="telNo" th:text="${base.tel}"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row navRow" role="navigation">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="navbar-header">
+                <!-- .navbar-toggle样式用于toggle收缩的内容，即nav-collapse collapse样式所在元素 -->
+                <button class="navbar-toggle" type="button" data-toggle="collapse"
+                        data-target=".navbar-responsive-collapse">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+
+                </button>
+                <!-- 确保无论是宽屏还是窄屏，navbar-brand都显示 -->
+                <a href="##" class="navbar-brand visible-xs-block">一胜百热处理有限公司</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-pills nav-justified navbar-right">
+                    <li role="presentation" th:each="navItem:${navList}"><a th:href="${navItem.url}"
+                                                                            th:text="${navItem.name}"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="/images/banner_18.jpg">
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+</div>
+<!--头部结束-->
+<!--搜索栏开始-->
+<div class="container">
+    <div class="row hidden-xs searchKey">
+        <div class="col-md-8">
+            <img src="/images/ysb_20.jpg"/><b>热门关键词</b>：超纯净模具钢材 全程数控真空热处理 精板加工
+        </div>
+        <div class="col-md-4 form-inline">
+            <input type="text" placeholder="请输入您要查找的关键词" class="form-control">
+            <img src="/images/ysb_19.jpg"/>
+        </div>
+    </div>
+</div>
+<!--搜索栏结束-->
+<!--内容开始-->
+<div layout:fragment="content">
+
+</div>
+<!--内容结束-->
+<!--友情链接开始-->
+<div class="container-fluid linkBg">
+    <div class="col-md-4 linkWhilte">友情链接 / <span>LINKS</span><img src="/images/ysb_164.jpg"></div>
+    <div class="col-md-8 links"><a th:each="item:${base.linksList}" th:text="${item.title}" th:href="${item.url}" class="link" target="_blank"></a></div>
+</div>
+<!--友情链接结束-->
+<!--底部版本开始-->
+<div class="container-fluid copyright">
+    <div class="container">
+        <div class="row copyrightContent">
+            <div class="col-md-3 textRight"><img src="/images/footlogo_03.png"/></div>
+            <div class="col-md-9 copyrightContentText">
+                <table>
+                    <tr>
+                        <td th:utext="${base.copyright}">
+
+                        </td>
+                        <td><img src="/images/ysb_168.jpg"/></td>
+                        <td><img src="/images/tdcode_03.jpg"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row navLink text-center">
+            <a th:each="navItem:${navList}" th:text="${navItem.name}" th:href="${navItem.url}"></a>
+        </div>
+    </div>
+</div>
+<!--底部版本结束-->
+</body>
+</html>

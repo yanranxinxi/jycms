@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="web/en/layout">
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row rowMarginTop">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="productDetailDiv">
+                        <img th:src="${art.imageUrl}"/>
+                    </div>
+                    <div class="productDetailTitle">
+                        <h3 th:text="${art.enTitle}"></h3>
+                        <p>Introduction：</p>
+                        <p th:text="${art.enDescription}"></p>
+                    </div>
+                </div>
+
+                <div class="row rowMarginTop">
+                    <h3>Detailed introduction：</h3>
+                    <p th:utext="${art.enContent}"></p>
+                </div>
+                <div class="row rowMarginTop rowPaddingBottom">
+                    <div class="upDiv">
+                        <strong>Previous：</strong><a th:if="${up!=null}" th:text="${#strings.abbreviate(up.enTitle,30)}" th:href="''+${up.id}"></a>
+                        <span th:if="${up==null}">No more</span>
+                    </div>
+                    <div class="downDiv">
+                        <strong>Next：</strong><a th:if="${down!=null}" th:text="${#strings.abbreviate(down.enTitle,30)}"
+                                                 th:href="''+${down.id}"></a>
+                        <span th:if="${down==null}">No more</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+</html>
