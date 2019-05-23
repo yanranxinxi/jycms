@@ -6,10 +6,12 @@
     <div class="container">
         <div class="row rowMarginTop rowPaddingBottom">
             <div class="row textCenter">
-                <h3 th:text="${art.enTitle}"></h3>
+                <div class="col-md-12">
+                    <h3 th:text="${art.enTitle}"></h3>
+                </div>
             </div>
-            <div class="row" th:utext="${art.enContent}">
-
+            <div class="row">
+                <div class="col-md-12" th:utext="${art.enContent}"></div>
             </div>
         </div>
     </div>

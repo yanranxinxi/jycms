@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="web/en/layout">
+<div layout:fragment="headContent">
+    <link href=/lib/bootstrapvalidator/css/bootstrapValidator.css type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="/lib/bootstrapvalidator/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="/lib/bootstrapvalidator/js/language/zh_CN.js"></script>
+</div>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row rowMarginTop rowPaddingBottom">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8" id="message">
+                    <div class="row textCenter" th:if="${info}!=null">
+                        <script type="text/javascript" th:inline="javascript">
+                            alert([[${info}]]);
+                        </script>
+                    </div>
+                    <form id="msgFrom" class="form-horizontal" method="post" action="/en/leaveMsg">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Contact：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="customName" name="customName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Phone number：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="telNo" name="telNo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Message：</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3" id="msg" name="msg"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Verification code：</label>
+                            <div class="col-sm-9">
+                                <span class="col-md-3" style="padding-left: 0px;">
+                                    <input type="text" id="code" name="code" class="form-control">
+                                </span>
+                                <div class="col-md-3">
+                                    <img alt="Verification code" onclick="this.src='/defaultKaptcha?d='+new Date()*1"
+                                         src="/defaultKaptcha"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group textCenter">
+                            <button type="submit" id="validateBtn" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#msgFrom').bootstrapValidator({
+                message: 'Verification failed',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    customName: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Contact cannot be empty'
+                            }
+                        }
+                    },
+                    telNo: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Phone number cannot be empty'
+                            }
+                        }
+                    },
+                    msg: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Message cannot be empty'
+                            }
+                        }
+                    },
+                    code: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please fill in the verification code'
+                            },
+                            callback: {
+                                message: 'Incorrect verification code',
+                                callback: function (value, validator) {
+                                    var result = false;
+                                    $.ajaxSettings.async = false;
+                                    $.get("/validCode", {code: value}, function (data) {
+                                        if (data == 0) {
+                                            result = false;
+                                        } else {
+                                            result = true;
+                                        }
+                                    });
+                                    return result;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            $('#validateBtn').click(function () {
+                $('#defaultForm').bootstrapValidator('validate');
+            });
+        });
+    </script>
+</div>
+</html>

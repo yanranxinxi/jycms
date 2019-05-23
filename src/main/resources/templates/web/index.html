@@ -5,257 +5,199 @@
 <div layout:fragment="content">
     <div class="container">
         <div class="row productList">
-            <div class="col-md-3 hidden-xs">
+            <div class="col-md-4 hidden-xs wow slideInLeft">
                 <!--产品分类-->
-                <div class="productClass wow slideInLeft">
+                <div class="productClass">
                     <div class="productTitle">
-                        产品分类
+                        <img src="/images/product_class.jpg"/>
                     </div>
-                    <div class="productTitleEn">PRODUCTS</div>
                     <div class="proClassShow">
                         <div class="proClassNormal" th:each="item:${productList}">
                             <a th:href="'/productCenter/'+${item.id}" th:text="${item.name}"></a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-9 wow slideInRight">
-                <div class="row">
-                    <div class="col-xs-6 productGoodTitle">
-                        <h3><span class="glyphicon glyphicon-thumbs-up"></span> 产品推荐</span></h3>
+                <!--联系我们-->
+                <div class="kefuShow">
+                    <div class="kefuImg">
+                        <img src="/images/contactus_title.jpg"/>
                     </div>
-                    <div class="col-xs-6 productMore">
-                        <a href="/productCenter"><img src="/images/ysb_28.jpg"/></a>
+                    <div class="contactUsBlock">
+                        <img src="/images/kefu_53.jpg"/>
+                        <div th:utext="${base.leftContactUs}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 wow slideInRight">
+                <div class="row hidden-xs">
+                    <div class="col-xs-12 productGoodTitle">
+                        <img src="/images/product_title.jpg"/>
                     </div>
                 </div>
                 <div class="row productContent">
-                    <div class="media">
-                        <a th:href="'/productCenter/detail/'+${topPro.id}" class="media-left media-middle media-bottom hidden-xs">
-                            <img th:src="${topPro.imageUrl}" width="380" height="380"/>
-                        </a>
-                        <div class="media-body">
-                            <h2 th:text="${topPro.title}"></h2>
-                            <div class="line"></div>
-                            <h4>产品简介：</h4>
-                            <p th:text="${topPro.description}"></p>
-                            <p>
-                                <button class="btn" onclick="window.location.href='/leaveMessage#message'">立即咨询</button>
-                                <a class="btn btn-danger" th:href="'/productCenter/detail/'+${topPro.id}">查看详情</a>
-                            </p>
+                    <div class="col-md-4 clearPadding" th:each="proItem:${productRecommendList}">
+                        <div class="thumbnail">
+                            <a th:href="'/productCenter/detail/'+${proItem.id}"><img th:src="${proItem.imageUrl}"
+                                                                                     th:alt="${proItem.title}"
+                                                                                     style="width:272px;height:250px;"/></a>
+                            <div class="caption captionOverride">
+                                <div><a th:href="'/productCenter/detail/'+${proItem.id}" th:text="${proItem.title}"></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row rowMarginTop wow bounceInUp">
-            <div class="col-md-3 hidden-xs">
-                <div class="kefuShow">
-                    <div class="kefuImg">
-                        <img src="/images/kefu_53.jpg"/>
-                    </div>
-                    <div class="contactUsBlock" th:utext="${base.leftContactUs}">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 clearPadding" th:each="proItem:${productRecommendList}">
-                <div class="thumbnail">
-                    <a th:href="'/productCenter/detail/'+${proItem.id}"><img th:src="${proItem.imageUrl}" th:alt="${proItem.title}"
-                                                    style="width:272px;height:250px;"/></a>
-                    <div class="caption captionOverride">
-                        <div><a th:href="'/productCenter/detail/'+${proItem.id}" th:text="${proItem.title}"></a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row hidden-xs wow bounceInUp">
-            <div class="col-md-12 textCenter rowMarginTop">
-                <img src="/images/ysb_66.jpg"/>
-            </div>
-        </div>
     </div>
-    <div class="container wow bounceInUp">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="/images/ysb_64.jpg"/>
-            </div>
-            <div class="col-md-8 marginTop80">
 
-                <!--图片滚动-->
-                <div class='silder-box silder-box-1'>
-                    <div class='silder'>
-                        <ul>
-                            <li th:each="hImgItem:${cooperationList}">
-                                <img th:src="${hImgItem.imageUrl}">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class='silder-button btl'></div>
-                    <div class='silder-button btr'></div>
-                </div>
-                <!--图片滚动-->
-            </div>
-        </div>
-    </div>
-    <div class="container wow bounceInUp">
-        <div class="row">
-            <img src="/images/ysb_84.jpg"/>
-        </div>
-    </div>
-    <div class="container-fluid wow bounceInUp">
+
+    <div class="container-fluid wow bounceInUp hidden-xs">
         <div class="row youshiImg">
         </div>
     </div>
     <div class="container-fluid youshiBackground rowPaddingBottom wow bounceInUp">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 wow bounceInLeft" data-wow-delay="1s">
+                <div class="col-md-6 wow bounceInLeft">
                     <div class="row youshi1">
-                        <div class="col-md-3">
-                            <img src="/images/ysb_91.jpg"/>
+                        <div class="col-md-2">
+                            <img src="/images/first.jpg"/>
                         </div>
-                        <div class="col-md-9">
-                            <h3>强大的生产基地，打造优质产品</h3>
-                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                        <div class="col-md-10">
+                            <h3>12年专注泡棉产品加工</h3>
                             <div class="doubleLine"></div>
                         </div>
                     </div>
                     <div class="row rowMarginTop">
-                        <div class="col-md-2 textRight">
-                            <img src="/images/ysb_96.jpg"/>
+                        <div class="col-md-2 textRight hidden-xs">
                         </div>
                         <div class="col-md-10 youshiContent">
-                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
-                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
-                            <div class="youshi1_3">拥有高技术、多功能的热处理厂、钢材机加工厂，是中国华南地区最具影响力的优质特殊模具钢材供应基地之一。</div>
-                            <div class="youshi_button">
-                                <button class="youshi_button_1"></button>
-                                <button
-                                        class="youshi_button_2"></button>
-                            </div>
+                            <p>
+                                锐欣包装泡棉为您提供最可靠的自动化设备和优质的
+                                专业服务为您提供一站式的设计、制造和安装调试服
+                                您的需求,盈润机械设备全方位满足!
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 wow bounceInRight" data-wow-delay="0.5s">
-                    <img src="/images/ysb_87.jpg"/>
+                <div class="col-md-6 wow bounceInRight hidden-xs">
+                    <img src="/images/advantage_1.jpg"/>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 rowMarginTop wow bounceInLeft" data-wow-delay="0.5s">
-                    <img src="/images/ysb_110.jpg"/>
+                <div class="col-md-6 rowMarginTop wow bounceInLeft hidden-xs">
+                    <img src="/images/advantage_2.jpg" style="margin-top:-150px;"/>
                 </div>
                 <div class="col-md-6">
-                    <div class="row youshi1 wow bounceInRight" data-wow-delay="1s">
-                        <div class="col-md-3">
-                            <img src="/images/ysb_108.jpg"/>
+                    <div class="row youshi1 wow bounceInRight">
+                        <div class="col-md-2">
+                            <img src="/images/second.jpg"/>
                         </div>
-                        <div class="col-md-9">
-                            <h3>强大的生产基地，打造优质产品</h3>
-                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                        <div class="col-md-10">
+                            <h3>专业设计团队为您量身定制</h3>
                             <div class="doubleLine"></div>
                         </div>
                     </div>
-                    <div class="row rowMarginTop wow bounceInRight" data-wow-delay="1s">
-                        <div class="col-md-2 textRight">
-                            <img src="/images/ysb_114.jpg"/>
+                    <div class="row rowMarginTop wow bounceInRight">
+                        <div class="col-md-2 textRight hidden-xs">
                         </div>
                         <div class="col-md-10 youshiContent">
-                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
-                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
-                        </div>
-                    </div>
-                    <div class="row youshi1 wow bounceInRight" data-wow-delay="1s">
-                        <div class="col-md-3">
-                            <img src="/images/ysb_131.jpg"/>
-                        </div>
-                        <div class="col-md-9">
-                            <h3>强大的生产基地，打造优质产品</h3>
-                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
-                            <div class="doubleLine"></div>
-                        </div>
-                    </div>
-                    <div class="row rowMarginTop wow bounceInRight" data-wow-delay="1s">
-                        <div class="col-md-2 textRight">
-                            <img src="/images/ysb_96.jpg"/>
-                        </div>
-                        <div class="col-md-10 youshiContent">
-                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
-                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
-                            <div class="youshi1_3">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
+                            <p>
+                                严格的工匠精神标准要求，狠抓产品质量，全心打造智能
+                                设备可靠品牌，为机械配件提供一站式产业智能化制造解
+                                决方案。
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 wow bounceInLeft" data-wow-delay="0.5s">
+                <div class="col-md-6 wow bounceInLeft">
                     <div class="row youshi1">
-                        <div class="col-md-3">
-                            <img src="/images/ysb_118.jpg"/>
+                        <div class="col-md-2">
+                            <img src="/images/third.jpg"/>
                         </div>
-                        <div class="col-md-9">
-                            <h3>强大的生产基地，打造优质产品</h3>
-                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                        <div class="col-md-10">
+                            <h3>获得权威机构产品认证</h3>
                             <div class="doubleLine"></div>
                         </div>
                     </div>
                     <div class="row rowMarginTop">
-                        <div class="col-md-2 textRight">
-                            <img src="/images/ysb_96.jpg"/>
+                        <div class="col-md-2 textRight hidden-xs">
                         </div>
                         <div class="col-md-10 youshiContent">
-                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
-                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
-                            <div class="youshi1_3">拥有高技术、多功能的热处理厂、钢材机加工厂，是中国华南地区最具影响力的优质特殊模具钢材供应基地之一。</div>
-                            <div class="youshi_button">
-                                <button class="youshi_button_1"></button>
-                                <button
-                                        class="youshi_button_2"></button>
+                            <p>
+                                先进的加工设备加工工艺，为客户快速供货；公司
+                                实行计划管理，注重过程控制，为客户制造国际
+                                品质的产品；
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 wow bounceInRight hidden-xs">
+                    <img src="/images/advantage_3.jpg"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 rowMarginTop wow bounceInLeft hidden-xs">
+                    <img src="/images/advantage_4.jpg" style="margin-top:-50px;"/>
+                </div>
+                <div class="col-md-6">
+                    <div class="row youshi1 wow bounceInRight">
+                        <div class="col-md-2">
+                            <img src="/images/four.jpg"/>
+                        </div>
+                        <div class="col-md-10">
+                            <h3>24小时快速响应,打造满意售后服务</h3>
+                            <div class="doubleLine"></div>
+                        </div>
+                    </div>
+                    <div class="row rowMarginTop wow bounceInRight">
+                        <div class="col-md-2 textRight hidden-xs">
+                        </div>
+                        <div class="col-md-10 youshiContent">
+                            <p>
+                                我司拥有完善售前售后服务体系，72小时服务热线，
+                                有专职的工程师及时为您解决技术上的问题。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--关于我们-->
+    <div class="container-fluid aboutUsA wow bounceInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 hidden-xs">
+                    <div class="row">
+                        <div style="float: left;width:534px;"><img src="/images/home_pro.jpg"/></div>
+                        <div style="float: left;width:600px; padding-left:30px;">
+                            <div class="aboutUsTitle">
+                                关于我们
+                            </div>
+                            <div>
+                                <img src="/images/aboutus_desc.jpg"/>
+                            </div>
+                            <div class="row aboutUsContent" th:utext="${aboutusContent.content}">
+
+                            </div>
+                            <div>
+                                <a class="btn viewMore" href="/aboutUs">查看更多+</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 wow bounceInRight" data-wow-delay="0.5s">
-                    <img src="/images/ysb_126.jpg"/>
-                </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid wow bounceInUp">
-        <div class="row changjiaImg">
-        </div>
-    </div>
-    <div class="container textCenter rowMarginTop rowPaddingBottom wow bounceInUp">
-        <img src="/images/ysb_135.jpg"/>
-    </div>
-    <!--客户见证-->
-    <div class="container wow bounceInUp">
-        <div class="row">
-            <div id="divCustom" class="col-md-3 clearPadding" th:each="customItem:${customList}">
-                <div class="customShowNormal">
-                    <img class="img-circle" th:src="${customItem.imageUrl}">
-                    <div class="">
-                        <h4 th:text="${#strings.abbreviate(customItem.title,20)}"></h4>
-                        <h5 th:text="${#strings.abbreviate(customItem.description,50)}"></h5>
-                    </div>
-                </div>
-                <div class="customButtonNormal" th:onclick="'window.location.href=\''+${'/news/'+customItem.id}+'\''">查看详情</div>
-            </div>
-        </div>
-    </div>
-    <!--客户见证-->
-    <!--咨询报价-->
-    <div class="container textCenter roMarginTopBetter rowPaddingBottom wow bounceInUp">
-        <div class="row callMe">
-            <div class="col-md-7 textRight"><span th:text="${base.tel}"></span></div>
-            <div class="col-md-5 text-left">
-                <button>咨询获取报价</button>
-            </div>
-        </div>
-    </div>
-    <!--咨询报价-->
+    <!--关于我们-->
     <!--新闻资讯-->
-    <div class="container-fluid newinfo wow bounceInUp">
+    <div class="container-fluid newinfo wow bounceInUp hidden-xs">
         <div class="container textCenter rowMarginTop rowPaddingBottom">
-            <img src="/images/ysb_145.jpg"/>
+            <img src="/images/news.jpg"/>
         </div>
         <div class="container rowMarginTop rowPaddingBottom">
             <div class="col-md-6">
@@ -331,7 +273,8 @@
                         class="dayiTitle-3"><a href="/question">更多>></a></span>
                 </div>
                 <div class="dayiList" th:each="item:${questionList}">
-                    <div class="dayiCTitle"><img src="/images/dayi_160.jpg"> <a th:href="${'/news/'+item.id}" target="_blank"><span
+                    <div class="dayiCTitle"><img src="/images/dayi_160.jpg"> <a th:href="${'/news/'+item.id}"
+                                                                                target="_blank"><span
                             th:text="${#strings.abbreviate(item.title,30)}"></span></a></div>
                     <div class="dayiContent" th:text="${#strings.abbreviate(item.description,100)}"></div>
                 </div>
@@ -339,74 +282,25 @@
         </div>
     </div>
     <!--新闻资讯-->
-    <!--关于我们-->
-    <div class="container text-center wow bounceInUp">
-        <img src="/images/ysb_148.jpg"/>
-    </div>
-    <div class="container-fluid aboutUsA wow bounceInUp">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="row aboutUsTitle">
-                        ABOUT US
-                    </div>
-                    <div class="row aboutUsTitleCn">东莞市一胜百热处理有限公司</div>
-                    <div class="row aboutUsTitleLine"></div>
-                    <div class="row aboutUsTitleEn">Dongguan Yishengbai Heat Treatment Co., Ltd.</div>
-                    <div class="row aboutUsContent" th:utext="${aboutusContent.content}">
 
-                    </div>
-                    <div>
-                        <a class="btn btn-danger" href="/aboutUs">查看更多+</a>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="row">
-                        <div class="aboutUsBg"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--关于我们-->
-    <div class="container wow bounceInUp">
-        <div class="row gongchengLine">
-        </div>
-        <div class="row chongchangBtn">
-            <div class="col-md-offset-4 col-md-2"><input type="button" id="btnFactory" value="工厂环境"
-                                                         class="btn btn-block btnBgColorActive"/></div>
-            <div class="col-md-2"><input type="button" value="荣誉资质" id="btnHonor"
-                                         class="btn btn-block btnBgColorNormal"/></div>
-        </div>
+
+    <!--友情链接开始-->
+    <div class="container-fluid linkBg hidden-xs">
         <div class="row">
-            <!--图片滚动-->
-            <div class='silder-box silder-box-2'>
-                <div class='silder'>
-                    <ul>
-                        <li th:each="hImgItem:${factoryList}">
-                            <a th:href="'/productCenter/detail/'+${hImgItem.id}"><img th:src="${hImgItem.imageUrl}"></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class='silder-button btl'></div>
-                <div class='silder-button btr'></div>
+            <div class="col-md-12 textCenter">
+                <img src="/images/links.png"/>
             </div>
-            <!--图片滚动-->
-            <!--图片滚动-->
-            <div class='silder-box silder-box-3' style="display: none;">
-                <div class='silder'>
-                    <ul>
-                        <li th:each="hImgItem:${honorList}">
-                            <a th:href="'/productCenter/detail/'+${hImgItem.id}"><img th:src="${hImgItem.imageUrl}"></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class='silder-button btl'></div>
-                <div class='silder-button btr'></div>
-            </div>
-            <!--图片滚动-->
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 links textCenter">
+                <a th:each="item:${base.linksList}" th:text="${item.title}" th:href="${item.url}"
+                   class="link" target="_blank"></a>
+            </div>
+        </div>
+    </div>
+    <!--友情链接结束-->
     <script type="text/javascript">
         wow = new WOW(
             {

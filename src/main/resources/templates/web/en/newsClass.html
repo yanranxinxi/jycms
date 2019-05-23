@@ -5,7 +5,7 @@
 <div layout:fragment="content">
     <div class="container">
         <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-3">
+            <div class="col-md-3 hidden-xs">
                 <div class="productClass">
                     <div class="productTitle">
                         Product Categories
@@ -25,7 +25,8 @@
                     <div class="newsClassShow">
                         <ul>
                             <li th:each="item:${newsList}"><a th:href="'/en/news/'+${item.id}"
-                                                              th:text="${#strings.abbreviate(item.enTitle,15)}"></a></li>
+                                                              th:text="${#strings.abbreviate(item.enTitle,15)}"></a>
+                            </li>
                         </ul>
 
                     </div>
@@ -57,12 +58,18 @@
                                 <img th:src="${newsItem.imageUrl}" class="newsImg"/>
                             </div>
                             <div class="col-md-8">
-                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.enTitle,20)}"></div>
+                                <div class="row newsTitle">
+                                    <div class="col-md-12" th:text="${#strings.abbreviate(newsItem.enTitle,20)}"></div>
+                                </div>
                                 <div class="row newsContent">
-                                    <p th:text="${#strings.abbreviate(newsItem.enDescription,60)}"></p>
+                                    <div class="col-md-12"
+                                         th:text="${#strings.abbreviate(newsItem.enDescription,60)}"></div>
                                 </div>
                                 <div class="row">
-                                    <a class="btn btn-primary active" th:href="${'/en/news/'+newsItem.id}" target="_blank">More+</a>
+                                    <div class="col-md-12">
+                                        <a class="btn btn-primary active" th:href="${'/en/news/'+newsItem.id}"
+                                           target="_blank">More+</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +81,8 @@
                     <div style="margin-left:auto;margin-right:auto;">
                         <!-- 处理页数小于等于7 的情况 -->
                         <ul th:if="${(totalPages le 7)&&(totalPages gt 0)}" class="pagination">
-                            <li th:if="${pageIndex eq 1}" class="page-item disabled"><a class="page-link">Previous</a></li>
+                            <li th:if="${pageIndex eq 1}" class="page-item disabled"><a class="page-link">Previous</a>
+                            </li>
                             <li th:if="${pageIndex gt 1}" class="page-item">
                                 <a class="page-link" th:href="@{''(pageIndex=${pageIndex}-1)}">Previous</a>
                             </li>
@@ -94,7 +102,8 @@
 
                         <!-- 处理页数大于7 的情况 -->
                         <ul th:if="${totalPages gt 7}" class="pagination">
-                            <li th:if="${pageIndex eq 1}" class="page-item disabled"><a class="page-link">Previous</a></li>
+                            <li th:if="${pageIndex eq 1}" class="page-item disabled"><a class="page-link">Previous</a>
+                            </li>
                             <li th:if="${pageIndex gt 1}" class="page-item">
                                 <a class="page-link" th:href="@{''(pageIndex=${pageIndex}-1)}">Previous</a>
                             </li>

@@ -1,9 +1,9 @@
 server:
-  port: 9000
+  port: 9001
 
 spring:
   application:
-    name: jycms
+    name: ruixin-web
     index: 0
   datasource:
     name: test
@@ -43,7 +43,7 @@ mybatis:
 
 web:
   upload-path: uploadData
-  imagesDir: jycms/upload
+  imagesDir: ruixin/upload
   hostName: ""
 
 multipart:

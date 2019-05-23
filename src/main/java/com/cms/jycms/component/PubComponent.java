@@ -113,12 +113,26 @@ public class PubComponent {
      * @param pageSize  页码大小
      * @return
      */
-    public PaginationDTO getPaginationInfo(int classId, int pageIndex, int pageSize) {
+    public PaginationDTO getPaginationInfo(int classId, int pageIndex, int pageSize, Integer classType) {
+        return getPaginationInfo(classId, pageIndex, pageSize, classType, "");
+    }
+
+    /**
+     * 获取分类列表信息
+     *
+     * @param classId   分类ID
+     * @param pageIndex 页码
+     * @param pageSize  页码大小
+     * @return
+     */
+    public PaginationDTO getPaginationInfo(int classId, int pageIndex, int pageSize, Integer classType, String title) {
         PaginationDTO model = new PaginationDTO();
         Map<String, Object> map = new HashMap<>();
         map.put("offset", (pageIndex - 1) * pageSize);
         map.put("pageSize", pageSize);
         map.put("classId", classId);
+        map.put("classType", classType);
+        map.put("title", title);
         List<NewsInfo> artList = newsInfoService.selectAll(map);
         int total = newsInfoService.selectCount(map);
         int totalPages = total / pageSize;
@@ -142,7 +156,22 @@ public class PubComponent {
      * @param sideRecommend 侧边栏是否是推荐信息
      * @return
      */
-    public ViewClassListDTO viewClassList(int proClassId, int proPageIndex, int proPageSize, int sideClassId, int sideLimit, int sideRecommend) {
+    public ViewClassListDTO viewClassList(int proClassId, int proPageIndex, int proPageSize, int sideClassId, int sideLimit, int sideRecommend, Integer classType) {
+        return viewClassList(proClassId, proPageIndex, proPageSize, sideClassId, sideLimit, sideRecommend, classType, "");
+    }
+
+    /**
+     * 获取二级页面产品或新闻信息
+     *
+     * @param proClassId    主分类ID
+     * @param proPageIndex  主分类开始页码
+     * @param proPageSize   主分类页码大小
+     * @param sideClassId   侧边栏分类ID
+     * @param sideLimit     侧边栏条数
+     * @param sideRecommend 侧边栏是否是推荐信息
+     * @return
+     */
+    public ViewClassListDTO viewClassList(int proClassId, int proPageIndex, int proPageSize, int sideClassId, int sideLimit, int sideRecommend, Integer classType, String title) {
         //获取网站基础信息
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = getBaseInfo();
         //获取产品分类列表
@@ -150,7 +179,7 @@ public class PubComponent {
         //获取侧边新闻列表
         List<NewsInfo> newsList = getSide(sideClassId, sideLimit, sideRecommend);
         //产品
-        PaginationDTO paginationDTO = getPaginationInfo(proClassId, proPageIndex, proPageSize);
+        PaginationDTO paginationDTO = getPaginationInfo(proClassId, proPageIndex, proPageSize, classType, title);
 
         ViewClassListDTO dto = new ViewClassListDTO();
         dto.setWebSiteBaseInfoDTO(webSiteBaseInfoDTO);
