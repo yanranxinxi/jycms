@@ -5,40 +5,30 @@
 <div layout:fragment="content">
     <div class="container">
         <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-3">
+            <div class="col-md-4">
+                <!--产品分类-->
                 <div class="productClass">
                     <div class="productTitle">
-                        产品分类
+                        <img src="/images/product_class.jpg"/>
                     </div>
-                    <div class="productTitleEn">PRODUCTS</div>
                     <div class="proClassShow">
                         <div class="proClassNormal" th:each="item:${productTypeList}">
                             <a th:href="'/productCenter/'+${item.id}" th:text="${item.name}"></a>
                         </div>
                     </div>
                 </div>
-                <div class="productClass rowMarginTop">
-                    <div class="productTitle">
-                        新闻资讯
-                    </div>
-                    <div class="productTitleEn">News</div>
-                    <div class="newsClassShow">
-                        <ul>
-                            <li th:each="item:${newsList}"><a th:href="'/news/'+${item.id}"
-                                                              th:text="${#strings.abbreviate(item.title,15)}"></a></li>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="kefuShow rowMarginTop">
+                <!--联系我们-->
+                <div class="kefuShow">
                     <div class="kefuImg">
-                        <img src="/images/kefu_53.jpg">
+                        <img src="/images/contactus_title.jpg"/>
                     </div>
-                    <div class="contactUsBlock" th:utext="${base.leftContactUs}">
+                    <div class="contactUsBlock">
+                        <img src="/images/kefu_53.jpg"/>
+                        <div th:utext="${base.leftContactUs}"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8" style="margin-top:20px;">
                 <div class="row">
                     <div class="col-md-4 clearPadding" th:if="${productList.size()}>0" th:each="item:${productList}">
                         <div class="thumbnail">
