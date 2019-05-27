@@ -191,7 +191,7 @@
                 layer.alert("请先选择分类", {icon: 7});
                 return false;
             }
-            if (data.field.editorValue == undefined || data.field.editorValue == "") {
+            if (ue.getContent() == undefined || ue.getContent() == "") {
                 layer.alert("请输入内容", {icon: 7});
                 return false;
             }
