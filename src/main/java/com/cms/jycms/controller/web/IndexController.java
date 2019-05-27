@@ -75,7 +75,7 @@ public class IndexController {
         //技术答疑
         List<NewsInfo> questionList = pubComponent.getArtList(44, 0, 3);
         //工厂环境
-        List<NewsInfo> factoryList = pubComponent.getArtList(46, 0, 10);
+        List<NewsInfo> factoryList = pubComponent.getArtList(51, 0, 10);
         //荣誉资质
         List<NewsInfo> honorList = pubComponent.getArtList(47, 0, 10);
         //单条内容
@@ -97,7 +97,7 @@ public class IndexController {
         return "web/index";
     }
 
-    @RequestMapping({"/evaFoam"})
+    @RequestMapping({"/equipmentExhibition"})
     public String classShow(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(27, pageIndex, 12, 31, 5, 0, null);
 
@@ -125,7 +125,7 @@ public class IndexController {
         return "web/class";
     }
 
-    @RequestMapping({"/evaLining"})
+    @RequestMapping({"/solution"})
     public String finePlateProcessing(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(29, pageIndex, 12, 31, 5, 0, null);
 

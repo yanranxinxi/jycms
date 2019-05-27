@@ -7,15 +7,16 @@ a {
 }
 
 .top {
-    background: #ffffff;
+    background: #333;
     min-height: 41px;
-    color: #000000;
+    color: #fff;
     padding: 10px 0 10px 0;
 }
 
 .topShow {
-    height: 130px;
-    /*background-image: url("../images/ybs_02.jpg");*/
+    height: 188px;
+    /*background-image: url("../images/headbg.jpg");*/
+    background: #f3f3f5;
 }
 
 .logo {
@@ -23,7 +24,9 @@ a {
 }
 
 .navRow {
-    background: #0d8d00;
+    /*background: url("../images/nav_03.png");*/
+    background: #164a48;
+    /*border-top: 1px #0B61A4 solid;*/
 }
 
 .navRow a {
@@ -32,17 +35,17 @@ a {
 
 .navbar-pills > li > a:hover {
     text-decoration: none;
-    background-color: #0f7a04;
+    background-color: #db261b;
 }
 
 .navbar-pills > li > a:active {
     text-decoration: none;
-    background-color: #0f7a04;
+    background-color: #db261b;
 }
 
 .navbar-pills > li > a:focus {
     text-decoration: none;
-    background-color: #0f7a04;
+    background-color: #db261b;
 }
 
 .navbar-toggle {
@@ -81,7 +84,7 @@ a {
 }
 
 .productClass {
-    width: 280px;
+    width: 218px;
     /*background: #17494a;*/
     padding-bottom: 0px;
     margin-left: auto;
@@ -90,10 +93,23 @@ a {
 
 .productTitle {
     text-align: center;
-    font-size: 36px;
     color: #ffffff;
     font-weight: bold;
     padding-top: 26px;
+    background: url("/images/left.jpg");
+    height: 101px;
+}
+
+.productTitle strong {
+    font-size: 27px;
+}
+
+.productTitle span {
+}
+
+.productTitle i {
+    font-size: 15px;
+    margin-left: 70px;
 }
 
 .productTitleEn {
@@ -105,12 +121,12 @@ a {
 
 .proClassShow {
     background: #ffffff;
-    width: 230px;
+    width: 218px;
     height: auto;
     /*border-radius: 10px;*/
     /*margin-left: auto;*/
     /*margin-right: auto;*/
-    padding-top: 10px;
+    /*padding-top: 10px;*/
     padding-bottom: 10px;
 }
 
@@ -139,6 +155,10 @@ a {
     color: #252525;
 }
 
+.blueBg {
+    background: #f3f3f5;
+}
+
 .proClassHover {
     padding-top: 10px;
     color: #ffffff;
@@ -159,14 +179,14 @@ a {
 .proClassShow div:hover {
     padding-top: 10px;
     color: #ffffff;
-    width: 278px;
-    background: #3e9e0f;
+    width: 218px;
+    background: #fd0809;
     text-align: center;
     /*border-radius: 20px;*/
     margin-left: auto;
     margin-right: auto;
     height: 42px;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 
 a {
@@ -175,21 +195,22 @@ a {
 
 .on {
     text-decoration: none;
-    background-color: #0f7a04;
+    background-color: #db261b;
 }
 
 .proClassNormal {
-    padding-top: 10px;
+    padding-top: 1px;
     color: #000;
-    width: 278px;
+    width: 218px;
     /*background: #16494a;*/
-    border: 1px #3e9e0f solid;
+    border: 1px #f3f3f5 solid;
     text-align: center;
     /*border-radius: 20px;*/
     /*margin-left: auto;*/
     /*margin-right: auto;*/
     height: 42px;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
+    padding-top: 10px;
 }
 
 .proClassNormal a {
@@ -252,7 +273,7 @@ a {
 }
 
 .kefuShow {
-    width: 280px;
+    width: 218px;
     height: auto;
     margin-left: auto;
     margin-right: auto;
@@ -261,16 +282,16 @@ a {
 .kefuImg {
     /*padding: 6px;*/
     /*background: #f1f1f1;*/
-    width: 280px;
+    width: 218px;
     height: auto;
 }
 
 .contactUsBlock {
-    width: 279px;
-    /*background: #17494a;*/
+    width: 218px;
+    background: #fff;
     color: #000;
-    border: 1px #3e9e0f solid;
-    padding: 10px 0 10px 10px;
+    border: 1px #f3f3f5 solid;
+    /*padding: 10px 0 10px 10px;*/
 }
 
 .font16Bold {
@@ -710,7 +731,7 @@ a {
 
 .aboutUsTitle {
     font-size: 20px;
-    color: #fff;
+    color: #000;
     padding-top: 30px;
     padding-bottom: 46px;
 }
@@ -736,11 +757,11 @@ a {
     text-indent: 2em;
     line-height: 22px;
     font-size: 16px;
-    color: #fff;
+    color: #000;
 }
 
 .viewMore {
-    background: #3e9e0f;
+    background: #ff0000;
     width: 120px;
     height: 35px;
     border: 1px #fff solid;
@@ -749,7 +770,7 @@ a {
 }
 
 .viewMore:hover {
-    color: #246305;
+    color: #fff;
 }
 
 .aboutUsButton {
@@ -765,7 +786,7 @@ a {
 
 .aboutUsA {
     margin-bottom: 50px;
-    background: #3e9e0f;
+    background: #f3f3f5;
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -781,7 +802,7 @@ a {
 
 .linkBg {
     background: #fff;
-    height: 69px;
+    /*height: 69px;*/
     padding-left: 0px;
 }
 
@@ -819,7 +840,7 @@ a {
 }
 
 .copyright {
-    background: #018817;
+    background: #333;
     height: auto;
 }
 
@@ -1005,7 +1026,7 @@ a {
 }
 
 .headLink a {
-    color: #000;
+    color: #fff;
 }
 
 .mySearch {
@@ -1018,4 +1039,108 @@ a {
 
 #tbxKeyword {
     height: 41px;
+}
+
+.index {
+    height: 92px;
+    margin-top: 30px;
+    position: relative;
+}
+
+.index span {
+    color: #E2E7EC;
+    font-size: 34px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.index p {
+    line-height: 40px;
+    text-align: center;
+    font-size: 32px;
+    margin: 0 auto;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    font-weight: bold;
+}
+
+.index1 {
+    background: url(/images/index1.jpg) top center no-repeat;
+    height: 92px;
+    margin-top: 30px;
+    position: relative;
+}
+
+.index1 span {
+    color: #E2E7EC;
+    font-size: 34px;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.index1 p {
+    line-height: 40px;
+    text-align: center;
+    font-size: 32px;
+    margin: 0 auto;
+    position: absolute;
+    top: 15px;
+    width: 100%;
+    font-weight: bold;
+}
+.so{
+    margin-top:20px;
+}
+.so p{
+    /*margin-top:135px;*/
+    text-align: center;
+    color:#0b66c4;
+    font-weight: bold;
+}
+.so span{
+    text-align:center;
+}
+.so1{
+    background: url("/images/w1.png") center top no-repeat;
+    height: 150px;
+    cursor:pointer;
+}
+.so1:hover{
+    background: url("/images/1-1.png") center top no-repeat;
+    height: 150px;
+    cursor:pointer;
+}
+.so2{
+    background: url("/images/w2.png") center top no-repeat;
+    height: 150px;
+}
+.so2:hover{
+    background: url("/images/2-1.png") center top no-repeat;
+    height: 150px;
+    cursor:pointer;
+}
+.so3{
+    background: url("/images/w3.png") center top no-repeat;
+    height: 150px;
+}
+.so3:hover{
+    background: url("/images/3-1.png") center top no-repeat;
+    height: 150px;
+    cursor:pointer;
+}
+.so4{
+    background: url("/images/w4.png") center top no-repeat;
+    height: 150px;
+}
+.so4:hover{
+    background: url("/images/4-1.png") center top no-repeat;
+    height: 150px;
+    cursor:pointer;
 }

@@ -5,11 +5,15 @@
 <div layout:fragment="content">
     <div class="container">
         <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-4">
+            <div class="col-md-3 hidden-xs wow slideInLeft">
                 <!--产品分类-->
                 <div class="productClass">
                     <div class="productTitle">
-                        <img src="/images/product_class.jpg"/>
+                        <div><strong>货架直通车</strong>
+                        </div>
+                        <div>
+                            <span><i>PRODUCT</i></span>
+                        </div>
                     </div>
                     <div class="proClassShow">
                         <div class="proClassNormal" th:each="item:${productTypeList}">
@@ -20,15 +24,21 @@
                 <!--联系我们-->
                 <div class="kefuShow">
                     <div class="kefuImg">
-                        <img src="/images/contactus_title.jpg"/>
+                        <div class="productTitle">
+                            <div><strong>联系我们</strong>
+                            </div>
+                            <div>
+                                <span><i>Contact us</i></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="contactUsBlock">
-                        <img src="/images/kefu_53.jpg"/>
+                        <img src="/images/kefu_53.jpg" style="width:200px;"/>
                         <div th:utext="${base.leftContactUs}"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8" style="margin-top:20px;">
+            <div class="col-md-9" style="margin-top:20px;">
                 <div class="row">
                     <div class="col-md-4 clearPadding" th:if="${productList.size()}>0" th:each="item:${productList}">
                         <div class="thumbnail">
