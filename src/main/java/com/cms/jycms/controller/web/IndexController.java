@@ -10,7 +10,6 @@ import com.cms.jycms.dto.WebSiteBaseInfoDTO;
 import com.cms.jycms.service.ClassInfoService;
 import com.cms.jycms.service.LeaveMessageService;
 import com.cms.jycms.service.NewsInfoService;
-import com.cms.jycms.service.SystemConfigService;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,17 +56,17 @@ public class IndexController {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
         //获取推荐产品
         Map<String, Object> map = new HashMap<>();
-        map.put("limit", 9);
-        map.put("classId", 30);
+        map.put("limit", 6);
+        map.put("classId", 54);
         map.put("recommend", "1");
         List<NewsInfo> productRecommendList = newsInfoService.selectByClassId(map);
         //产品分类
-        List<ClassInfo> productList = classInfoService.getNavByParentId(30);
+        List<ClassInfo> productList = classInfoService.getNavByParentId(54);
         //单类列表
         //合作客户
         List<NewsInfo> cooperationList = pubComponent.getArtList(40, 0, 10);
         //客户见证
-        List<NewsInfo> customList = pubComponent.getArtList(41, 0, 4);
+        List<NewsInfo> customList = pubComponent.getArtList(60, 0, 4);
         //企业头条
         List<NewsInfo> topNewsList = pubComponent.getArtList(42, 0, 4);
         //公司动态
@@ -97,9 +96,9 @@ public class IndexController {
         return "web/index";
     }
 
-    @RequestMapping({"/evaFoam"})
+    @RequestMapping({"/van"})
     public String classShow(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(27, pageIndex, 12, 31, 5, 0, null);
+        ViewClassListDTO view = pubComponent.viewClassList(55, pageIndex, 12, 31, 5, 0, null,54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -111,9 +110,9 @@ public class IndexController {
         return "web/class";
     }
 
-    @RequestMapping({"/packagingLining"})
+    @RequestMapping({"/truck"})
     public String vacuumHeatTreatment(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(28, pageIndex, 12, 31, 5, 0, null);
+        ViewClassListDTO view = pubComponent.viewClassList(56, pageIndex, 12, 31, 5, 0, null,54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -125,23 +124,10 @@ public class IndexController {
         return "web/class";
     }
 
-    @RequestMapping({"/evaLining"})
-    public String finePlateProcessing(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(29, pageIndex, 12, 31, 5, 0, null);
-
-        model.addAttribute("productList", view.getPaginationDTO().getArtList());
-        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
-        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
-        model.addAttribute("navList", navComponent.getNavList());
-        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
-        model.addAttribute("productTypeList", view.getProductTypeList());
-        model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
-    }
 
     @RequestMapping({"/productCenter"})
     public String productCenter(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(30, pageIndex, 12, 31, 5, 0, null);
+        ViewClassListDTO view = pubComponent.viewClassList(54, pageIndex, 12, 54, 5, 0, null,54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -155,7 +141,7 @@ public class IndexController {
 
     @RequestMapping({"/productCenterSearch"})
     public String productCenterSearch(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, @RequestParam(value = "title", defaultValue = "") String title, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(-1, pageIndex, 12, 31, 5, 0, 1, title);
+        ViewClassListDTO view = pubComponent.viewClassList(-1, pageIndex, 12, 31, 5, 0, 1, title,54);
 
         model.addAttribute("searchContent", title);
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
@@ -170,7 +156,7 @@ public class IndexController {
 
     @RequestMapping({"/productCenter/{id}"})
     public String productCenter(@PathVariable("id") int id, @RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(id, pageIndex, 10, 31, 5, 0, null);
+        ViewClassListDTO view = pubComponent.viewClassList(id, pageIndex, 10, 54, 5, 0, null,54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -203,7 +189,35 @@ public class IndexController {
 
     @RequestMapping({"/news"})
     public String news(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 10, 31, 5, 0, null);
+        ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 10, 31, 5, 0, null,54);
+
+        model.addAttribute("productList", view.getPaginationDTO().getArtList());
+        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
+        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
+        model.addAttribute("navList", navComponent.getNavList());
+        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
+        model.addAttribute("productTypeList", view.getProductTypeList());
+        model.addAttribute("newsList", view.getNewsList());
+        return "web/newsClass";
+    }
+
+    @RequestMapping({"/carRental"})
+    public String carRental(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
+        ViewClassListDTO view = pubComponent.viewClassList(53, pageIndex, 10, 31, 5, 0, null,54);
+
+        model.addAttribute("productList", view.getPaginationDTO().getArtList());
+        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
+        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
+        model.addAttribute("navList", navComponent.getNavList());
+        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
+        model.addAttribute("productTypeList", view.getProductTypeList());
+        model.addAttribute("newsList", view.getNewsList());
+        return "web/newsClass";
+    }
+
+    @RequestMapping({"/guide"})
+    public String guide(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
+        ViewClassListDTO view = pubComponent.viewClassList(27, pageIndex, 10, 31, 5, 0, null,54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -217,7 +231,7 @@ public class IndexController {
 
     @RequestMapping({"/question"})
     public String question(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(44, pageIndex, 10, 31, 5, 0, null);
+        ViewClassListDTO view = pubComponent.viewClassList(44, pageIndex, 10, 31, 5, 0, null,54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());

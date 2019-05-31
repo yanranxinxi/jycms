@@ -33,6 +33,10 @@ public class NewsInfoService {
         return mapper.delByIds(ids);
     }
 
+    public int updateRecommendByIds(List<String> ids){
+        return mapper.updateRecommendByIds(ids);
+    }
+
     public int addContent(NewsInfo model) {
         return mapper.addContent(model);
     }

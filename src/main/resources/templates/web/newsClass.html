@@ -5,30 +5,7 @@
 <div layout:fragment="content">
     <div class="container">
         <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-4 hidden-xs">
-                <!--产品分类-->
-                <div class="productClass">
-                    <div class="productTitle">
-                        <img src="/images/product_class.jpg"/>
-                    </div>
-                    <div class="proClassShow">
-                        <div class="proClassNormal" th:each="item:${productTypeList}">
-                            <a th:href="'/productCenter/'+${item.id}" th:text="${item.name}"></a>
-                        </div>
-                    </div>
-                </div>
-                <!--联系我们-->
-                <div class="kefuShow">
-                    <div class="kefuImg">
-                        <img src="/images/contactus_title.jpg"/>
-                    </div>
-                    <div class="contactUsBlock">
-                        <img src="/images/kefu_53.jpg"/>
-                        <div th:utext="${base.leftContactUs}"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div id="newTop" class="row" style="margin-top:20px;">
                     <div th:each="newsItem:${productList}">
                         <div class="newsList" th:onclick="'showNewsDetail('+${newsItem.id}+')'">
@@ -66,6 +43,8 @@
                             </div>
                         </div>
                     </div>
+                    <div th:if="${productList.size()}==0" class="col-md-4 clearPadding">
+                        <h4>暂无数据</h4></div>
                 </div>
                 <div class="row textCenter">
                     <!-- 内容列表分页开始 -->

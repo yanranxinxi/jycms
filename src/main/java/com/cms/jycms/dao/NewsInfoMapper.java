@@ -15,6 +15,8 @@ public interface NewsInfoMapper {
 
     int delByIds(List<String> ids);
 
+    int updateRecommendByIds(List<String> ids);
+
     int addContent(NewsInfo model);
 
     int updateContent(NewsInfo model);

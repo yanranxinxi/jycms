@@ -1,9 +1,9 @@
 server:
-  port: 9001
+  port: 9003
 
 spring:
   application:
-    name: ruixin-web
+    name: xinnengyuan-web
     index: 0
   datasource:
     name: test
@@ -42,8 +42,8 @@ mybatis:
   type-aliases-package: com.cms.jycms.domain
 
 web:
-  upload-path: uploadData
-  imagesDir: ruixin/upload
+  upload-path: uploadDataevaFoam
+  imagesDir: xinnengyuan/upload
   hostName: ""
 
 multipart:

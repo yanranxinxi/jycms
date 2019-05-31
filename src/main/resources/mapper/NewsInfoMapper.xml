@@ -69,6 +69,12 @@
             #{item}
         </foreach>
     </delete>
+    <update id="updateRecommendByIds">
+        update newsInfo set recommend=1 where id in
+        <foreach collection="list" item="item" open="(" close=")" index="index" separator=",">
+            #{item}
+        </foreach>
+    </update>
     <insert id="addContent">
         insert into newsInfo(title,classId,content,comeFrom,addDate,updateDate,isDel,imageUrl,description,enTitle,enContent,enComeFrom,enDescription,recommend)
         values(#{title},#{classId},#{content},#{comeFrom},now(),now(),0,#{imageUrl},#{description},#{enTitle},#{enContent},#{enComeFrom},#{enDescription},#{recommend});

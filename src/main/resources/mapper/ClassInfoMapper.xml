@@ -5,7 +5,7 @@
    select id,name,enName,parentId,url,`order`,keyword,description from classInfo order by parentId asc,`order` asc
  </select>
     <select id="getNav" resultType="com.cms.jycms.domain.ClassInfo">
-        select name,enName,url from classInfo where parentId=0 order by `order` asc
+        select name,enName,url from classInfo where parentId=0 and isNav=1 order by `order` asc
     </select>
     <select id="getNavByParentId" resultType="com.cms.jycms.domain.ClassInfo">
         select id,`name`,enName,parentId,url,`order`,keyword,description from classInfo where parentId=#{parentId} order by `order` asc

@@ -61,6 +61,21 @@ public class NewsController {
         return R.error(-1, "删除失败");
     }
 
+    @PostMapping("recommend")
+    public R recommend(String ids)
+    {
+        String[] array = ids.split(",");
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < array.length; i++) {
+            list.add(array[i]);
+        }
+        int result = service.updateRecommendByIds(list);
+        if (result > 0) {
+            return R.ok();
+        }
+        return R.error(-1, "推荐失败");
+    }
+
     @PostMapping("addContent")
     public R addContent(NewsInfo model) {
         int result = service.addContent(model);

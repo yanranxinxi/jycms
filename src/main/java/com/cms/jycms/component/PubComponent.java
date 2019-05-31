@@ -156,8 +156,8 @@ public class PubComponent {
      * @param sideRecommend 侧边栏是否是推荐信息
      * @return
      */
-    public ViewClassListDTO viewClassList(int proClassId, int proPageIndex, int proPageSize, int sideClassId, int sideLimit, int sideRecommend, Integer classType) {
-        return viewClassList(proClassId, proPageIndex, proPageSize, sideClassId, sideLimit, sideRecommend, classType, "");
+    public ViewClassListDTO viewClassList(int proClassId, int proPageIndex, int proPageSize, int sideClassId, int sideLimit, int sideRecommend, Integer classType, int mainClassId) {
+        return viewClassList(proClassId, proPageIndex, proPageSize, sideClassId, sideLimit, sideRecommend, classType, "", mainClassId);
     }
 
     /**
@@ -171,11 +171,11 @@ public class PubComponent {
      * @param sideRecommend 侧边栏是否是推荐信息
      * @return
      */
-    public ViewClassListDTO viewClassList(int proClassId, int proPageIndex, int proPageSize, int sideClassId, int sideLimit, int sideRecommend, Integer classType, String title) {
+    public ViewClassListDTO viewClassList(int proClassId, int proPageIndex, int proPageSize, int sideClassId, int sideLimit, int sideRecommend, Integer classType, String title, int mainClassId) {
         //获取网站基础信息
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = getBaseInfo();
         //获取产品分类列表
-        List<ClassInfo> productTypeList = classInfoService.getNavByParentId(30);
+        List<ClassInfo> productTypeList = classInfoService.getNavByParentId(mainClassId);
         //获取侧边新闻列表
         List<NewsInfo> newsList = getSide(sideClassId, sideLimit, sideRecommend);
         //产品
