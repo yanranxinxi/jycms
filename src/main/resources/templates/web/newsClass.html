@@ -13,7 +13,7 @@
                                 <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
                                 <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
                             </div>
-                            <div class="newsC hidden-xs" th:text="${#strings.abbreviate(newsItem.title,28)}"></div>
+                            <div class="newsC hidden-xs" th:text="${#strings.abbreviate(newsItem.title,50)}"></div>
                             <div class="newsC visible-xs" th:text="${#strings.abbreviate(newsItem.title,18)}"></div>
                             <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
                                     src="/images/jiantouright_03.png"/>
@@ -21,8 +21,9 @@
                         </div>
                         <div class="row rowMarginTop rowPaddingBottom" id="newsDetail_"
                              th:id="'newsDetail_'+${newsItem.id}" style="display: none;">
-                            <div class="col-md-4">
-                                <img th:src="${newsItem.imageUrl}" class="newsImg"/>
+                            <div class="col-md-3">
+                                <img th:if="${newsItem.imageUrl!=null}" th:src="${newsItem.imageUrl}" class="newsImg"/>
+                                <img th:if="${newsItem.imageUrl==null}" class="newsImg" src="/images/non.jpg"/>
                             </div>
                             <div class="col-md-8">
                                 <div class="row newsTitle">

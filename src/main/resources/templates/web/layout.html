@@ -29,19 +29,9 @@
 </head>
 <div layout:fragment="headContent"></div>
 <body>
+
 <!--头部开始-->
 <div class="container-fluid">
-    <div class="row top">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-7">深圳蓝色天空新能源汽车销售有限公司欢迎您</div>
-        <div class="col-sm-4 headLink"><a href="/leaveMessage#message">在线留言</a> | <a href="/aboutUs">关于我们</a> | <a
-                href="/question">常见问题解答</a></div>
-    </div>
-    <div class="row topShow visible-lg-block visible-md-block">
-        <div class="col-md-12 textCenter">
-
-        </div>
-    </div>
     <div class="row navRow" role="navigation">
         <div class="col-md-12">
             <div class="navbar-header">
@@ -55,14 +45,20 @@
                 <a href="##" class="navbar-brand visible-xs-block" style="font-size:16px;">深圳蓝色天空新能源汽车销售有限公司</a>
             </div>
             <div class="collapse navbar-collapse navbar-responsive-collapse">
-                <ul class="nav navbar-pills nav-justified navbar-right">
-                    <li role="presentation" th:each="navItem:${navList}">
-                        <a th:if="${navItem.url}eq'/'" th:href="${navItem.url}"
-                           th:text="${navItem.name}"></a>
-                        <a th:if="${navItem.url}ne'/'" th:href="${navItem.url}"
-                           th:text="${navItem.name}"></a>
-                    </li>
-                </ul>
+
+                <div class="col-md-6 hidden-xs">
+                    <span class="nav-title">广州易到出行</span><span class="nav-title-desc">新能源纯电动面包车，联系电话：135-5389-0459</span>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav navbar-pills nav-justified navbar-right navbar-static-top">
+                        <li role="presentation" th:each="navItem:${navList}">
+                            <a th:if="${navItem.url}eq'/'" th:href="${navItem.url}"
+                               th:text="${navItem.name}"></a>
+                            <a th:if="${navItem.url}ne'/'" th:href="${navItem.url}"
+                               th:text="${navItem.name}"></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -76,7 +72,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="/images/banner1.png">
+                    <img src="/images/banner1.jpg">
                     <div class="carousel-caption">
                     </div>
                 </div>
@@ -102,18 +98,20 @@
 </div>
 <!--内容结束-->
 <!--底部版本开始-->
-<div class="container-fluid">
-    <div class="row navLink text-center hidden-xs bottom-links">
-        <a th:each="navItem:${navList}" th:text="${navItem.name}" th:href="${navItem.url}"></a>
-    </div>
-</div>
+
 <div class="container-fluid copyright hidden-xs">
     <div class="container">
+        <div class="row navLink text-center hidden-xs">
+            <a th:each="navItem:${navList}" th:text="${navItem.name}" th:href="${navItem.url}"></a>
+        </div>
         <div class="row">
-            <div class="col-md-3 bottom-logo" ></div>
-            <div class="col-md-3 bottom-text"><p class="bottom-title">地址：Address</p><p>深圳市龙华区观澜街道环观南路28号长安凯程新能源</p></div>
-            <div class="col-md-3 bottom-email"><p class="bottom-title">邮箱：QQ</p><p>888888888@qq.com</p></div>
-            <div class="col-md-3 bottom-tel"><p class="bottom-title">电话：Phone</p><p>服务热线:153 8280 8088</p></div>
+            <!--<div class="col-md-3 bottom-logo"></div>-->
+            <div class="col-md-4 bottom-text"><p class="bottom-title">地址：Address</p>
+                <p>深圳市龙华区观澜街道环观南路28号长安凯程新能源</p></div>
+            <div class="col-md-4 bottom-email"><p class="bottom-title">邮箱：QQ</p>
+                <p>888888888@qq.com</p></div>
+            <div class="col-md-4 bottom-tel"><p class="bottom-title">电话：Phone</p>
+                <p>服务热线:153 8280 8088</p></div>
         </div>
     </div>
 </div>

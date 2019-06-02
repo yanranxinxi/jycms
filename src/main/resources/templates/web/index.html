@@ -17,310 +17,203 @@
             </div>
         </div>
         <!--搜索栏结束-->
-        <div class="container-fluid">
-            <!--广告-->
-            <div class="container wow fadeIn">
-                <div class="row adcar">
-                    <div class="col-md-5"><img src="/images/adcar.jpg"/></div>
-                    <div class="col-md-7 ad-content">
-                        <div class="row ad-title"></div>
-                        <div class="row ad-content-p">
-                            <p>致力于新能源纯电动物流车、纯电动面包车、纯电动货车、冷藏（准链）车等</p>
-                            <p>快递车用车销售、租赁,多种车型供您选择！</p>
-                            <p>可租可售，以租代售、全款、金融按揭多种方式！</p>
-                        </div>
-                        <div class="row ad-contact"></div>
-                    </div>
-                </div>
-            </div>
-            <!--广告-->
-        </div>
+
         <!--产品展示-->
         <div class="container wow fadeIn">
             <div class="row">
                 <div class="col-md-12 product-title">
-                    <h3>产品展示</h3>
-                    <p>PRODUCTS</p>
+                    <h2>产品分类</h2>
+                    <p>倡导新能源汽车共享理念，在改变人们出行观念的同时，推动新能源汽车产业发展</p>
                 </div>
-            </div>
-            <div class="row textCenter">
-                <button th:each="item:${productList}" th:text="${item.name}"
-                        th:onclick="'classShow(\''+${item.id}+'\')'"
-                        class="btn btn-primary"></button>
             </div>
             <div class="row product-show">
-                <div class="col-md-4 clearPadding" th:each="proItem:${productRecommendList}">
-                    <div class="thumbnail">
-                        <a th:href="'/productCenter/detail/'+${proItem.id}"><img th:src="${proItem.imageUrl}"
-                                                                                 th:alt="${proItem.title}"
-                        /></a>
-                        <div class="caption captionOverride">
-                            <div><a th:href="'/productCenter/detail/'+${proItem.id}" th:text="${proItem.title}"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="col-md-6"><a href="/productCenter/55"><img src="/images/class1.jpg"/></a>
+                    <p><a href="/productCenter/55">新能源纯电动面包车</a></p></div>
+                <div class="col-md-6"><a href="/productCenter/56"><img src="/images/class2.jpg"/></a>
+                    <p><a href="/productCenter/56">大运比克电动货车</a></p></div>
+            </div>
+            <div class="row product-show">
+                <div class="col-md-4"><a href="/productCenter/57"><img src="/images/class3.jpg"/></a>
+                    <p><a href="/productCenter/57">新能源纯电动厢式小货车</a></p></div>
+                <div class="col-md-4"><a href="/productCenter/58"><img src="/images/class4.jpg"/></a>
+                    <p><a href="/productCenter/58">新能源纯电动冷藏车</a></p></div>
+                <div class="col-md-4"><a href="/productCenter/59"><img src="/images/class5.jpg"/></a>
+                    <p><a href="/productCenter/59">新能源纯电动物流车</a></p></div>
+            </div>
+            <div class="row product-show">
+                <a href="/productCenter"><img src="/images/more.jpg" style="width:50px;"></a>
             </div>
         </div>
         <!--产品展示-->
     </div>
     <!--背景结束-->
     <!--我们的优势-->
-    <div class="container wow bounceInUp">
-        <div class="row ys-bg">
+    <div class="container-fluid ys-new">
+        <div class="row ys-new-title">
+            <div class="col-md-6"><span class="ys-new-title-span-1">新能源面包车</span></div>
+            <div class="col-md-6"><span class="ys-new-title-span-2">六大核心优势</span></div>
         </div>
-    </div>
-    <div class="container-fluid ys-block">
-        <!--第一行-->
-        <div class="row">
-            <div class="col-md-6 ys-1 wow bounceInLeft">
+        <div class="row ys-content">
+            <div class="col-md-6">
+                <div class="row ys-content-1"><img src="/images/tool.png"/> <span>优质的售后服务</span>
+                    <p>全天候为您服务，专业提供优质售后服务</p>
+                    <hr/>
+                </div>
             </div>
-            <div class="col-md-6 ys-1-1 wow bounceInRight">
-                <div class="row">
-                    <h2>售车方案</h2>
-                </div>
-                <div class="row">
-                    <h3>定制化的售车方案，满足您用车需求</h3>
-                </div>
-                <div class="row">
-                    <p>致力于新能源纯电动物流车、纯电动面包车、纯电动货车、冷藏（准
-                        链）车等快递车用车销售、租赁；</p>
-                    <p>可租可售，以租代售、全款、金融按揭多种交易方式来满足不同客户
-                        的用车需求。</p>
+            <div class="col-md-6">
+                <div class="row ys-content-2"><img src="/images/zhinan.png"/> <span>效率高</span>
+                    <p>一般新能源汽车采用新技术，新结构，使它的效率更高</p>
+                    <hr/>
                 </div>
             </div>
         </div>
-        <!--第二行-->
-        <div class="row">
-            <div class="col-md-6 ys-2-1 wow bounceInLeft">
-                <div class="row">
-                    <h2>安全保障</h2>
-                </div>
-                <div class="row">
-                    <h3>每月专业人员定期排查所有车辆安全</h3>
-                </div>
-                <div class="row">
-                    <p>每月安排专业技术人员对所有车辆定期进行安全检测，每年还会有4S店
-                        工作人员来公司对车辆进行大规模检查，确保租车安全；</p>
-                    <p>所有车辆都是全额投保，车辆来源都合法合规、证件齐全、保险齐全；</p>
+
+        <div class="row ys-content">
+            <div class="col-md-6 ">
+                <div class="row ys-content-1"><img src="/images/group.png"/> <span>与知名企业合作</span>
+                    <p>公司与众多物流，快递货源类公司合作，品质值得信赖</p>
+                    <hr/>
                 </div>
             </div>
-            <div class="col-md-6 ys-2 wow bounceInRight">
-            </div>
-        </div>
-        <!--第三行-->
-        <div class="row">
-            <div class="col-md-6 ys-3 wow bounceInLeft">
-            </div>
-            <div class="col-md-6 ys-3-1 wow bounceInRight">
-                <div class="row">
-                    <h2>车辆充足</h2>
-                </div>
-                <div class="row">
-                    <h3>拥有各种品牌、多样化车型的车辆</h3>
-                </div>
-                <div class="row">
-                    <p>致力提供载货大、中、小空间、超长续航300公里等多样化车型，主打
-                        重庆瑞驰EC35、南京金龙D07、南京金龙D10、南京金龙D11等品牌纯
-                        电动物流车</p>
-                    <p>秉持着“绿色、低碳、环保”的理念，与国内知名品牌长期合作，完善
-                        新能源汽车产业链；</p>
+            <div class="col-md-6">
+                <div class="row ys-content-2"><img src="/images/text.png"/> <span>超长续航</span>
+                    <p>超长续航300km，解决长途运输问题</p>
+                    <hr/>
                 </div>
             </div>
         </div>
-        <!--第四行-->
-        <div class="row">
-            <div class="col-md-6 ys-4-1 wow bounceInLeft">
-                <div class="row">
-                    <h2>售后服务</h2>
-                </div>
-                <div class="row">
-                    <h3>5年20万公里质保</h3>
-                </div>
-                <div class="row">
-                    <p>服务团队全年不间断服务，实行365×7×24的服务原则；</p>
-                    <p>只需您的一个电话，承诺15分钟必然响应；</p>
-                    <p>技术经理24小时在线服务，为新能源纯电动车主快速排除故障。</p>
+
+        <div class="row ys-content">
+            <div class="col-md-6 ">
+                <div class="row ys-content-1"><img src="/images/hander.png"/> <span>成本价格经济实惠</span>
+                    <p>每公里仅需1毛钱，大大节约进取成本</p>
+                    <hr/>
                 </div>
             </div>
-            <div class="col-md-6 ys-4 wow bounceInRight">
+            <div class="col-md-6">
+                <div class="row ys-content-2"><img src="/images/plan.png"/> <span>超长质保</span>
+                    <p>五年20万公里质保</p>
+                    <hr/>
+                </div>
             </div>
         </div>
+
     </div>
     <!--我们的优势-->
-    <div class="container-fluid wow bounceInUp">
-        <div class="row ad">
-        </div>
-    </div>
-    <!--客户见证-->
+    <!--客户案例-->
     <div class="container product-title wow bounceInUp">
-        <h3>客户见证</h3>
-        <p>Customer Reviews</p>
+        <h2>客户案例</h2>
+        <p>致力于新能源汽车与互联网融合应用，努力将公司打造成为一个开放互联的新能源汽车企业</p>
     </div>
     <div class="container wow bounceInUp">
         <div class="row">
-            <div id="divCustom" class="col-md-3 clearPadding" th:each="customItem:${customList}">
+            <div id="divCustom" class="col-md-4 clearPadding" th:each="customItem:${customList}">
                 <div class="customShowNormal">
-                    <h4 th:text="${#strings.abbreviate(customItem.title,20)}"></h4>
-                    <img class="img-circle" th:src="${customItem.imageUrl}">
-                    <div class="customDiv">
-                        <h5 th:text="${#strings.abbreviate(customItem.description,50)}"></h5>
-                    </div>
-                </div>
-                <div class="customButtonNormal" th:onclick="'window.location.href=\''+${'/news/'+customItem.id}+'\''">
-                    查看详情
+                    <a th:href="'/news/'+${customItem.id}"> <img th:src="${customItem.imageUrl}"/></a>
+                    <a th:href="'/news/'+${customItem.id}"><h4 th:text="${#strings.abbreviate(customItem.title,20)}"></h4></a>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row product-show">
+        <a href="/productCenter/60"><img src="/images/more.jpg" style="width:50px;"></a>
     </div>
     <div class="clean"></div>
     <!--客户见证-->
-    <div class="container">
-        <div class="row contact-us">
-        </div>
-    </div>
-    <div class="clean"></div>
-    <!--资讯中心-->
-    <div class="container product-title">
-        <h3>资讯中心</h3>
-        <p>News</p>
-    </div>
-    <div class="container-fluid newinfo wow bounceInUp">
-        <div class="container rowMarginTop rowPaddingBottom">
-            <div class="col-md-6">
-                <div class="row">
-                    <ul class="newsType">
-                        <li id="li_newTop" class="active"><a>企业头条</a></li>
-                        <li id="li_companyDynamicsList"><a>公司动态</a></li>
-                    </ul>
-                </div>
-
-                <div id="newTop" class="row rowMarginTop rowPaddingBottom">
-                    <div th:each="newsItem:${topNewsList}">
-                        <div class="newsList" th:onclick="'showNewsDetail('+${newsItem.id}+')'">
-                            <div class="newsDate">
-                                <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
-                                <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
-                            </div>
-                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.title,28)}"></div>
-                            <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
-                                    src="/images/jiantouright_03.png"/></div>
-                        </div>
-                        <div class="row rowMarginTop rowPaddingBottom" id="newsDetail_"
-                             th:id="'newsDetail_'+${newsItem.id}" style="display: none;">
-                            <div class="col-md-6">
-                                <img th:src="${newsItem.imageUrl}" class="newsImg"/>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.title,20)}"></div>
-                                <div class="row newsContent">
-                                    <p th:text="${#strings.abbreviate(newsItem.description,60)}"></p>
-                                </div>
-                                <div class="row">
-                                    <a class="btn btn-primary active" th:href="${'/news/'+newsItem.id}"
-                                       target="_blank">了解更多+</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="companyDynamicsList" style="display: none;" class="row rowMarginTop rowPaddingBottom">
-                    <div th:each="newsItem:${companyDynamicsList}">
-                        <div class="newsList" th:onclick="'showNewsDetail('+${newsItem.id}+')'">
-                            <div class="newsDate">
-                                <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
-                                <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
-                            </div>
-                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.title,28)}"></div>
-                            <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
-                                    src="/images/jiantouright_03.png"/></div>
-                        </div>
-                        <div class="row rowMarginTop rowPaddingBottom" id="newsDetail_"
-                             th:id="'newsDetail_'+${newsItem.id}" style="display: none;">
-                            <div class="col-md-6">
-                                <img th:src="${newsItem.imageUrl}" class="newsImg"/>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.title,20)}"></div>
-                                <div class="row newsContent">
-                                    <p th:text="${#strings.abbreviate(newsItem.description,60)}"></p>
-                                </div>
-                                <div class="row">
-                                    <a class="btn btn-primary active" th:href="${'/news/'+newsItem.id}"
-                                       target="_blank">了解更多+</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="dayiTitle">
-                    <span class="dayiTitle-1">技术答疑 / </span><span class="dayiTitle-2">Technical response</span><span
-                        class="dayiTitle-3"><a href="/question">更多>></a></span>
-                </div>
-                <div class="dayiList" th:each="item:${questionList}">
-                    <div class="dayiCTitle"><img src="/images/dayi_160.jpg"> <a th:href="${'/news/'+item.id}"
-                                                                                target="_blank"><span
-                            th:text="${#strings.abbreviate(item.title,30)}"></span></a></div>
-                    <div class="dayiContent" th:text="${#strings.abbreviate(item.description,100)}"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--资讯中心-->
     <!--关于我们-->
+    <div class="container product-title wow bounceInUp">
+        <h2>关于我们</h2>
+        <p>始终以客户需求为重心，不断追求技术创新和运作卓越，努力成为品牌客户持续发展的首选合作供应商</p>
+    </div>
     <div class="container-fluid about-us wow fadeIn">
         <div class="container about-us-content">
-            <h3>深圳蓝色天空新能源汽车销售有限公司</h3>
+            <img src="/images/aboutus_bg.jpg" style="float:left;margin-right:10px;"/>
+            <h3>广州市易到出行新能源有限公司</h3>
             <p th:utext="${aboutusContent.content}">
 
             </p>
-            <div style="text-align: right;">
+            <div style="text-align: left;">
                 <a class="btn btn-primary" href="/aboutUs">查看更多+</a>
             </div>
         </div>
     </div>
     <!--关于我们-->
-    <div class="clean"></div>
-    <div class="container wow bounceInUp">
-        <div class="row gongchengLine">
-        </div>
-        <div class="row chongchangBtn">
-            <div class="col-md-offset-4 col-md-2"><input type="button" id="btnFactory" value="公司环境"
-                                                         class="btn btn-block btnBgColorActive"/></div>
-            <div class="col-md-2"><input type="button" value="荣誉资质" id="btnHonor"
-                                         class="btn btn-block btnBgColorNormal"/></div>
-        </div>
+    <!--信息反馈-->
+    <div class="container product-title">
+        <h3>他们成就了我们，我们为他们创造价值</h3>
+        <p>最终我们成为了拍，为朋友做事，我们两肋插刀</p>
+    </div>
+    <div class="container-fluid newinfo wow bounceInUp">
         <div class="row">
-            <!--图片滚动-->
-            <div class='silder-box silder-box-2'>
-                <div class='silder'>
-                    <ul>
-                        <li th:each="hImgItem:${factoryList}">
-                            <a th:href="'/productCenter/detail/'+${hImgItem.id}"><img th:src="${hImgItem.imageUrl}"></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class='silder-button btl'></div>
-                <div class='silder-button btr'></div>
+            <div class="col-md-6 contactus"></div>
+            <div class="col-md-6 contactus-form">
+                <form id="msgFrom" class="form-horizontal" method="post" action="/leaveMsg" style="margin-top:100px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">联系人：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="customName" name="customName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">手机：</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="telNo" name="telNo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">留言：</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="msg" name="msg"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">验证码：</label>
+                        <div class="col-sm-10">
+                                <span class="col-md-3" style="padding-left: 0px;">
+                                    <input type="text" id="code" name="code" class="form-control">
+                                </span>
+                            <div class="col-md-3">
+                                <img alt="验证码" onclick="this.src='/defaultKaptcha?d='+new Date()*1"
+                                     src="/defaultKaptcha"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group textCenter">
+                        <button type="submit" id="validateBtn" class="btn btn-success">提交</button>
+                    </div>
+                </form>
             </div>
-            <!--图片滚动-->
-            <!--图片滚动-->
-            <div class='silder-box silder-box-3' style="display: none;">
-                <div class='silder'>
-                    <ul>
-                        <li th:each="hImgItem:${honorList}">
-                            <a th:href="'/productCenter/detail/'+${hImgItem.id}"><img th:src="${hImgItem.imageUrl}"></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class='silder-button btl'></div>
-                <div class='silder-button btr'></div>
-            </div>
-            <!--图片滚动-->
         </div>
     </div>
+    <!--信息反馈-->
+    <!--新闻资讯-->
+    <div class="container news-title">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>公司新闻</h4>
+                <p th:each="newsItem:${topNewsList}">
+                    <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}" target="_blank"></a></span>
+                    <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>行业动态</h4>
+                <p th:each="newsItem:${companyDynamicsList}">
+                    <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}" target="_blank"></a></span>
+                    <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>技术学堂</h4>
+                <p th:each="newsItem:${studyList}">
+                    <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}" target="_blank"></a></span>
+                    <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--新闻资讯-->
+    <div class="clean"></div>
     <script type="text/javascript">
         wow = new WOW(
             {

@@ -55,50 +55,53 @@ public class IndexController {
     public String index(Model model) {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
         //获取推荐产品
-        Map<String, Object> map = new HashMap<>();
-        map.put("limit", 6);
-        map.put("classId", 54);
-        map.put("recommend", "1");
-        List<NewsInfo> productRecommendList = newsInfoService.selectByClassId(map);
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("limit", 6);
+//        map.put("classId", 54);
+//        map.put("recommend", "1");
+//        List<NewsInfo> productRecommendList = newsInfoService.selectByClassId(map);
         //产品分类
-        List<ClassInfo> productList = classInfoService.getNavByParentId(54);
+//        List<ClassInfo> productList = classInfoService.getNavByParentId(54);
         //单类列表
         //合作客户
-        List<NewsInfo> cooperationList = pubComponent.getArtList(40, 0, 10);
+//        List<NewsInfo> cooperationList = pubComponent.getArtList(40, 0, 10);
         //客户见证
-        List<NewsInfo> customList = pubComponent.getArtList(60, 0, 4);
+        List<NewsInfo> customList = pubComponent.getArtList(60, 0, 6);
         //企业头条
         List<NewsInfo> topNewsList = pubComponent.getArtList(42, 0, 4);
         //公司动态
         List<NewsInfo> companyDynamicsList = pubComponent.getArtList(43, 0, 4);
+        //技术学堂
+        List<NewsInfo> studyList = pubComponent.getArtList(61, 0, 4);
         //技术答疑
-        List<NewsInfo> questionList = pubComponent.getArtList(44, 0, 3);
+//        List<NewsInfo> questionList = pubComponent.getArtList(44, 0, 3);
         //工厂环境
-        List<NewsInfo> factoryList = pubComponent.getArtList(46, 0, 10);
+//        List<NewsInfo> factoryList = pubComponent.getArtList(46, 0, 10);
         //荣誉资质
-        List<NewsInfo> honorList = pubComponent.getArtList(47, 0, 10);
+//        List<NewsInfo> honorList = pubComponent.getArtList(47, 0, 10);
         //单条内容
         //关于我们
         NewsInfo aboutusContent = newsInfoService.selectByPrimaryKey("55");
 
-        model.addAttribute("productList", productList);
-        model.addAttribute("productRecommendList", productRecommendList);
+//        model.addAttribute("productList", productList);
+//        model.addAttribute("productRecommendList", productRecommendList);
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", webSiteBaseInfoDTO);
-        model.addAttribute("cooperationList", cooperationList);
+//        model.addAttribute("cooperationList", cooperationList);
         model.addAttribute("customList", customList);
         model.addAttribute("topNewsList", topNewsList);
         model.addAttribute("companyDynamicsList", companyDynamicsList);
-        model.addAttribute("questionList", questionList);
+//        model.addAttribute("questionList", questionList);
         model.addAttribute("aboutusContent", aboutusContent);
-        model.addAttribute("factoryList", factoryList);
-        model.addAttribute("honorList", honorList);
+//        model.addAttribute("factoryList", factoryList);
+//        model.addAttribute("honorList", honorList);
+        model.addAttribute("studyList", studyList);
         return "web/index";
     }
 
     @RequestMapping({"/van"})
     public String classShow(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(55, pageIndex, 12, 31, 5, 0, null,54);
+        ViewClassListDTO view = pubComponent.viewClassList(55, pageIndex, 12, 31, 5, 0, null, 54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -112,7 +115,7 @@ public class IndexController {
 
     @RequestMapping({"/truck"})
     public String vacuumHeatTreatment(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(56, pageIndex, 12, 31, 5, 0, null,54);
+        ViewClassListDTO view = pubComponent.viewClassList(56, pageIndex, 12, 31, 5, 0, null, 54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -127,7 +130,7 @@ public class IndexController {
 
     @RequestMapping({"/productCenter"})
     public String productCenter(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(54, pageIndex, 12, 54, 5, 0, null,54);
+        ViewClassListDTO view = pubComponent.viewClassList(54, pageIndex, 12, 54, 5, 0, null, 54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -141,7 +144,7 @@ public class IndexController {
 
     @RequestMapping({"/productCenterSearch"})
     public String productCenterSearch(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, @RequestParam(value = "title", defaultValue = "") String title, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(-1, pageIndex, 12, 31, 5, 0, 1, title,54);
+        ViewClassListDTO view = pubComponent.viewClassList(-1, pageIndex, 12, 31, 5, 0, 1, title, 54);
 
         model.addAttribute("searchContent", title);
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
@@ -156,7 +159,7 @@ public class IndexController {
 
     @RequestMapping({"/productCenter/{id}"})
     public String productCenter(@PathVariable("id") int id, @RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(id, pageIndex, 10, 54, 5, 0, null,54);
+        ViewClassListDTO view = pubComponent.viewClassList(id, pageIndex, 10, 54, 5, 0, null, 54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -189,7 +192,7 @@ public class IndexController {
 
     @RequestMapping({"/news"})
     public String news(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 10, 31, 5, 0, null,54);
+        ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 10, 31, 5, 0, null, 54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -203,7 +206,7 @@ public class IndexController {
 
     @RequestMapping({"/carRental"})
     public String carRental(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(53, pageIndex, 10, 31, 5, 0, null,54);
+        ViewClassListDTO view = pubComponent.viewClassList(53, pageIndex, 10, 31, 5, 0, null, 54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -217,7 +220,7 @@ public class IndexController {
 
     @RequestMapping({"/guide"})
     public String guide(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(27, pageIndex, 10, 31, 5, 0, null,54);
+        ViewClassListDTO view = pubComponent.viewClassList(27, pageIndex, 10, 31, 5, 0, null, 54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -231,7 +234,7 @@ public class IndexController {
 
     @RequestMapping({"/question"})
     public String question(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(44, pageIndex, 10, 31, 5, 0, null,54);
+        ViewClassListDTO view = pubComponent.viewClassList(44, pageIndex, 10, 31, 5, 0, null, 54);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
