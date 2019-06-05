@@ -9,7 +9,7 @@
                 <!--产品分类-->
                 <div class="productClass">
                     <div class="productTitle">
-                        <img src="/images/product_class.jpg"/>
+                        <img src="/images/product_class.png"/>
                     </div>
                     <div class="proClassShow">
                         <div class="proClassNormal" th:each="item:${productTypeList}">
@@ -20,7 +20,7 @@
                 <!--联系我们-->
                 <div class="kefuShow">
                     <div class="kefuImg">
-                        <img src="/images/contactus_title.jpg"/>
+                        <img src="/images/contactus_title.png"/>
                     </div>
                     <div class="contactUsBlock">
                         <img src="/images/kefu_53.jpg"/>
@@ -45,7 +45,8 @@
                         <div class="row rowMarginTop rowPaddingBottom" id="newsDetail_"
                              th:id="'newsDetail_'+${newsItem.id}" style="display: none;">
                             <div class="col-md-4">
-                                <img th:src="${newsItem.imageUrl}" class="newsImg"/>
+                                <img th:if="${newsItem.imageUrl!=null}" th:src="${newsItem.imageUrl}" class="newsImg"/>
+                                <img th:if="${newsItem.imageUrl==null}" class="newsImg" src="/images/non.jpg"/>
                             </div>
                             <div class="col-md-8">
                                 <div class="row newsTitle">

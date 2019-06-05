@@ -7,7 +7,7 @@ spring:
     index: 0
   datasource:
     name: test
-    url: jdbc:mysql://127.0.0.1:3306/yibaisheng?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/kaige?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: dmfuck
     type: com.alibaba.druid.pool.DruidDataSource
@@ -43,7 +43,7 @@ mybatis:
 
 web:
   upload-path: uploadData
-  imagesDir: ruixin/upload
+  imagesDir: kaige/upload
   hostName: ""
 
 multipart:

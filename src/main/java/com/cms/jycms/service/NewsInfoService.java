@@ -1,10 +1,13 @@
 package com.cms.jycms.service;
 
+import com.cms.jycms.common.R;
 import com.cms.jycms.dao.NewsInfoMapper;
 import com.cms.jycms.domain.NewsInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,5 +46,9 @@ public class NewsInfoService {
 
     public List<NewsInfo> selectUpDown(NewsInfo model) {
         return mapper.selectUpDown(model);
+    }
+
+    public int updateRecommendByIds(List<String> ids){
+        return mapper.updateRecommendByIds(ids);
     }
 }

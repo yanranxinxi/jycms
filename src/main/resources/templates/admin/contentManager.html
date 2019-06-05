@@ -21,6 +21,12 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        .layui-table-view .layui-table[lay-size=lg] .layui-table-cell {
+            height: auto;
+            line-height: auto;
+        }
+    </style>
 </head>
 
 <body class="">
@@ -55,11 +61,12 @@
 </div>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-danger" lay-event="getCheckData"><i class="layui-icon"></i>删除</button>
+        <button class="layui-btn" lay-event="recommend">设为推荐(产品信息推荐后将会在首页展示)</button>
         <button class="layui-btn" lay-event="addInfo"><i class="layui-icon"></i>发布信息
         </button>
         <button class="layui-btn" lay-event="editInfo"><i class="iconfont">&#xe69e;</i>编辑信息
         </button>
+        <button class="layui-btn layui-btn-danger" lay-event="getCheckData"><i class="layui-icon"></i>删除</button>
     </div>
 </script>
 <script>
@@ -133,6 +140,33 @@
                     }
                     x_admin_show('发布信息', './contentAdd.html?classId=' + selectNode, 600, 500, true);
                     break;
+                case 'recommend':
+                    var data = checkStatus.data;
+                    if (data.length > 0) {
+                        var ids = "";
+                        for (i = 0; i < data.length; i++) {
+                            ids += data[i].id + ",";
+                        }
+                        if (ids.length > 0) {
+                            ids = ids.substr(0, ids.length - 1);
+                        }
+                        layer.confirm('确定要设为推荐信息吗？', {icon: 9, btn: ['确定', '取消']},
+                            function (index, layero) {
+                                $.post("/admin/api/news/recommend", {"ids": ids}, function (result) {
+                                    if (result.code == 0) {
+                                        layer.alert("推荐成功");
+                                        reloadGrid();
+                                    }
+                                });
+                            },
+                            function (index) {
+
+                            }
+                        );
+                    } else {
+                        layer.alert("请选择需要推荐的数据！")
+                    }
+                    break;
             }
         });
     });
@@ -161,6 +195,14 @@
                 {field: 'id', title: 'ID'},
                 {field: 'title', title: '标题'},
                 {field: 'className', title: '分类'},
+                {
+                    field: 'imageUrl', title: '图片', templet: function (d) {
+                        if (d.imageUrl != null && d.imageUrl != "") {
+                            return "<img src='" + d.imageUrl + "' style='width:100px; height:100px;'/>";
+                        }
+                        return " ";
+                    }
+                },
                 {field: 'comeFrom', title: '来源'},
                 {
                     field: 'recommend', title: '推荐', templet: function (d) {
@@ -174,7 +216,8 @@
                 {field: 'addDate', title: '新增时间'},
                 {field: 'updateDate', title: '更新时间'}
             ]],
-            toolbar: '#toolbarDemo'
+            toolbar: '#toolbarDemo',
+            size: 'lg'
         });
     });
     var zTreeObj;

@@ -10,7 +10,6 @@ import com.cms.jycms.dto.WebSiteBaseInfoDTO;
 import com.cms.jycms.service.ClassInfoService;
 import com.cms.jycms.service.LeaveMessageService;
 import com.cms.jycms.service.NewsInfoService;
-import com.cms.jycms.service.SystemConfigService;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -97,37 +96,9 @@ public class IndexController {
         return "web/index";
     }
 
-    @RequestMapping({"/evaFoam"})
+    @RequestMapping({"/plantEquipment"})
     public String classShow(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(27, pageIndex, 12, 31, 5, 0, null);
-
-        model.addAttribute("productList", view.getPaginationDTO().getArtList());
-        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
-        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
-        model.addAttribute("navList", navComponent.getNavList());
-        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
-        model.addAttribute("productTypeList", view.getProductTypeList());
-        model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
-    }
-
-    @RequestMapping({"/packagingLining"})
-    public String vacuumHeatTreatment(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(28, pageIndex, 12, 31, 5, 0, null);
-
-        model.addAttribute("productList", view.getPaginationDTO().getArtList());
-        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
-        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
-        model.addAttribute("navList", navComponent.getNavList());
-        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
-        model.addAttribute("productTypeList", view.getProductTypeList());
-        model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
-    }
-
-    @RequestMapping({"/evaLining"})
-    public String finePlateProcessing(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(29, pageIndex, 12, 31, 5, 0, null);
+        ViewClassListDTO view = pubComponent.viewClassList(62, pageIndex, 12, 31, 5, 0, null);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());

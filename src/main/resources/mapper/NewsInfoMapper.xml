@@ -94,4 +94,10 @@
 
         ]]>
     </select>
+    <update id="updateRecommendByIds">
+        update newsInfo set recommend=1,updateDate=now() where id in
+        <foreach collection="list" item="item" open="(" close=")" index="index" separator=",">
+            #{item}
+        </foreach>
+    </update>
 </mapper>
