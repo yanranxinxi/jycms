@@ -1090,7 +1090,7 @@ a {
 }
 
 .adbg {
-    background: url("/images/ad-bg.jpg");
+    background: url("/images/ad-bg.jpg") bottom no-repeat;
 }
 
 .ad-content {

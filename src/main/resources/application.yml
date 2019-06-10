@@ -42,7 +42,7 @@ mybatis:
   type-aliases-package: com.cms.jycms.domain
 
 web:
-  upload-path: uploadDataevaFoam
+  upload-path: uploadData
   imagesDir: xinnengyuan/upload
   hostName: ""
 

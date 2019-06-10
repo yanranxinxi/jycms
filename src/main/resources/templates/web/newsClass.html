@@ -21,10 +21,11 @@
                         </div>
                         <div class="row rowMarginTop rowPaddingBottom" id="newsDetail_"
                              th:id="'newsDetail_'+${newsItem.id}" style="display: none;">
-                            <div class="col-md-4">
-                                <img th:src="${newsItem.imageUrl}" class="newsImg"/>
+                            <div class="col-md-3">
+                                <img th:if="${newsItem.imageUrl!=null}" th:src="${newsItem.imageUrl}" class="newsImg"/>
+                                <img th:if="${newsItem.imageUrl==null}" src="/images/non.jpg" class="newsImg"/>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 <div class="row newsTitle">
                                     <div class="col-md-12" th:text="${#strings.abbreviate(newsItem.title,20)}">
                                     </div>
