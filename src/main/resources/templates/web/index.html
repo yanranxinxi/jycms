@@ -3,49 +3,16 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="web/layout">
 <div layout:fragment="content">
-    <!--搜索栏开始-->
-    <div class="container-fluid adbg">
-        <div class="container">
-            <div class="row hidden-xs searchKey">
-                <div class="col-md-8">
-                    <b>热门关键词</b>：新能源纯电动面包车、新能源纯电动货车、冷藏（冷链）车
-                </div>
-                <div class="col-md-4 form-inline">
-                    <input type="text" placeholder="请输入您要查找的关键词" class="form-control" id="tbxKeyword" name="tbxKeyword">
-                    <button class="btn btn-primary" onclick="searchPro()">搜索</button>
-                </div>
-            </div>
+    <!--产品展示-->
+    <div class="container wow fadeIn">
+        <div class="row product-show">
+            <div class="col-md-6"><a href="/productCenter/55"><img src="/images/class1.jpg"/></a>
+                <p><a href="/productCenter/55">新能源纯电动面包车</a></p></div>
+            <div class="col-md-6"><a href="/productCenter/56"><img src="/images/class2.jpg"/></a>
+                <p><a href="/productCenter/56">大运比克电动货车</a></p></div>
         </div>
-        <!--搜索栏结束-->
-
-        <!--产品展示-->
-        <div class="container wow fadeIn">
-            <div class="row">
-                <div class="col-md-12 product-title">
-                    <h2>产品分类</h2>
-                    <p>倡导新能源汽车共享理念，在改变人们出行观念的同时，推动新能源汽车产业发展</p>
-                </div>
-            </div>
-            <div class="row product-show">
-                <div class="col-md-6"><a href="/productCenter/55"><img src="/images/class1.jpg"/></a>
-                    <p><a href="/productCenter/55">新能源纯电动面包车</a></p></div>
-                <div class="col-md-6"><a href="/productCenter/56"><img src="/images/class2.jpg"/></a>
-                    <p><a href="/productCenter/56">大运比克电动货车</a></p></div>
-            </div>
-            <div class="row product-show">
-                <div class="col-md-4"><a href="/productCenter/57"><img src="/images/class3.jpg"/></a>
-                    <p><a href="/productCenter/57">新能源纯电动厢式小货车</a></p></div>
-                <div class="col-md-4"><a href="/productCenter/58"><img src="/images/class4.jpg"/></a>
-                    <p><a href="/productCenter/58">新能源纯电动冷藏车</a></p></div>
-                <div class="col-md-4"><a href="/productCenter/59"><img src="/images/class5.jpg"/></a>
-                    <p><a href="/productCenter/59">新能源纯电动物流车</a></p></div>
-            </div>
-            <div class="row product-show">
-                <a href="/productCenter"><img src="/images/more.jpg" style="width:50px;"></a>
-            </div>
-        </div>
-        <!--产品展示-->
     </div>
+    <!--产品展示-->
     <!--背景结束-->
     <!--我们的优势-->
     <div class="container-fluid ys-new hidden-xs">
@@ -110,7 +77,9 @@
             <div id="divCustom" class="col-md-4 clearPadding" th:each="customItem:${customList}">
                 <div class="customShowNormal">
                     <a th:href="'/news/'+${customItem.id}"> <img th:src="${customItem.imageUrl}"/></a>
-                    <a th:href="'/news/'+${customItem.id}"><h4 th:text="${#strings.abbreviate(customItem.title,20)}"></h4></a>
+                    <a th:href="'/news/'+${customItem.id}"><h4
+                            th:text="${#strings.abbreviate(customItem.title,20)}"></h4>
+                    </a>
                 </div>
             </div>
         </div>
@@ -192,21 +161,24 @@
             <div class="col-md-4">
                 <h4>公司新闻</h4>
                 <p th:each="newsItem:${topNewsList}">
-                    <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}" target="_blank"></a></span>
+                <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}"
+                         target="_blank"></a></span>
                     <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
                 </p>
             </div>
             <div class="col-md-4">
                 <h4>行业动态</h4>
                 <p th:each="newsItem:${companyDynamicsList}">
-                    <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}" target="_blank"></a></span>
+                <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}"
+                         target="_blank"></a></span>
                     <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
                 </p>
             </div>
             <div class="col-md-4">
                 <h4>技术学堂</h4>
                 <p th:each="newsItem:${studyList}">
-                    <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}" target="_blank"></a></span>
+                <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}"
+                         target="_blank"></a></span>
                     <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
                 </p>
             </div>
