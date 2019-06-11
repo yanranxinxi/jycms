@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: xinnengyuan-web
+    name: yidao-web
     index: 0
   datasource:
     name: test
@@ -42,8 +42,8 @@ mybatis:
   type-aliases-package: com.cms.jycms.domain
 
 web:
-  upload-path: uploadDataevaFoam
-  imagesDir: xinnengyuan/upload
+  upload-path: uploadData
+  imagesDir: yidao/upload
   hostName: ""
 
 multipart:
