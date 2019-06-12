@@ -7,6 +7,12 @@
     from newsInfo
     where id = #{id}
   </select>
+    <select id="selectTop1ByClassId" resultType="com.cms.jycms.domain.NewsInfo">
+        select
+    id,title,classId,content,comeFrom,addDate,updateDate,isDel,imageUrl,description,enTitle,enContent,enComeFrom,enDescription,recommend
+    from newsInfo
+    where classId = #{classId} order by addDate desc limit 1;
+    </select>
     <select id="selectByClassId" resultType="com.cms.jycms.domain.NewsInfo">
         select id,title,classId,content,comeFrom,addDate,updateDate,isDel,imageUrl,description,enTitle,enContent,enComeFrom,enDescription,recommend
         from newsInfo

@@ -17,6 +17,10 @@ public class NewsInfoService {
         return mapper.selectByPrimaryKey(id);
     }
 
+    public NewsInfo selectTop1ByClassId(String classId){
+        return mapper.selectTop1ByClassId(classId);
+    }
+
     public List<NewsInfo> selectAll(Map<String, Object> query) {
         return mapper.selectAll(query);
     }

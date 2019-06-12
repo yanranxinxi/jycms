@@ -92,30 +92,26 @@ public class IndexController {
 
     @RequestMapping({"/moldSteel"})
     public String classShow(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
+        NewsInfo singleModel = newsInfoService.selectTop1ByClassId("27");
         ViewClassListDTO view = pubComponent.viewClassList(27, pageIndex, 10, 31, 5, 0);
-
-        model.addAttribute("productList", view.getPaginationDTO().getArtList());
-        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
-        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", view.getWebSiteBaseInfoDTO());
         model.addAttribute("productTypeList", view.getProductTypeList());
         model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
+        model.addAttribute("art",singleModel);
+        return "web/productSingle";
     }
 
     @RequestMapping({"/vacuumHeatTreatment"})
     public String vacuumHeatTreatment(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
+        NewsInfo singleModel = newsInfoService.selectTop1ByClassId("28");
         ViewClassListDTO view = pubComponent.viewClassList(28, pageIndex, 10, 31, 5, 0);
-
-        model.addAttribute("productList", view.getPaginationDTO().getArtList());
-        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
-        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", view.getWebSiteBaseInfoDTO());
         model.addAttribute("productTypeList", view.getProductTypeList());
         model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
+        model.addAttribute("art",singleModel);
+        return "web/productSingle";
     }
 
     @RequestMapping({"/finePlateProcessing"})

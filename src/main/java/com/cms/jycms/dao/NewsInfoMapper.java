@@ -7,6 +7,7 @@ import java.util.Map;
 
 public interface NewsInfoMapper {
     NewsInfo selectByPrimaryKey(String id);
+    NewsInfo selectTop1ByClassId(String classId);
 
     List<NewsInfo> selectAll(Map<String, Object> query);
     List<NewsInfo> selectByClassId(Map<String,Object> query);

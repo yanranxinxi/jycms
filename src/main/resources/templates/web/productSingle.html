@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="web/layout">
+<div layout:fragment="content">
+    <div class="container" style="margin-top:10px;">
+        <div class="col-md-3">
+            <div class="productClass">
+                <div class="productTitle">
+                    产品分类
+                </div>
+                <div class="productTitleEn">PRODUCTS</div>
+                <div class="proClassShow">
+                    <div class="proClassNormal" th:each="item:${productTypeList}">
+                        <a th:href="'/productCenter/'+${item.id}" th:text="${item.name}"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="productClass rowMarginTop">
+                <div class="productTitle">
+                    新闻资讯
+                </div>
+                <div class="productTitleEn">News</div>
+                <div class="newsClassShow">
+                    <ul>
+                        <li th:each="item:${newsList}"><a th:href="'/news/'+${item.id}"
+                                                          th:text="${#strings.abbreviate(item.title,15)}"></a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="kefuShow rowMarginTop">
+                <div class="kefuImg">
+                    <img src="/images/kefu_53.jpg">
+                </div>
+                <div class="contactUsBlock" th:utext="${base.leftContactUs}">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" th:if="${art!=null}" th:utext="${art.content}">
+        </div>
+    </div>
+</html>
