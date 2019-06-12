@@ -52,11 +52,32 @@
                 </div>
                 <div class="col-md-6">
                     <ul class="nav navbar-pills nav-justified navbar-right navbar-static-top">
-                        <li role="presentation" th:each="navItem:${navList}">
-                            <a th:if="${navItem.url}eq'/'" th:href="${navItem.url}"
-                               th:text="${navItem.name}"></a>
-                            <a th:if="${navItem.url}ne'/'" th:href="${navItem.url}"
-                               th:text="${navItem.name}"></a>
+                        <li role="presentation" class="on">
+                            <a href="/">首页</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">产品分类 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown"><a href="#">污水泵</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">地暖</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">新风系统</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">空调</a></li>
+                            </ul>
+                        </li>
+                        <li role="presentation">
+                            <a href="/aboutUs">关于长华</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/news">新闻中心</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/leaveMessage">在线留言</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="/contactUs">联系我们</a>
                         </li>
                     </ul>
                 </div>
