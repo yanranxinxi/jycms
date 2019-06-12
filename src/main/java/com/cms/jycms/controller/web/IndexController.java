@@ -96,7 +96,7 @@ public class IndexController {
         return "web/index";
     }
 
-    @RequestMapping({"/plantEquipment"})
+    @RequestMapping({"/corporateImage"})
     public String classShow(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(62, pageIndex, 12, 31, 5, 0, null);
 
@@ -107,7 +107,23 @@ public class IndexController {
         model.addAttribute("base", view.getWebSiteBaseInfoDTO());
         model.addAttribute("productTypeList", view.getProductTypeList());
         model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
+        model.addAttribute("path","corporateImage");
+        return "web/staticShow";
+    }
+
+    @RequestMapping({"/honor"})
+    public String honor(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
+        ViewClassListDTO view = pubComponent.viewClassList(73, pageIndex, 12, 31, 5, 0, null);
+
+        model.addAttribute("productList", view.getPaginationDTO().getArtList());
+        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
+        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
+        model.addAttribute("navList", navComponent.getNavList());
+        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
+        model.addAttribute("productTypeList", view.getProductTypeList());
+        model.addAttribute("newsList", view.getNewsList());
+        model.addAttribute("path","honor");
+        return "web/staticShow";
     }
 
     @RequestMapping({"/productCenter"})
@@ -151,6 +167,43 @@ public class IndexController {
         model.addAttribute("productTypeList", view.getProductTypeList());
         model.addAttribute("newsList", view.getNewsList());
         return "web/class";
+    }
+
+    @RequestMapping({"/corporateImage/detail/{id}"})
+    public String staticDetail(@PathVariable("id") String id, Model model) {
+        WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
+        NewsInfo productDetail = newsInfoService.selectByPrimaryKey(id);
+        List<NewsInfo> upDownList = newsInfoService.selectUpDown(productDetail);
+
+        for (NewsInfo item : upDownList) {
+            if (item.getId() < productDetail.getId()) {
+                model.addAttribute("up", item);
+            } else {
+                model.addAttribute("down", item);
+            }
+        }
+        model.addAttribute("navList", navComponent.getNavList());
+        model.addAttribute("base", webSiteBaseInfoDTO);
+        model.addAttribute("art", productDetail);
+        return "web/staticDetail";
+    }
+    @RequestMapping({"/honor/detail/{id}"})
+    public String honorStaticDetail(@PathVariable("id") String id, Model model) {
+        WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
+        NewsInfo productDetail = newsInfoService.selectByPrimaryKey(id);
+        List<NewsInfo> upDownList = newsInfoService.selectUpDown(productDetail);
+
+        for (NewsInfo item : upDownList) {
+            if (item.getId() < productDetail.getId()) {
+                model.addAttribute("up", item);
+            } else {
+                model.addAttribute("down", item);
+            }
+        }
+        model.addAttribute("navList", navComponent.getNavList());
+        model.addAttribute("base", webSiteBaseInfoDTO);
+        model.addAttribute("art", productDetail);
+        return "web/staticDetail";
     }
 
     @RequestMapping("/productCenter/detail/{id}")

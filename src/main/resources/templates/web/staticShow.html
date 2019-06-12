@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="web/layout">
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row rowMarginTop rowPaddingBottom">
+            <div class="col-md-4 hidden-xs">
+                <!--产品分类-->
+                <div class="productClass">
+                    <div class="productTitle">
+                        <img src="/images/product_class.png"/>
+                    </div>
+                    <div class="proClassShow">
+                        <div class="proClassNormal" th:each="item:${productTypeList}">
+                            <a th:href="'/productCenter/'+${item.id}" th:text="${item.name}"></a>
+                        </div>
+                    </div>
+                </div>
+                <!--联系我们-->
+                <div class="kefuShow">
+                    <div class="kefuImg">
+                        <img src="/images/contactus_title.png"/>
+                    </div>
+                    <div class="contactUsBlock">
+                        <img src="/images/kefu_53.jpg"/>
+                        <div th:utext="${base.leftContactUs}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-md-4 clearPadding" th:if="${productList.size()}>0" th:each="item:${productList}">
+                        <div class="thumbnail">
+                            <a th:href="${path}+'/detail/'+${item.id}"><img th:src="${item.imageUrl}"
+                                                                                  class="productImg"
+                                                                                  style="width:250px;height:188px;"></a>
+                            <div class="caption captionOverride">
+                                <a th:href="${path}+'/detail/'+${item.id}">
+                                    <div th:text="${item.title}"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:if="${productList.size()}==0" class="col-md-4 clearPadding">
+                        <h4>暂无数据</h4></div>
+                </div>
+                <div class="row textCenter">
+                    <!-- 内容列表分页开始 -->
+                    <div style="margin-left:auto;margin-right:auto;">
+                        <!-- 处理页数小于等于7 的情况 -->
+                        <ul th:if="${(totalPages le 7)&&(totalPages gt 0)}" class="pagination">
+                            <li th:if="${pageIndex eq 1}" class="page-item disabled"><a class="page-link">上一页</a></li>
+                            <li th:if="${pageIndex gt 1}" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex}-1)}">上一页</a>
+                            </li>
+
+                            <li th:each="index:${#numbers.sequence(1,totalPages)}"
+                                th:classappend="${index eq pageIndex}?'active'"
+                                class="page-item">
+                                <a th:href="@{''(pageIndex=${index})}" class="page-link" th:text="${index}"></a>
+                            </li>
+
+                            <li th:if="${pageIndex eq totalPages}" class="page-item disabled"><a
+                                    class="page-link">下一页</a></li>
+                            <li th:if="${pageIndex lt totalPages}" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex}+1)}">下一页</a>
+                            </li>
+                        </ul>
+
+                        <!-- 处理页数大于7 的情况 -->
+                        <ul th:if="${totalPages gt 7}" class="pagination">
+                            <li th:if="${pageIndex eq 1}" class="page-item disabled"><a class="page-link">上一页</a></li>
+                            <li th:if="${pageIndex gt 1}" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex}-1)}">上一页</a>
+                            </li>
+
+                            <!-- 首页 -->
+                            <li th:classappend="${pageIndex eq 1}?'active'" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=1)}">1</a>
+                            </li>
+
+                            <!-- 当前页面小于等于4 -->
+                            <li th:if="${pageIndex le 4}" th:each="index:${#numbers.sequence(2,5)}"
+                                th:classappend="${index eq pageIndex}?'active'" class="page-item">
+                                <a th:href="@{''(pageIndex=${index})}" class="page-link" th:text="${index}"></a>
+                            </li>
+                            <li th:if="${pageIndex le 4}" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=6)}">...</a>
+                            </li>
+
+                            <!-- 最后一页与当前页面之差小于等于3 -->
+                            <li th:if="${totalPages-pageIndex le 3}" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${totalPages-5})}">...</a>
+                            </li>
+                            <li th:if="${totalPages-pageIndex le 3}"
+                                th:each="index:${#numbers.sequence(totalPages-4,totalPages-1)}"
+                                th:classappend="${index eq pageIndex}?'active'" class="page-item">
+                                <a th:href="@{''(pageIndex=${index})}" class="page-link" th:text="${index}"></a>
+                            </li>
+
+                            <!-- 最后一页与当前页面之差大于3 且当前页面大于4 -->
+                            <li th:if="${(pageIndex gt 4) && (totalPages-pageIndex gt 3)}" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex-2})}">...</a>
+                            </li>
+                            <li th:if="${(pageIndex gt 4) && (totalPages-pageIndex gt 3)}"
+                                th:each="index:${#numbers.sequence(pageIndex-1,pageIndex+1)}"
+                                th:classappend="${index eq pageIndex}?'active'" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${index})}" th:text="${index}"></a>
+                            </li>
+                            <li th:if="${(pageIndex gt 4) && (totalPages-pageIndex gt 3)}" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex+2})}">...</a>
+                            </li>
+
+                            <!-- 尾页 -->
+                            <li th:classappend="${pageIndex eq totalPages}?'active'" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${totalPages})}"
+                                   th:text="${totalPages}">尾页</a>
+                            </li>
+
+                            <li th:if="${pageIndex eq totalPages}" class="page-item disabled"><a
+                                    class="page-link">下一页</a></li>
+                            <li th:if="${pageIndex lt totalPages}" class="page-item">
+                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex}+1)}">下一页</a>
+                            </li>
+
+                            <div class="input-group" style="height: 38px;width: 150px; display: none;">
+                                <input type="number" min="1" th:max="${totalPages}" th:value="${pageIndex}"
+                                       class="form-control toPage">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-primary toUrl" style="height: 30px;">跳转
+                                    </button>
+                                </div>
+                            </div>
+
+                        </ul>
+                    </div>
+                    <!-- 内容列表分页结束 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</html>

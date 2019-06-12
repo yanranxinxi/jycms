@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="web/layout">
+<div layout:fragment="content">
+    <div class="container">
+        <div class="row rowMarginTop">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-12 textCenter"><h3 th:text="${art.title}"></h3></div>
+                    <div class="col-md-12 textCenter">
+                        <img th:src="${art.imageUrl}"/>
+                    </div>
+                </div>
+                <div class="row rowMarginTop">
+                    <div class="col-md-12">
+                        <h3>详细介绍：</h3>
+                        <p th:utext="${art.content}"></p>
+                    </div>
+                </div>
+                <div class="row rowMarginTop rowPaddingBottom">
+                    <div class="col-md-12">
+                        <div class="upDiv">
+                            <strong>上一篇：</strong><a th:if="${up!=null}" th:text="${#strings.abbreviate(up.title,30)}"
+                                                    th:href="''+${up.id}"></a>
+                            <span th:if="${up==null}" th:text="没有了"></span>
+                        </div>
+                        <div class="downDiv">
+                            <strong>下一篇：</strong><a th:if="${down!=null}"
+                                                    th:text="${#strings.abbreviate(down.title,30)}"
+                                                    th:href="''+${down.id}"></a>
+                            <span th:if="${down==null}" th:text="没有了"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+</html>
