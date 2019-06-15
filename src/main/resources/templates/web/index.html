@@ -13,7 +13,7 @@
                     </div>
                     <div class="proClassShow">
                         <div class="proClassNormal" th:each="item:${productList}">
-                            <a th:href="'/productCenter/'+${item.id}" th:text="${item.name}"></a>
+                            <a th:href="'/productCenter/'+${item.id}" th:text="${item.name}" target="_blank"></a>
                         </div>
                     </div>
                 </div>
@@ -37,11 +37,11 @@
                 <div class="row productContent">
                     <div class="col-md-4 clearPadding" th:each="proItem:${productRecommendList}">
                         <div class="thumbnail">
-                            <a th:href="'/productCenter/detail/'+${proItem.id}"><img th:src="${proItem.imageUrl}"
+                            <a target="_blank" th:href="'/productCenter/detail/'+${proItem.id}"><img th:src="${proItem.imageUrl}"
                                                                                      th:alt="${proItem.title}"
                                                                                      style="width:272px;height:250px;"/></a>
                             <div class="caption captionOverride">
-                                <div><a th:href="'/productCenter/detail/'+${proItem.id}" th:text="${proItem.title}"></a>
+                                <div><a target="_blank" th:href="'/productCenter/detail/'+${proItem.id}" th:text="${proItem.title}"></a>
                                 </div>
                             </div>
                         </div>
@@ -170,19 +170,19 @@
             <div class="row">
                 <div class="col-md-12 hidden-xs">
                     <div class="row">
-                        <div style="float: left;width:534px;"><img src="/images/home_pro.jpg"/></div>
+                        <div style="float: left;width:534px;" class="effect"><img src="/images/home_pro.png" class="img-responsive"/></div>
                         <div style="float: left;width:600px; padding-left:30px;">
                             <div class="aboutUsTitle">
                                 关于我们
                             </div>
                             <div>
-                                <img src="/images/aboutus_desc.png"/>
+                                <img src="/images/aboutus_desc.png" />
                             </div>
                             <div class="row aboutUsContent" th:utext="${aboutusContent.content}">
 
                             </div>
                             <div>
-                                <a class="btn viewMore" href="/aboutUs">查看更多+</a>
+                                <a class="btn viewMore" href="/aboutUs" target="_blank">查看更多+</a>
                             </div>
                         </div>
                     </div>

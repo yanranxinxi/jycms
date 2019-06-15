@@ -713,8 +713,8 @@ a {
 .aboutUsTitle {
     font-size: 20px;
     color: #fff;
-    padding-top: 30px;
-    padding-bottom: 46px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .aboutUsTitleCn {
@@ -735,6 +735,7 @@ a {
 }
 
 .aboutUsContent {
+    padding-top:20px;
     text-indent: 2em;
     line-height: 22px;
     font-size: 16px;
@@ -751,7 +752,7 @@ a {
 }
 
 .viewMore:hover {
-    color: #246305;
+    color: #ffffff;
 }
 
 .aboutUsButton {
@@ -1027,4 +1028,22 @@ a {
     text-align: left;
     border-bottom: 1px #a0a0a0 solid;
     padding-bottom: 10px;
+}
+
+
+.effect {
+    position: relative;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;/*inset内阴影*/
+}
+
+.effect:before, .effect:after { /*两个 阴影效果更好*/
+    content: "";
+    position: absolute;
+    z-index: -1;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    top: 50%; /*top/bottom/left/right 相当于设置宽高*/
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    border-radius: 100px / 10px; /*水平半径100 垂直10*/
 }

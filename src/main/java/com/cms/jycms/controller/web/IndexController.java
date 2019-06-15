@@ -222,7 +222,7 @@ public class IndexController {
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", webSiteBaseInfoDTO);
         model.addAttribute("art", productDetail);
-        return "web/productDetail";
+        return "web/staticDetail";
     }
 
     @RequestMapping({"/news"})
