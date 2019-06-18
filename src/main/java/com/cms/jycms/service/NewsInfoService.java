@@ -5,6 +5,7 @@ import com.cms.jycms.domain.NewsInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,31 @@ public class NewsInfoService {
         return mapper.selectByClassId(query);
     }
 
+    public String selectChild(int classId) {
+        return mapper.selectChild(classId);
+    }
+
+    public List<NewsInfo> selectArtByClassId(String classIds, int limit) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("classIds", classIds);
+        map.put("limit", limit);
+        return mapper.selectArtByClassId(map);
+    }
+
+    public List<NewsInfo> selectArtByClassId(String classIds, int limit, int pageSize) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("classIds", classIds);
+        map.put("limit", limit);
+        map.put("pageSize", pageSize);
+        return mapper.selectArtByClassId(map);
+    }
+
+    public int selectArtByClassIdCount(String classIds) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("classIds", classIds);
+        return mapper.selectArtByClassIdCount(map);
+    }
+
     public int selectCount(Map<String, Object> query) {
         return mapper.selectCount(query);
     }
@@ -33,7 +59,7 @@ public class NewsInfoService {
         return mapper.delByIds(ids);
     }
 
-    public int updateRecommendByIds(List<String> ids){
+    public int updateRecommendByIds(List<String> ids) {
         return mapper.updateRecommendByIds(ids);
     }
 

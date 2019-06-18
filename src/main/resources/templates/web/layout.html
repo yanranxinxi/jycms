@@ -1,208 +1,614 @@
 <!DOCTYPE html>
 
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title th:text="${base.title}"></title>
     <meta name="keywords" th:attr="content=${base.keyword}"/>
     <meta name="description" th:attr="content=${base.description}"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <script src="/jquery/2.1.1/jquery.min.js"></script>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link href=/css/web.css type="text/css" rel="stylesheet"/>
-    <link href="/css/animate.css" rel="stylesheet"/>
-    <link href="/lib/scrollup/css/themes/image.css" rel="stylesheet"/>
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    <link href="/statics/css/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <link href="/statics/layui/css/layui.css" rel="stylesheet" type="text/css"/>
+    <link href="/statics/css/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/statics/css/css/slick.css" rel="stylesheet" type="text/css"/>
+    <link href="/statics/css/css/less.css" rel="stylesheet" type="text/css"/>
+    <link href="/statics/css/css/style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/statics/js/js/jquery.js"></script>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        //js无缝滚动代码
+        function marquee(i, direction) {
+            var obj = document.getElementById("marquee" + i);
+            var obj1 = document.getElementById("marquee" + i + "_1");
+            var obj2 = document.getElementById("marquee" + i + "_2");
+            if (direction == "up") {
+                if (obj2.offsetTop - obj.scrollTop <= 0) {
+                    obj.scrollTop -= (obj1.offsetHeight + 20);
+                } else {
+                    var tmp = obj.scrollTop;
+                    obj.scrollTop++;
+                    if (obj.scrollTop == tmp) {
+                        obj.scrollTop = 1;
+                    }
+                }
+            } else {
+                if (obj2.offsetWidth - obj.scrollLeft <= 0) {
+                    obj.scrollLeft -= obj1.offsetWidth;
+                } else {
+                    obj.scrollLeft++;
+                }
+            }
+        }
+
+        function marqueeStart(i, direction) {
+            var obj = document.getElementById("marquee" + i);
+            var obj1 = document.getElementById("marquee" + i + "_1");
+            var obj2 = document.getElementById("marquee" + i + "_2");
+
+            obj2.innerHTML = obj1.innerHTML;
+            var marqueeVar = window.setInterval("marquee(" + i + ", '" + direction + "')", 20);
+            obj.onmouseover = function () {
+                window.clearInterval(marqueeVar);
+            }
+            obj.onmouseout = function () {
+                marqueeVar = window.setInterval("marquee(" + i + ", '" + direction + "')", 20);
+            }
+        }
     </script>
-    <script type="text/javascript" src="/comm/mySystem.js"></script>
-    <script type="text/javascript" src="/comm/public.js"></script>
-    <script src="/comm/wow.min.js"></script>
-    <script src="/lib/scrollup/jquery.scrollUp.js"></script>
 </head>
-<div layout:fragment="headContent"></div>
+
 <body>
+<div class="topbj">
+    <div class="container main clearfix">
+        <div class="pull-right fwrx">
+            <p><strong>&nbsp;24小时服务热线：<a href="tel:0769-23020601" target="_self">0769-23020601</a></strong></p>
+        </div>
+        <style>
+            .bdsharebuttonbox a,
+            .bds_more {
+                margin-top: 10px !important;
+            }
 
-<!--头部开始-->
-<div class="container-fluid">
-    <div class="row navRow" role="navigation">
-        <div class="col-md-12">
-            <div class="navbar-header">
-                <!-- .navbar-toggle样式用于toggle收缩的内容，即nav-collapse collapse样式所在元素 -->
-                <button class="navbar-toggle" type="button" data-toggle="collapse"
-                        data-target=".navbar-responsive-collapse">
-                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+            .bdsharebuttonbox a {
+                width: 19px;
+                height: 19px;
+                margin: 0 6px;
+            }
 
-                </button>
-                <!-- 确保无论是宽屏还是窄屏，navbar-brand都显示 -->
-                <a href="##" class="navbar-brand visible-xs-block" style="font-size:16px;">东莞市长华机电工程有限公司</a>
-            </div>
-            <div class="collapse navbar-collapse navbar-responsive-collapse">
+            .bds_qzone {
+                background: url("/statics/images/images/qq_03.png") no-repeat center !important;
+            }
 
-                <div class="col-md-6 hidden-xs" style="padding-top:5px;">
-                    <span class="nav-title">东莞市长华机电工程有限公司</span><span
-                        class="nav-title-desc">24小时服务热线：0769-23020601</span>
-                </div>
-                <div class="col-md-6">
-                    <ul class="nav navbar-pills nav-justified navbar-right navbar-static-top">
-                        <li role="presentation" class="on">
-                            <a href="/">首页</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">产品分类 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown"><a href="#">污水泵</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">地暖</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">新风系统</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">空调</a></li>
-                            </ul>
-                        </li>
-                        <li role="presentation">
-                            <a href="/aboutUs">关于长华</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="/news">新闻中心</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="/leaveMessage">在线留言</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="/contactUs">联系我们</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            .bds_tsina {
+                background: url("/statics/images/images/wb_05.png") no-repeat center !important;
+            }
+
+            .bds_weixin {
+                background: url("/statics/images/images/wx_08.png") no-repeat center !important;
+            }
+        </style>
+        <div class="bdsharebuttonbox pull-right hidden-xs">
         </div>
     </div>
-    <div class="row">
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="/images/banner1.jpg">
-                    <div class="carousel-caption">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/images/banner2.jpg">
-                    <div class="carousel-caption">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/images/banner3.jpg">
-                    <div class="carousel-caption">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/images/banner4.jpg">
-                    <div class="carousel-caption">
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="/images/banner5.jpg">
-                    <div class="carousel-caption">
-                    </div>
-                </div>
+</div>
+<div id="hd">
+    <div class="wp">
+        <div class="container main clearfix">
+            <div class="left logo"><span style="font-size: 30px;font-weight: bold;">东莞市长华机电工程有限公司</span></div>
+            <div class="right">
+                <ul class="nav">
+                    <li><a href="/" class="v1">首页 <i></i></a><span></span></li>
+                    <li>
+                        <a href='/productCenter' class="v1">
+                            产品分类<i></i>
+                        </a>
+                        <dl style="min-width:350px;">
+                            <dd>
+                                <div class="sunav">
+                                    <a href="/productCenter/55">污水泵</a>
+                                    <ul class="snav">
+                                        <li><a href="/productCenter/67">利百特</a></li>
+                                    </ul>
+                                    <a href="/productCenter/56">地暖</a>
+                                    <ul class="snav">
+                                        <li><a href="/productCenter/68">丹麦丹佛斯电地暖系统</a></li>
+                                    </ul>
+                                    <a href="/productCenter/57">新风系统</a>
+                                    <ul class="snav">
+                                        <li><a href="/productCenter/69">家用新风净化机</a></li>
+                                        <li><a href="/productCenter/70">中央新风除湿系列</a></li>
+                                    </ul>
+                                    <a href="/productCenter/58">空调</a>
+                                    <ul class="sunav">
+                                        <a href="/productCenter/71">别墅用途</a>
+                                        <ul class="snav">
+                                            <li><a href="/productCenter/73">三菱</a></li>
+                                            <li><a href="/productCenter/74">开大金</a></li>
+                                            <li><a href="/productCenter/75">格力</a></li>
+                                        </ul>
+                                        <a href="/productCenter/72">工程项目</a>
+                                        <ul class="snav">
+                                            <li><a href="/productCenter/77">开利</a></li>
+                                            <li><a href="/productCenter/78">约克</a></li>
+                                            <li><a href="/productCenter/79">日立</a></li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href='/aboutUs' class="v1">
+                            关于长华<i></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/news' class="v1">
+                            长华知识<i></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/casePresentation' class="v1">
+                            案例展示<i></i>
+                        </a>
+                        <dl>
+                            <dd>
+                                <div class="subnav">
+                                    <a href="/casePresentation/62">污水泵</a>
+                                    <a href="/casePresentation/63">地暖</a>
+                                    <a href="/casePresentation/64">新风系统</a>
+                                    <a href="/casePresentation/65">空调</a>
+                                </div>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li><a href='/honor' class="v1"> 荣誉资质</a>
+                    </li>
+                    <li>
+                        <a href='/contactUs' class="v1">
+                            联系我们<i></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
+            <!--<span class="menuBtn"></span>-->
+            <a href="javascript:;" class="menuBtn mobile-nav">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
             </a>
         </div>
     </div>
 </div>
-<!--头部结束-->
-<!--搜索栏开始-->
-<div class="container">
-    <div class="row hidden-xs searchKey">
-        <div class="col-md-8">
-            <b>热门关键词</b>：污水泵、地暖、新风系统、空调
-        </div>
-        <div class="col-md-4 form-inline">
-            <input type="text" placeholder="请输入您要查找的关键词" class="form-control" id="tbxKeyword" name="tbxKeyword">
-            <button class="btn btn-primary" onclick="searchPro()">搜索</button>
-        </div>
-    </div>
+<div id="aside">
+    <ul class="nv">
+        <li class="v1"><a href="/" class="v1">首页</a></li>
+        <li class="v1"><a href='/productCenter' class="v1"> 产品分类</a>
+            <dl>
+                <dd>
+                    <div class="subnav">
+                        <a href="/productCenter/55">污水泵</a>
+                        <a href="/productCenter/56">地暖</a>
+                        <a href="/productCenter/57">新风系统</a>
+                        <a href="/productCenter/58">空调</a>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+        <li class="v1"><a href='/aboutUs'> 关于长华</a>
+        </li>
+        <li class="v1"><a href='/news'> 长华知识</a>
+        </li>
+        <li class="v1"><a href='/casePresentation' class="v1"> 案例展示</a>
+            <dl>
+                <dd>
+                    <div class="subnav">
+                        <a href="/casePresentation/62">污水泵</a>
+                        <a href="/casePresentation/63">地暖</a>
+                        <a href="/casePresentation/64">新风系统</a>
+                        <a href="/casePresentation/65">空调</a>
+                    </div>
+                </dd>
+            </dl>
+        </li>
+        <li class="v1"><a href='/honor'> 荣誉资质</a>
+        </li>
+        <li class="v1"><a href='/contactUs'> 联系我们</a>
+        </li>
+    </ul>
 </div>
-<!--搜索栏结束-->
+<script>
+    $(function () {
+        $(".nav li").mouseenter(function (event) {
+            $(this).find('dl').stop().slideDown();
+        });
+
+        $(".nav li").mouseleave(function (event) {
+            $(this).find('dl').stop().slideUp();
+        });
+        $('.mobile-nav').on('click', function () {
+            if (!$(this).hasClass("on")) {
+                $(this).addClass("on");
+                $("#aside").slideDown();
+            } else {
+                $(this).removeClass("on");
+                $("#aside").slideUp();
+            }
+        });
+        $('.nv li > .v1').click(function () {
+            var sub = $(this).siblings('dl');
+            if (!sub.length > 0) {
+                return true;
+            }
+            if (sub.is(':visible')) {
+                sub.hide();
+                $(this).removeClass('on');
+            } else {
+                $('dl').hide();
+                $('.nv li .on').removeClass('on');
+                $(this).addClass('on');
+                sub.show();
+            }
+            return false;
+        });
+    })
+</script>
 <!--内容开始-->
 <div layout:fragment="content">
 
 </div>
 <!--内容结束-->
 <!--底部版本开始-->
-
-<div class="container-fluid copyright hidden-xs">
+<div class="dbdh">
     <div class="container">
-        <div class="row navLink text-center hidden-xs">
-            <a th:each="navItem:${navList}" th:text="${navItem.name}" th:href="${navItem.url}"></a>
+        <div class="co-md-18 col-sm-18 hidden-xs">
+            <dl class="col-sm-4">
+                <dt><a href='/productCenter' class="v1"> 产品分类</a></dt>
+                <dd>
+                    <a href="/productCenter/55">污水泵</a>
+                    <a href="/productCenter/56">地暖</a>
+                    <a href="/productCenter/57">新风系统</a>
+                    <a href="/productCenter/58">空调</a>
+                </dd>
+            </dl>
+            <dl class="col-sm-4">
+                <dt><a href='/aboutUs' class="v1"> 关于长华</a></dt>
+                <dd>
+                    <a href='/aboutUs' class="v1"> 关于长华</a>
+                </dd>
+            </dl>
+            <dl class="col-sm-4">
+                <dt><a href='/news' class="v1"> 长华知识</a></dt>
+                <dd>
+                    <a href='/news' class="v1"> 长华知识</a>
+                </dd>
+            </dl>
+            <dl class="col-sm-4">
+                <dt><a href='/casePresentation' class="v1"> 案例展示</a></dt>
+                <dd>
+                    <a href="/casePresentation/62">污水泵</a>
+                    <a href="/casePresentation/63">地暖</a>
+                    <a href="/casePresentation/64">新风系统</a>
+                    <a href="/casePresentation/65">空调</a>
+                </dd>
+            </dl>
+            <dl class="col-sm-4">
+                <dt><a href='/contactUs' class="v1"> 联系我们</a></dt>
+                <dd>
+                    <a href="/contactUs">联系我们</a>
+                </dd>
+            </dl>
         </div>
-        <div class="row">
-            <!--<div class="col-md-3 bottom-logo"></div>-->
-            <div class="col-md-4 bottom-text"><p class="bottom-title">地址：Address</p>
-                <p>广州</p></div>
-            <div class="col-md-4 bottom-email"><p class="bottom-title">邮箱：QQ</p>
-                <p>888888888@qq.com</p></div>
-            <div class="col-md-4 bottom-tel"><p class="bottom-title">电话：Phone</p>
-                <p>服务热线:135-5389-0459</p></div>
+        <div class="co-md-6 col-sm-6 clearfix dbrx">
+            <div class="left">
+                <a href="tel:+"><img src="/statics/images/images/db_64.jpg" alt=""></a>
+                <h3>24小时免费咨询热线</h3>
+                <p><a href="tel:0769-23020601" target="_self">0769-23020601</a></p>
+                <p>东莞市莞城街道东平街233号美汇名家2楼B23号铺位</p>
+            </div>
         </div>
     </div>
 </div>
-<div class="container-fluid">
-    <div class="row copyright-bottom">
-        <div class="col-md-12 textCenter">
-            广州易到出行 版权所有 备案号：
-        </div>
+
+<div class="footer">
+    <div class="container">
+        <p style="float:left;">Copyright © 东莞市长华机电工程有限公司 All Rights Reserved.</p>
+        <p style="float:right;"></p>
+        <p style="float:right;"><br/></p>
+        <p style="float:right;"><br/></p>
+        <p style="float:right;"><br/></p>
+        <p style="float:right;"><br/></p>
+        <p style="float:right;"><br/></p>
     </div>
 </div>
-<!--底部版本结束-->
-</body>
-</html>
+
+<link href="/statics/css/css/kf.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/statics/js/js/kf.js"></script>
+<script>
+    var dh = $('.dbrx .left p').eq(0).text();
+    $('.dbrx a').attr('href', 'tel:' + dh);
+    var leftdh = $('#izl_rmenu .contact p').eq(0).text();
+    $('a.btn-contact').attr('href', 'tel:' + leftdh);
+</script>
+<script src="/statics/js/js/slick.min.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $.scrollUp({
-            animation: 'fade',
-            activeOverlay: false,
-            scrollImg: {
-                active: true,
-                type: 'background',
-                src: '/lib/scrollup/img/top.png'
+    $(document).ready(function () {
+        $('.banner').slick({
+            dots: true,
+            arrows: false,
+            autoplay: true,
+            slidesToShow: 1,
+            autoplaySpeed: 6000,
+            pauseOnHover: false,
+            lazyLoad: 'ondemand'
+        });
+    });
+    $('table').addClass('layui-table')
+</script>
+<script src="/statics/layui/layui.js"></script>
+<script>
+    layui.use(['element', 'layer', 'form'], function () {
+        var element = layui.element,
+            layer = layui.layer,
+            form = layui.form;
+
+        var active = {
+            offset: function (othis) {
+                var type = othis.data('type'),
+                    text = othis.data('text'),
+                    typeid = othis.data('typeid');
+                var kuan = $('.container').width();
+                $(window).resize(function () {
+                    var kuan = $('.container').width();
+                });
+                layer.open({
+                    type: 1,
+                    title: text,
+                    offset: type,
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: true //开启最大化最小化按钮
+                    ,
+                    area: '1224px',
+                    id: 'izl_rmenu' + type //防止重复弹出
+                    ,
+                    content: '<div class="myform"><div class="container"><form method="post" name="myform" id="myform" class="layui-form">\n' +
+                        '<div class="fd_tit">\n' +
+                        '    <h3>' + text + '</h3>\n' +
+                        '       <!--<div class="de_sy scroll_num_wrap">\n' +
+                        '           今日还剩\n' +
+                        '           <span>1</span>\n' +
+                        '           <span>0</span>\n' +
+                        '           <span>5</span>\n' +
+                        '           个免费名额\n' +
+                        '   </div>-->\n' +
+                        '</div >\n' +
+                        '<div class="mt">\n' +
+                        '   <!--目前已有<span id="designNum">111963</span> 人申请成功-->\n' +
+                        '</div >\n' +
+                        '                <div class="layui-form-item">\n' +
+                        '                    <input type="text" name="name" required  lay-verify="required" id="name"  placeholder="请输入姓名" autocomplete="off" class="layui-input">\n' +
+                        '                </div>\n' +
+                        '                <div class="layui-form-item">\n' +
+                        '                    <input type="text" name="shouji" required  lay-verify="required" id="shouji"  placeholder="请输入手机" autocomplete="off" class="layui-input">\n' +
+                        '                </div>\n' +
+                        '                <div class="layui-form-item">\n' +
+                        '                    <div class="layui-input-inline">\n' +
+                        '                       <input type="text" name="acreage" required  lay-verify="required" id="acreage"  placeholder="请输入面积m²" autocomplete="off" class="layui-input">\n' +
+                        '                    </div>\n' +
+                        '                    <div class="layui-input-inline">\n' +
+                        '                       <select name="housetype" lay-verify="required">\n' +
+                        '                           <option value="" >户型</option>\n' +
+                        '                           <option value="客餐厅">客餐厅</option>\n' +
+                        '                           <option value="一室一厅">一室一厅</option>\n' +
+                        '                           <option value="两室一厅">两室一厅</option>\n' +
+                        '                           <option value="两室两厅">两室两厅</option>\n' +
+                        '                           <option value="三室一厅">三室一厅</option>\n' +
+                        '                           <option value="三室两厅">三室两厅</option>\n' +
+                        '                           <option value="四室两厅">四室两厅</option>\n' +
+                        '                           <option value="四室三厅">四室三厅</option>\n' +
+                        '                           <option value="五室两厅">五室两厅</option>\n' +
+                        '                           <option value="五室三厅">五室三厅</option>\n' +
+                        '                           <option value="复式楼">复式楼</option>\n' +
+                        '                           <option value="大平层">大平层</option>\n' +
+                        '                           <option value="别墅">别墅</option>\n' +
+                        '                           <option value="其他">其他</option>\n' +
+                        '                       </select >\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '                <div class="layui-form-item" pane="">\n' +
+                        '                    <label class="">产品类型(可多选)：</label>\n' +
+                        '                    <div class="">\n' +
+                        '                        <input type="checkbox" name="design_cateid[]" value="中央空调" lay-skin="primary" title="中央空调" >\n' +
+                        '                        <input type="checkbox" name="design_cateid[]" value="新风系统" lay-skin="primary" title="新风系统" >\n' +
+                        '                        <input type="checkbox" name="design_cateid[]" value="净水系统" lay-skin="primary" title=" 净水系统" >\n' +
+                        '                        <input type="checkbox" name="design_cateid[]" value="热水采暖" lay-skin="primary" title="热水采暖" >\n' +
+                        '                        <input type="checkbox" name="design_cateid[]" value="家庭影院" lay-skin="primary" title="家庭影院" >\n' +
+                        '                        <input type="checkbox" name="design_cateid[]" value="激光电视" lay-skin="primary" title="激光电视" >\n' +
+                        '                        <input type="checkbox" name="design_cateid[]" value="背景音乐" lay-skin="primary" title="背景音乐" >\n' +
+                        '                    </div>\n' +
+                        '                </div>' +
+                        '                <!--<div class="layui-form-item layui-form-text">\n' +
+                        '                    <label class="">备注内容：</label>\n' +
+                        '                    <div class="">\n' +
+                        '                        <textarea name="introduce" placeholder="不少于5个字" id="introduce" class="layui-textarea"></textarea>\n' +
+                        '                    </div>\n' +
+                        '                </div>-->\n' +
+                        '                 <input type="hidden" name="typeid" value="' +
+                        typeid + '">' +
+                        '                <a class="layui-btn layui-btn-normal" href="javascript:replysub();">' +
+                        text + '</a>\n' +
+                        '                <li class="cnsm">我们承诺：舒适100提供该项<span>免费服务，无需支付任何费用！</span>为了您的权益，您的隐私将被严格保密</li>\n' +
+                        '            </form></div></div>\n' +
+                        '<script type="text/javascript">\n' +
+                        '    var Msg1 = "姓名不得少于2个字符！";\n' +
+                        '    var Msg2 = "请输入正确的邮箱！";\n' +
+                        '    var Msg3 = "请填写留言内容！";\n' +
+                        '    var Msg6 = "请填写正确的手机号码！";\n' +
+                        '    var Msg4 = "留言提交成功，感谢支持！";\n' +
+                        '    var Msg5 = "参数错误，请稍后再试！";\n' +
+                        '    function replysub(){\n' +
+                        '        //Jq验证一下输入的信息是否正确\n' +
+                        '        if ( $("#name").val()=="" || $("#name").val().length < 2 ){\n' +
+                        '            layer.msg(Msg1);\n' +
+                        '        }\n' +
+                        '        else if ( $("#shouji").val()=="" || !(/^1(3|4|5|7|8)\\d{9}$/.test($("#shouji").val())) || $("#shouji").val().length < 11){\n' +
+                        '            layer.msg(Msg6);\n' +
+                        '        }\n' +
+                        '        //else if ($("#email").val()=="" || ( $("#email").val()!="" && !/.+@.+\\.[a-zA-Z]{2,4}$/.test($("#email").val()) )){\n' +
+                        '            //layer.msg(Msg2);\n' +
+                        '        //}\n' +
+                        '        //else if ( $("#introduce").val()=="" || $("#introduce").val().length < 2){\n' +
+                        '            //layer.msg(Msg3);\n' +
+                        '        //}\n' +
+                        '        else{\n' +
+                        '            $.ajax({\n' +
+                        '                cache: false,\n' +
+                        '                url:"/index.php?m=guestbook&c=index&a=register&siteid=1",\n' +
+                        '                type:"POST",\n' +
+                        '                data:$("#myform").serialize(),\n' +
+                        '                success: function(data) {\n' +
+                        '                    if(data=="error"){\n' +
+                        '                        layer.msg(Msg5);\n' +
+                        '                    }else{\n' +
+                        '                        $("#list").find("li").eq(0).before(data);//在第一条前插入新的留言，如需审核才展示，请删除这条，就是只异步提交\n' +
+                        '                        //注意，如果没有一条留言，这里会添加不上，你可以再添加一个if判断\n' +
+                        '                        layer.msg(Msg4);//留言后信息提示\n' +
+                        '                        $("#myform input,#myform textarea").val("");//留言后清空输入框\n' +
+                        '                    }\n' +
+                        '                }\n' +
+                        '            });\n' +
+                        '        }\n' +
+                        '    }\n' +
+                        '    function animateshowmsg(Msg){\n' +
+                        '        $("#show-msg").html(Msg).fadeIn();\n' +
+                        '        setTimeout(function(){\n' +
+                        '            $("#show-msg").fadeOut();\n' +
+                        '        }, 2000);//提示信息的时间\n' +
+                        '    }\n' +
+                        '<\/script>'
+                    //,btn: '关闭全部'
+                    //,btnAlign: 'c' //按钮居中
+                    ,
+                    shade: 0 //不显示遮罩
+                    ,
+                    yes: function () {
+                        layer.closeAll();
+                    }
+                });
+                form.render();
+                // layer.full();
             }
+        };
+        $('#izl_rmenu .btn1').on('click', function () {
+            var othis = $(this),
+                method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+        $('.list_link span').on('click', function () {
+            var othis = $(this),
+                method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
         });
     });
 
-    function searchPro() {
-        var keyword = $("#tbxKeyword").val();
-        if (keyword != undefined && keyword != null && keyword != '') {
-            window.location.href = "/productCenterSearch?title=" + keyword;
-        } else {
-            alert("请输入您要查找的关键词");
-            $("#tbxKeyword").focus();
+
+    $(function () {
+        //获取顶部元素的DOM
+        var wrap = document.getElementById('hd');
+        var scrollTop = 0; //初始化为顶部
+        //监听页面滚动事件
+        // window.onscroll=function(){
+        //     //获取当前的滚动距离
+        //     scrollTop =
+        //         document.body.scrollTop||document.documentElement.scrollTop;
+        //     //获取超过150像素的滚动，就把导航菜单DIV设置为固定的
+        //     if(scrollTop > 150){
+        //         wrap.className = 'navbar-fixed-top';//固定下来的样式
+        //     }else{
+        //         wrap.className = '';//恢复原有样式
+        //     }
+        // };
+        function list(x) {
+            var width = $('.ss-product li').width();
+            $('.ss-product ul').stop().animate({
+                'margin-left': -x * width
+            }, 500);
         }
-    }
+        //产品
+        $('.ss-product').width($(window).width());
+        $('.ss-product').height($(window).height() - 94);
+        $('.ss-product li').width($('.ss-product').width() / 4);
+        var size = $('.ss-product li').length;
+        var btn = size - 4;
+        $('.ss-product ul').width($('.ss-product li').width() * size + size * 25);
+        $('.ss-product li').height($('.ss-product').height() - 2);
+        var ten = $(window).height() / 4;
+        $('.right-line span').css('margin-top', ten);
+        $(window).resize(function () {
+            $('.ss-product').width($(window).width());
+            $('.ss-product').height($(window).height() - 94);
+            $('.ss-product li').width($('.ss-product').width() / 4);
+            var size = $('.ss-product li').length;
+            $('.ss-product ul').width($('.ss-product li').width() * size + size * 25 + 10);
+            $('.ss-product li').height($('.ss-product').height() - 2);
+        });
+        var x = 0;
+        var listN = $('.ss-product li').size() - 3;
+        //console.log(listN)
+        $('.ss-product .prev').on('click', function () {
+            if (x == 0) {
+                x = 0;
+            } else {
+                x--;
+                list(x);
+                //console.log(x);
+            }
+        });
+
+        $('.ss-product .next').on('click', function () {
+            if (x == btn) {
+                x = btn;
+            } else {
+                x++;
+                list(x);
+                //console.log(x);
+            }
+        });
+
+        $('.ss-product li').hover(function () {
+            if (myTime) {
+                clearInterval(myTime);
+            }
+        }, function () {
+            clearInterval(myTime);
+            myTime = setInterval(function () {
+                x++;
+                if (x == listN) {
+                    x = 0;
+                }
+                //console.log(x)
+                list(x);
+            }, 2000);
+        });
+        // 自动开始, 创建定时器
+        var myTime = setInterval(function () {
+            x++;
+            if (x == listN) {
+                x = 0;
+            }
+            //console.log(x)
+            list(x);
+        }, 2000);
+
+    })
 </script>
+<script src="/statics/js/js/bootstrap.min.js"></script>
+</body>
+
+</html>

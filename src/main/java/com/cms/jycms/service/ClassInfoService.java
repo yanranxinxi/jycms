@@ -16,6 +16,10 @@ public class ClassInfoService {
         return mapper.selectAll();
     }
 
+    public ClassInfo selectById(int id) {
+        return mapper.selectById(id);
+    }
+
     public List<ClassInfo> getNav() {
         return mapper.getNav();
     }

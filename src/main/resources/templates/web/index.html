@@ -3,201 +3,264 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="web/layout">
 <div layout:fragment="content">
-    <!--产品展示-->
-    <div class="container wow fadeIn">
-        <div class="row product-show">
-            <div class="col-md-6"><a href="/productCenter/55"><img src="/images/class1.jpg"/></a>
-                <p><a href="/productCenter/55">新能源纯电动面包车</a></p></div>
-            <div class="col-md-6"><a href="/productCenter/56"><img src="/images/class2.jpg"/></a>
-                <p><a href="/productCenter/56">大运比克电动货车</a></p></div>
-        </div>
+    <div class="slider banner">
+        <div><a href="/" title=""><img src="statics/images/images/banner1.jpg" alt=""></a></div>
+        <div><a href="/#" title=""><img src="statics/images/images/banner2.jpg" alt=""></a></div>
+        <div><a href="/#" title=""><img src="statics/images/images/banner3.jpg" alt=""></a></div>
+        <div><a href="/#" title=""><img src="statics/images/images/banner4.jpg" alt=""></a></div>
     </div>
-    <!--产品展示-->
-    <!--背景结束-->
-    <!--我们的优势-->
-    <div class="container-fluid ys-new hidden-xs">
-        <div class="row ys-new-title">
-            <div class="col-md-6"><span class="ys-new-title-span-1">新能源面包车</span></div>
-            <div class="col-md-6"><span class="ys-new-title-span-2">六大核心优势</span></div>
-        </div>
-        <div class="row ys-content">
-            <div class="col-md-6">
-                <div class="row ys-content-1"><img src="/images/tool.png"/> <span>优质的售后服务</span>
-                    <p>全天候为您服务，专业提供优质售后服务</p>
-                    <hr/>
+    <div class="ss-product hidden-xs hidden-sm hidden-md">
+        <ul class="f-cb">
+            <li>
+                <a href="/productCenter/55" target="_blank">
+                    <img src="/statics/images/images/wushuibeng.jpg" alt="" width="100%" class="cp img-responsive">
+                    <p class="bg"></p>
+                </a>
+                <div class="con">
+                    <div class="class-logo">污水泵</div>
+                    <span class="mun">01</span>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row ys-content-2"><img src="/images/zhinan.png"/> <span>效率高</span>
-                    <p>一般新能源汽车采用新技术，新结构，使它的效率更高</p>
-                    <hr/>
+            </li>
+            <li>
+                <a href="/productCenter/56" target="_blank">
+                    <img src="/statics/images/images/dinuan3.jpg" alt="" width="100%" class="cp">
+                    <p class="bg"></p>
+                </a>
+                <div class="con">
+                    <div class="class-logo">地暖</div>
+                    <span class="mun">02</span>
                 </div>
-            </div>
-        </div>
-
-        <div class="row ys-content">
-            <div class="col-md-6 ">
-                <div class="row ys-content-1"><img src="/images/group.png"/> <span>与知名企业合作</span>
-                    <p>公司与众多物流，快递货源类公司合作，品质值得信赖</p>
-                    <hr/>
+            </li>
+            <li>
+                <a href="/productCenter/57" target="_blank">
+                    <img src="uploadfile/20180319012408782.jpg" alt="" width="100%" class="cp">
+                    <p class="bg"></p>
+                </a>
+                <div class="con">
+                    <div class="class-logo">新风系统</div>
+                    <span class="mun">03</span>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row ys-content-2"><img src="/images/text.png"/> <span>超长续航</span>
-                    <p>超长续航300km，解决长途运输问题</p>
-                    <hr/>
+            </li>
+            <li>
+                <a href="/productCenter/58" target="_blank">
+                    <img src="uploadfile/20180319012343533.jpg" alt="" width="100%" class="cp">
+                    <p class="bg"></p>
+                </a>
+                <div class="con">
+                    <div class="class-logo">空调</div>
+                    <span class="mun">04</span>
                 </div>
+            </li>
+        </ul>
+        <div class="prev btns"></div>
+        <div class="next btns"></div>
+    </div>
+    <div class="container hidden-lg">
+        <ul class="row pic-product">
+            <div class="title">
+                <p>产品分类</p>
             </div>
-        </div>
-
-        <div class="row ys-content">
-            <div class="col-md-6 ">
-                <div class="row ys-content-1"><img src="/images/hander.png"/> <span>成本价格经济实惠</span>
-                    <p>每公里仅需1毛钱，大大节约进取成本</p>
-                    <hr/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row ys-content-2"><img src="/images/plan.png"/> <span>超长质保</span>
-                    <p>五年20万公里质保</p>
-                    <hr/>
-                </div>
-            </div>
-        </div>
-
+            <li class="col-sm-6 col-xs-6">
+                <a href="/productCenter/55" target="_blank">
+                    <img src="/statics/images/images/wushuibeng.jpg" alt="" width="100%">
+                    <h2>污水泵</h2>
+                </a>
+            </li>
+            <li class="col-sm-6 col-xs-6">
+                <a href="/productCenter/56" target="_blank">
+                    <img src="/statics/images/images/dinuan3.jpg" alt="" width="100%">
+                    <h2>地暖</h2>
+                </a>
+            </li>
+            <li class="col-sm-6 col-xs-6">
+                <a href="/productCenter/57" target="_blank">
+                    <img src="/uploadfile/20180319012408782.jpg" alt="" width="100%">
+                    <h2>新风系统</h2>
+                </a>
+            </li>
+            <li class="col-sm-6 col-xs-6">
+                <a href="/productCenter/58" target="_blank">
+                    <img src="/uploadfile/20180319012343533.jpg" alt="" width="100%">
+                    <h2>空调</h2>
+                </a>
+            </li>
+        </ul>
     </div>
-    <!--我们的优势-->
-    <!--客户案例-->
-    <div class="container product-title wow bounceInUp">
-        <h2>客户案例</h2>
-        <p>致力于新能源汽车与互联网融合应用，努力将公司打造成为一个开放互联的新能源汽车企业</p>
-    </div>
-    <div class="container wow bounceInUp">
-        <div class="row">
-            <div id="divCustom" class="col-md-4 clearPadding" th:each="customItem:${customList}">
-                <div class="customShowNormal">
-                    <a th:href="'/news/'+${customItem.id}"> <img th:src="${customItem.imageUrl}"/></a>
-                    <a th:href="'/news/'+${customItem.id}"><h4
-                            th:text="${#strings.abbreviate(customItem.title,20)}"></h4>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row product-show">
-        <a href="/productCenter/60"><img src="/images/more.jpg" style="width:50px;"></a>
-    </div>
-    <div class="clean"></div>
-    <!--客户见证-->
-    <!--关于我们-->
-    <div class="container product-title wow bounceInUp">
-        <h2>关于我们</h2>
-        <p>始终以客户需求为重心，不断追求技术创新和运作卓越，努力成为品牌客户持续发展的首选合作供应商</p>
-    </div>
-    <div class="container-fluid about-us wow fadeIn">
-        <div class="container about-us-content">
-            <img src="/images/aboutus_bg.jpg" style="float:left;margin-right:10px;"/>
-            <h3>广州市易到出行新能源有限公司</h3>
-            <p th:utext="${aboutusContent.content}">
-
-            </p>
-            <div style="text-align: left;">
-                <a class="btn btn-primary" href="/aboutUs">查看更多+</a>
-            </div>
-        </div>
-    </div>
-    <!--关于我们-->
-    <!--信息反馈-->
-    <div class="container product-title">
-        <h3>他们成就了我们，我们为他们创造价值</h3>
-        <p>最终我们成为了拍，为朋友做事，我们两肋插刀</p>
-    </div>
-    <div class="container-fluid newinfo wow bounceInUp">
-        <div class="row">
-            <div class="col-md-6 contactus"></div>
-            <div class="col-md-6 contactus-form">
-                <form id="msgFrom" class="form-horizontal" method="post" action="/leaveMsg" style="margin-top:100px;">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">联系人：</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="customName" name="customName">
-                        </div>
+    <div class="about-bj">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="title-about">About us <p>关于我们</p>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">手机：</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="telNo" name="telNo">
-                        </div>
+                    <div class="about-nr">
+                        <p th:utext="${aboutusContent.content}">
+                        </p>
+                        <p><br/></p>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">留言：</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" rows="3" id="msg" name="msg"></textarea>
-                        </div>
+                    <div class="about-bnt">
+                        <ul>
+                            <li class="col-md-12 col-sm-12 col-xs-12"><a
+                                    href="/aboutUs" target="_blank"><span
+                                    class="bg bg2"></span>
+                                <h2>关于我们</h2> <span class="box"></span>
+                            </a></li>
+                            <li class="col-md-12 col-sm-12 col-xs-12"><a
+                                    href="/productCenter" target="_blank"><span
+                                    class="bg bg1"></span>
+                                <h2>核心业务</h2> <span class="box"></span>
+                            </a></li>
+                        </ul>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">验证码：</label>
-                        <div class="col-sm-10">
-                                <span class="col-md-3" style="padding-left: 0px;">
-                                    <input type="text" id="code" name="code" class="form-control">
-                                </span>
-                            <div class="col-md-3">
-                                <img alt="验证码" onclick="this.src='/defaultKaptcha?d='+new Date()*1"
-                                     src="/defaultKaptcha"/>
+                </div>
+                <div class="col-md-13 hidden-sm hidden-xs"><img src="statics/images/images/2_34.png" alt=""></div>
+            </div>
+        </div>
+    </div>
+    <div class="news-bj">
+        <div class="container">
+            <div class="title-news">长华知识 <p>INFORMATION</p>
+            </div>
+            <div class="row">
+                <div class="col-md-9 col-sm-9">
+                    <li class="news-tu" th:each="item:${topNews}">
+                        <a th:href="'/news/'+${item.id}" target="_blank" th:title="${item.title}">
+                            <img th:src="${item.imageUrl}" alt="">
+                            <h2 class="hidden-xs" th:text="${#strings.abbreviate(item.title,24)}"></h2>
+                            <p class="hidden-xs" th:text="${#strings.abbreviate(item.description,60)}"></p>
+                        </a>
+                    </li>
+                </div>
+                <div class="col-md-15 col-sm-15">
+                    <ul class="row newslist" th:each="item:${otherNews}">
+                        <li class="clearfix" style="margin: 20px 0;">
+                            <div class="col-md-5 col-sm-5 hidden-xs news-time">
+                                <p th:text="${#strings.substring(item.addDate,5,10)}"></p> <p th:text="${#strings.substring(item.addDate,0,4)}"></p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group textCenter">
-                        <button type="submit" id="validateBtn" class="btn btn-success">提交</button>
-                    </div>
-                </form>
+                            <div class="col-md-19 col-sm-19 news-title">
+                                <a th:href="'/news/'+${item.id}" target="_blank" th:title="${item.title}">
+                                    <p style="color: #333333;font-size: 16px;" th:text="${#strings.abbreviate(item.title,24)}"></p> <p th:text="${#strings.abbreviate(item.description,60)}"> </p>
+                                    <i class="more hidden-xs"></i>
+                                    <p class="hidden-sm hidden-md hidden-lg" th:text="${item.addDate}"></p>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <!--信息反馈-->
-    <!--新闻资讯-->
-    <div class="container news-title">
-        <div class="row">
-            <div class="col-md-4">
-                <h4>公司新闻</h4>
-                <p th:each="newsItem:${topNewsList}">
-                <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}"
-                         target="_blank"></a></span>
-                    <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
-                </p>
+    <script src="statics/js/js/jquery.SuperSlide.2.1.2.js"></script>
+    <div class="anli-bj">
+        <div class="container">
+            <div class="title-news title-anli">案例展示 <p>Case Show</p>
+                <div>致力于为用户提供一个专业、诚信、快捷、跨地域的一站式集成服务平台</div>
             </div>
-            <div class="col-md-4">
-                <h4>行业动态</h4>
-                <p th:each="newsItem:${companyDynamicsList}">
-                <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}"
-                         target="_blank"></a></span>
-                    <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h4>技术学堂</h4>
-                <p th:each="newsItem:${studyList}">
-                <span><a th:text="${#strings.abbreviate(newsItem.title,20)}" th:href="${'/news/'+newsItem.id}"
-                         target="_blank"></a></span>
-                    <span style="float:right;" th:text="'['+${#strings.substring(newsItem.addDate,0,10)}+']'"></span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <!--新闻资讯-->
-    <div class="clean"></div>
-    <script type="text/javascript">
-        wow = new WOW(
-            {
-                animateClass: 'animated',
-                offset: 100
-            }
-        );
-        wow.init();
+            <div class="layui-tab anli-list">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">污水泵</li>
+                    <li>地暖</li>
+                    <li>新风系统</li>
+                    <li>空调</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="bd">
+                            <ul class="picList">
+                                <li th:each="item:${wuShuiBeng}">
+                                    <div class="fwimg"><a th:href="'/productCenter/detail/'+${item.id}" target="_blank"><img
+                                            th:src="${item.imageUrl}" th:title="${item.title}" class="pic"/></a>
+                                    </div>
+                                    <div class="fwzzcc hidden-xs">
+                                        <div class="fetitle">污水泵</div>
+                                        <div class="fecont">
+                                            <p th:text="${item.description}">
 
-        function classShow(id) {
-            window.location.href = "/productCenter/" + id;
-        }
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="prev">
+                            <</a> <a class="next">>
+                    </a>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="bd">
+                            <ul class="picList">
+                                <li th:each="item:${diNuan}">
+                                    <div class="fwimg"><a th:href="'/productCenter/detail/'+${item.id}" target="_blank"><img
+                                            th:src="${item.imageUrl}" th:title="${item.title}" class="pic"/></a>
+                                    </div>
+                                    <div class="fwzzcc hidden-xs">
+                                        <div class="fetitle">地暖</div>
+                                        <div class="fecont">
+                                            <p th:text="${item.description}">
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="prev">
+                            <</a> <a class="next">>
+                    </a>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="bd">
+                            <ul class="picList">
+                                <li th:each="item:${xinFeng}">
+                                    <div class="fwimg"><a th:href="'/productCenter/detail/'+${item.id}" target="_blank"><img
+                                            th:src="${item.imageUrl}" th:title="${item.title}" class="pic"/></a>
+                                    </div>
+                                    <div class="fwzzcc hidden-xs">
+                                        <div class="fetitle">新风系统</div>
+                                        <div class="fecont">
+                                            <p th:text="${item.description}">
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="prev">
+                            <</a> <a class="next">>
+                    </a>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="bd">
+                            <ul class="picList">
+                                <li th:each="item:${kongTiao}">
+                                    <div class="fwimg"><a th:href="'/productCenter/detail/'+${item.id}" target="_blank"><img
+                                            th:src="${item.imageUrl}" th:title="${item.title}" class="pic"/></a>
+                                    </div>
+                                    <div class="fwzzcc hidden-xs">
+                                        <div class="fetitle">空调</div>
+                                        <div class="fecont">
+                                            <p th:text="${item.description}">
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="prev">
+                            <</a> <a class="next">>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        jQuery(".layui-tab-item").slide({
+            mainCell: ".bd ul",
+            autoPlay: true,
+            delayTime: 700
+        });
     </script>
 </div>
 </html>

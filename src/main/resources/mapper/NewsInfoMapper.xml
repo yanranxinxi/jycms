@@ -40,6 +40,24 @@
         order by a.addDate desc
         limit #{offset},#{pageSize}
     </select>
+    <select id="selectChild" resultType="string">
+        select getChildList(#{classId});
+    </select>
+    <select id="selectArtByClassId" resultType="com.cms.jycms.domain.NewsInfo">
+        select a.*,b.name as className from newsinfo a
+        left join classInfo b on a.classId=b.id
+        where a.classId in (${classIds})
+         order by a.addDate desc limit #{limit}
+         <if test="pageSize!=null">
+         ,#{pageSize}
+         </if>
+         ;
+    </select>
+    <select id="selectArtByClassIdCount" resultType="int">
+        select count(0) from newsinfo a
+        left join classInfo b on a.classId=b.id
+        where a.classId in (${classIds})        ;
+    </select>
     <select id="selectCount" resultType="int">
         select
         count(0)

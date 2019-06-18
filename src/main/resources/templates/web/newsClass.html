@@ -3,51 +3,41 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="web/layout">
 <div layout:fragment="content">
-    <div class="container">
-        <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-12">
-                <div id="newTop" class="row" style="margin-top:20px;">
-                    <div th:each="newsItem:${productList}">
-                        <div class="newsList" th:onclick="'showNewsDetail('+${newsItem.id}+')'">
-                            <div class="newsDate">
-                                <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
-                                <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
-                            </div>
-                            <div class="newsC hidden-xs" th:text="${#strings.abbreviate(newsItem.title,50)}"></div>
-                            <div class="newsC visible-xs" th:text="${#strings.abbreviate(newsItem.title,18)}"></div>
-                            <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
-                                    src="/images/jiantouright_03.png"/>
-                            </div>
-                        </div>
-                        <div class="row rowMarginTop rowPaddingBottom" id="newsDetail_"
-                             th:id="'newsDetail_'+${newsItem.id}" style="display: none;">
-                            <div class="col-md-3">
-                                <img th:if="${newsItem.imageUrl!=null}" th:src="${newsItem.imageUrl}" class="newsImg"/>
-                                <img th:if="${newsItem.imageUrl==null}" class="newsImg" src="/images/non.jpg"/>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row newsTitle">
-                                    <div class="col-md-12" th:text="${#strings.abbreviate(newsItem.title,20)}">
-                                    </div>
-                                </div>
-                                <div class="row newsContent">
-                                    <div class="col-md-12">
-                                        <p th:text="${#strings.abbreviate(newsItem.description,60)}"></p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <a class="btn btn-primary active" th:href="${'/news/'+newsItem.id}"
-                                           target="_blank">了解更多+</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="inline-banner" style="background:url(/uploadfile/20180321100842937.jpg) no-repeat center top fixed;">
+        <div class="container">
+            <h2>长华知识</h2>
+            <p>KNOWLEDGE</p>
+        </div>
+    </div>
+    <div class="inline-nav">
+        <div class="container clearfix">
+            <ul class="pull-right nav-ny hidden-xs">
+
+            </ul>
+            <div class="pull-left">
+                <span class="now">当前位置：</span>
+                <span class="layui-breadcrumb" style="visibility: visible;">
+              <a href="/">首页</a><span lay-separator="">/</span>
+              <a><cite>长华知识</cite></a>
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="container inline-content">
+        <div class="row">
+            <div class="col-md-18" id="news_list">
+                <li th:each="item:${productList}">
+                    <div class="col-md-5 col-sm-5 col-xs-8 pic">
+                        <a target="_blank" th:href="'/news/'+${item.id}" th:title="${item.title}"><img
+                                th:src="${item.imageUrl}"></a></div>
+                    <div class="col-md-19 col-sm-19 col-xs-16 titjj">
+                        <h1><a target="_blank" th:href="'/news/'+${item.id}" th:title="${item.title}" th:text="${item.title}"></a>
+                        </h1>
+                        <h2 th:text="${#strings.substring(item.addDate,0,10)}"></h2>
+                        <p th:text="${#strings.abbreviate(item.description,60)}"></p>
                     </div>
-                    <div th:if="${productList.size()}==0" class="col-md-4 clearPadding">
-                        <h4>暂无数据</h4></div>
-                </div>
-                <div class="row textCenter">
+                </li>
+                <div class="row textCenter" style="text-align:center;">
                     <!-- 内容列表分页开始 -->
                     <div style="margin-left:auto;margin-right:auto;">
                         <!-- 处理页数小于等于7 的情况 -->
@@ -138,6 +128,24 @@
                         </ul>
                     </div>
                     <!-- 内容列表分页结束 -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="bk">
+                    <h2>联系我们</h2>
+                    <div class="contact"><p><strong>服务中心</strong></p>
+                        <p>地址：东莞市莞城街道东平街233号美汇名家2楼B23号铺位</p>
+                        <p>电话：0769-23020601</p>
+                        <p>手机：13713170013</p></div>
+                </div>
+                <div class="bk">
+                    <h2>长华产品</h2>
+                    <div class="contact row">
+                        <li class="col-xs-12" th:each="item:${art}">
+                            <a th:href="'/productCenter/detail/'+${item.id}"><img
+                                    th:src="${item.imageUrl}" th:alt="${item.title}" width="100%" th:text="${item.title}"></a>
+                        </li>
+                    </div>
                 </div>
             </div>
         </div>

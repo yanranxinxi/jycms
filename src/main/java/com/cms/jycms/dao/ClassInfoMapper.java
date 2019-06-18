@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ClassInfoMapper {
     List<ClassInfo> selectAll();
+    ClassInfo selectById(int id);
     List<ClassInfo> getNav();
     List<ClassInfo> getNavByParentId(int parentId);
     int delete(int id);

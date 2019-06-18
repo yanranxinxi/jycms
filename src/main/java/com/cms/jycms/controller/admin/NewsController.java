@@ -94,7 +94,7 @@ public class NewsController {
             NewsInfo newsInfo = new NewsInfo();
             newsInfo.setClassId(classId);
             newsInfo.setTitle(name);
-            newsInfo.setContent("<p>" + name + "</p>");
+            newsInfo.setContent("<p><img src='" + imageNameDTO.getUrl() + "'/></p>");
             newsInfo.setComeFrom(name);
             newsInfo.setAddDate(LocalDateTime.now())
                     .setUpdateDate(LocalDateTime.now())

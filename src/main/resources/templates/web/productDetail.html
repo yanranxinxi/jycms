@@ -3,49 +3,27 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="web/layout">
 <div layout:fragment="content">
-    <div class="container">
-        <div class="row rowMarginTop">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="productDetailDiv">
-                        <img th:src="${art.imageUrl}"/>
-                    </div>
-                    <div class="productDetailTitle hidden-xs">
-                        <h3 th:text="${art.title}"></h3>
-                        <p>简介：</p>
-                        <p th:text="${art.description}"></p>
-                    </div>
-                </div>
-                <div class="row visible-xs">
-                    <div class="col-md-12">
-                        <h3 th:text="${art.title}"></h3>
-                        <p>简介：</p>
-                        <p th:text="${art.description}"></p>
-                    </div>
-                </div>
-                <div class="row rowMarginTop">
-                    <div class="col-md-12">
-                        <h3>详细介绍：</h3>
-                        <p th:utext="${art.content}"></p>
-                    </div>
-                </div>
-                <div class="row rowMarginTop rowPaddingBottom">
-                    <div class="col-md-12">
-                        <div class="upDiv">
-                            <strong>上一篇：</strong><a th:if="${up!=null}" th:text="${#strings.abbreviate(up.title,30)}"
-                                                    th:href="''+${up.id}"></a>
-                            <span th:if="${up==null}" th:text="没有了"></span>
-                        </div>
-                        <div class="downDiv">
-                            <strong>下一篇：</strong><a th:if="${down!=null}"
-                                                    th:text="${#strings.abbreviate(down.title,30)}"
-                                                    th:href="''+${down.id}"></a>
-                            <span th:if="${down==null}" th:text="没有了"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-1"></div>
+    <div class="slider banner" style="overflow: hidden;/*margin-bottom: 40px;*/">
+        <div>
+            <a href="/#" title="">
+                <img src="/uploadfile/20180403102702681.jpg" alt="">
+            </a>
         </div>
+        <div>
+            <a href="/#" title="">
+                <img src="/uploadfile/20180403102631611.jpg" alt="">
+            </a>
+        </div>
+    </div>
+
+    <div class="container main-cp" style="margin-bottom: 20px;">
+        <div class="row">
+            <div class="toptitle clearfix" style="border-bottom: 4px solid #cccccc;margin-bottom: 20px;height: 59px;">
+                <h2 th:text="${art.title}" class="pull-left"
+                    style="font-size: 24px;font-weight: bold; color: #003366; line-height: 55px;border-bottom: 4px solid #0a86bd; padding-right: 15px;">
+                </h2>
+            </div>
+            <div class="picnr" th:utext="${art.content}"></div>
+        </div>
+    </div>
 </html>

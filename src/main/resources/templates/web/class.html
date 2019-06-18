@@ -3,121 +3,157 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="web/layout">
 <div layout:fragment="content">
-    <div class="container">
-        <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-12">
-                <div class="row textCenter">
-                    <button th:each="item:${productTypeList}" th:text="${item.name}"
-                            th:onclick="'classShow(\''+${item.id}+'\')'"
-                            class="btn btn-primary"></button>
-                </div>
-                <div class="row" style="margin-top:20px;">
-                    <div class="col-md-4 clearPadding" th:if="${productList.size()}>0" th:each="item:${productList}">
-                        <div class="thumbnail">
-                            <a th:href="'/productCenter/detail/'+${item.id}"><img th:src="${item.imageUrl}"
-                                                                                  class="productImg"
-                                                                                  ></a>
-                            <div class="caption captionOverride">
-                                <a th:href="'/productCenter/detail/'+${item.id}">
-                                    <div th:text="${item.title}"></div>
-                                </a>
-                            </div>
+    <div class="slider banner" style="overflow: hidden;margin-bottom: 40px;">
+        <div><a href="/#" title=""><img src="/uploadfile/20180403102702681.jpg" alt=""></a></div>
+        <div><a href="/#" title=""><img src="/uploadfile/20180403102631611.jpg" alt=""></a></div>
+    </div>
+    <div class="container" style="margin-bottom: 20px;">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-sm-7">
+                <dl class="cpdh">
+                    <dt>产品分类</dt>
+                    <dd>
+                        <div class="sunav">
+
+                            <a href="/productCenter/55">污水泵</a>
+                            <ul class="snav">
+
+                                <li>
+                                    <a href="/productCenter/67">利百特</a>
+                                </li>
+                            </ul>
+
+                            <a href="/productCenter/56">地暖</a>
+                            <ul class="snav">
+
+                                <li>
+                                    <a href="/productCenter/68">丹麦丹佛斯电地暖系统</a>
+                                </li>
+                            </ul>
+
+                            <a href="/productCenter/57">新风系统</a>
+                            <ul class="snav">
+
+                                <li>
+                                    <a href="/productCenter/69">家用新风净化机</a>
+                                </li>
+                                <li>
+                                    <a href="/productCenter/70">中央新风除湿系列</a>
+                                </li>
+
+                            </ul>
+
+                            <a href="/productCenter/58">空调</a>
+                            <ul class="snav">
+                                <a href="/productCenter/71">别墅用途</a>
+                                <ul class="snav">
+                                    <li>
+                                        <a href="/productCenter/73">三菱</a>
+                                    </li>
+                                    <li>
+                                        <a href="/productCenter/74">开大金</a>
+                                    </li>
+                                    <li>
+                                        <a href="/productCenter/75">格力</a>
+                                    </li>
+                                </ul>
+                                <a href="/productCenter/72">工程项目</a>
+                                <ul class="snav">
+                                    <li>
+                                        <a href="/productCenter/77">开利</a>
+                                    </li>
+                                    <li>
+                                        <a href="/productCenter/78">约克</a>
+                                    </li>
+                                    <li>
+                                        <a href="/productCenter/79">日立</a>
+                                    </li>
+                                </ul>
+                            </ul>
                         </div>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-lg-19 col-md-18 col-sm-17">
+                <div class="cpnr">
+                    <div class="toptitle clearfix titlebj" style="background:#cccccc;margin-bottom:20px;">
+                        <h2 class="pull-left" style="font-size: 16px;line-height: 59px;padding-left:20px;">污水泵</h2>
+                        <a href="/productCenter/55" class="pull-right"
+                           style="line-height: 59px;padding-right: 20px;">查看全部</a>
                     </div>
-                    <div th:if="${productList.size()}==0" class="col-md-4 clearPadding">
-                        <h4>暂无数据</h4></div>
-                </div>
-                <div class="row textCenter">
-                    <!-- 内容列表分页开始 -->
-                    <div style="margin-left:auto;margin-right:auto;">
-                        <!-- 处理页数小于等于7 的情况 -->
-                        <ul th:if="${(totalPages le 7)&&(totalPages gt 0)}" class="pagination">
-                            <li th:if="${pageIndex eq 1}" class="page-item disabled"><a class="page-link">上一页</a></li>
-                            <li th:if="${pageIndex gt 1}" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex}-1)}">上一页</a>
-                            </li>
+                    <ul class="row">
+                        <li class="col-md-6 col-sm-6 col-xs-12" th:each="item:${wushuibeng}">
+                            <a th:href="'/productCenter/detail/'+${item.id}" target="_blank">
+                                <div class="bk">
+                                    <img th:src="${item.imageUrl}" width="100%">
 
-                            <li th:each="index:${#numbers.sequence(1,totalPages)}"
-                                th:classappend="${index eq pageIndex}?'active'"
-                                class="page-item">
-                                <a th:href="@{''(pageIndex=${index})}" class="page-link" th:text="${index}"></a>
-                            </li>
-
-                            <li th:if="${pageIndex eq totalPages}" class="page-item disabled"><a
-                                    class="page-link">下一页</a></li>
-                            <li th:if="${pageIndex lt totalPages}" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex}+1)}">下一页</a>
-                            </li>
-                        </ul>
-
-                        <!-- 处理页数大于7 的情况 -->
-                        <ul th:if="${totalPages gt 7}" class="pagination">
-                            <li th:if="${pageIndex eq 1}" class="page-item disabled"><a class="page-link">上一页</a></li>
-                            <li th:if="${pageIndex gt 1}" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex}-1)}">上一页</a>
-                            </li>
-
-                            <!-- 首页 -->
-                            <li th:classappend="${pageIndex eq 1}?'active'" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=1)}">1</a>
-                            </li>
-
-                            <!-- 当前页面小于等于4 -->
-                            <li th:if="${pageIndex le 4}" th:each="index:${#numbers.sequence(2,5)}"
-                                th:classappend="${index eq pageIndex}?'active'" class="page-item">
-                                <a th:href="@{''(pageIndex=${index})}" class="page-link" th:text="${index}"></a>
-                            </li>
-                            <li th:if="${pageIndex le 4}" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=6)}">...</a>
-                            </li>
-
-                            <!-- 最后一页与当前页面之差小于等于3 -->
-                            <li th:if="${totalPages-pageIndex le 3}" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${totalPages-5})}">...</a>
-                            </li>
-                            <li th:if="${totalPages-pageIndex le 3}"
-                                th:each="index:${#numbers.sequence(totalPages-4,totalPages-1)}"
-                                th:classappend="${index eq pageIndex}?'active'" class="page-item">
-                                <a th:href="@{''(pageIndex=${index})}" class="page-link" th:text="${index}"></a>
-                            </li>
-
-                            <!-- 最后一页与当前页面之差大于3 且当前页面大于4 -->
-                            <li th:if="${(pageIndex gt 4) && (totalPages-pageIndex gt 3)}" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex-2})}">...</a>
-                            </li>
-                            <li th:if="${(pageIndex gt 4) && (totalPages-pageIndex gt 3)}"
-                                th:each="index:${#numbers.sequence(pageIndex-1,pageIndex+1)}"
-                                th:classappend="${index eq pageIndex}?'active'" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${index})}" th:text="${index}"></a>
-                            </li>
-                            <li th:if="${(pageIndex gt 4) && (totalPages-pageIndex gt 3)}" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex+2})}">...</a>
-                            </li>
-
-                            <!-- 尾页 -->
-                            <li th:classappend="${pageIndex eq totalPages}?'active'" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${totalPages})}"
-                                   th:text="${totalPages}">尾页</a>
-                            </li>
-
-                            <li th:if="${pageIndex eq totalPages}" class="page-item disabled"><a
-                                    class="page-link">下一页</a></li>
-                            <li th:if="${pageIndex lt totalPages}" class="page-item">
-                                <a class="page-link" th:href="@{''(pageIndex=${pageIndex}+1)}">下一页</a>
-                            </li>
-
-                            <div class="input-group" style="height: 38px;width: 150px; display: none;">
-                                <input type="number" min="1" th:max="${totalPages}" th:value="${pageIndex}"
-                                       class="form-control toPage">
-                                <div class="input-group-append">
-                                    <button type="button" class="btn btn-primary toUrl" style="height: 30px;">跳转
-                                    </button>
+                                    <h1 th:text="${item.title}">
+                                         </h1>
+                                    <p th:text="${item.description}"></p>
+                                    <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
                                 </div>
-                            </div>
-
-                        </ul>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="toptitle clearfix titlebj" style="background:#cccccc;margin-bottom:20px;">
+                        <h2 class="pull-left" style="font-size: 16px;line-height: 59px;padding-left:20px;">地暖</h2>
+                        <a href="/productCenter/56" class="pull-right"
+                           style="line-height: 59px;padding-right: 20px;">查看全部</a>
                     </div>
-                    <!-- 内容列表分页结束 -->
+                    <ul class="row">
+                        <li class="col-md-6 col-sm-6 col-xs-12" th:each="item:${dinuan}">
+                            <a th:href="'/productCenter/detail/'+${item.id}" target="_blank">
+                                <div class="bk">
+                                    <img th:src="${item.imageUrl}" width="100%">
+
+                                    <h1 th:text="${item.title}">
+                                    </h1>
+                                    <p th:text="${item.description}"></p>
+                                    <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--<div id="pages" class="text-c"></div>-->
+                    <div class="toptitle clearfix titlebj" style="background:#cccccc;margin-bottom:20px;">
+                        <h2 class="pull-left" style="font-size: 16px;line-height: 59px;padding-left:20px;">新风系统</h2>
+                        <a href="/productCenter/57" class="pull-right"
+                           style="line-height: 59px;padding-right: 20px;">查看全部</a>
+                    </div>
+                    <ul class="row">
+                        <li class="col-md-6 col-sm-6 col-xs-12" th:each="item:${xinfeng}">
+                            <a th:href="'/productCenter/detail/'+${item.id}" target="_blank">
+                                <div class="bk">
+                                    <img th:src="${item.imageUrl}" width="100%">
+
+                                    <h1 th:text="${item.title}">
+                                    </h1>
+                                    <p th:text="${item.description}"></p>
+                                    <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!--<div id="pages" class="text-c"></div>-->
+                    <div class="toptitle clearfix titlebj" style="background:#cccccc;margin-bottom:20px;">
+                        <h2 class="pull-left" style="font-size: 16px;line-height: 59px;padding-left:20px;">空调</h2>
+                        <a href="/productCenter/58" class="pull-right"
+                           style="line-height: 59px;padding-right: 20px;">查看全部</a>
+                    </div>
+                    <ul class="row">
+                        <li class="col-md-6 col-sm-6 col-xs-12" th:each="item:${kongtiao}">
+                            <a th:href="'/productCenter/detail/'+${item.id}" target="_blank">
+                                <div class="bk">
+                                    <img th:src="${item.imageUrl}" width="100%">
+
+                                    <h1 th:text="${item.title}">
+                                    </h1>
+                                    <p th:text="${item.description}"></p>
+                                    <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

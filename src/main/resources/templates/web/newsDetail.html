@@ -3,25 +3,66 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="web/layout">
 <div layout:fragment="content">
-    <div class="container">
-        <div class="row textCenter rowMarginTop rowPaddingBottom">
-            <h3 th:text="${art.title}"></h3>
+    <div class="inline-banner" style="background:url(/uploadfile/20180321100842937.jpg) no-repeat center top fixed;">
+        <div class="container">
+            <h2>长华知识</h2>
+            <p>KNOWLEDGE</p>
         </div>
-        <div class="row textCenter rowMarginTop rowPaddingBottom">
-            作者：<span th:text="${art.comeFrom}"></span> &nbsp;&nbsp;&nbsp;日期：<span th:text="${#strings.substring(art.addDate,0,10)}"></span>
-        </div>
-        <div class="row" th:utext="${art.content}">
+    </div>
+    <div class="inline-nav">
+        <div class="container clearfix">
+            <ul class="pull-right nav-ny hidden-xs">
 
-        </div>
-        <div class="row rowMarginTop rowPaddingBottom">
-            <div class="upDiv">
-                <strong>上一篇：</strong><a th:if="${up!=null}" th:text="${#strings.abbreviate(up.title,30)}" th:href="''+${up.id}"></a>
-                <span th:if="${up==null}" th:text="没有了"></span>
-            </div>
-            <div class="downDiv">
-                <strong>下一篇：</strong><a th:if="${down!=null}" th:text="${#strings.abbreviate(down.title,30)}"
-                                         th:href="''+${down.id}"></a>
-                <span th:if="${down==null}" th:text="没有了"></span>
+            </ul>
+            <div class="pull-left">
+                <span class="now">当前位置：</span>
+                <span class="layui-breadcrumb" style="visibility: visible;">
+              <a href="/">首页</a><span lay-separator="">/</span>
+              <a><cite>长华知识</cite></a>
+            </span>
             </div>
         </div>
+    </div>
+    <div class="container inline-content">
+        <div class="row">
+            <div class="col-md-18" id="news_list">
+                <div id="Article">
+                    <h1 style="text-align: center;font-size: 20px;padding:30px 0;" th:text="${art.title}"></h1>
+                    <div class="" style="text-align: center;line-height: 30px;background: #ddd; margin-bottom: 20px;"><span th:text="${#strings.replace(art.addDate,'T',' ')}"></span>&nbsp;&nbsp;&nbsp;来源：<span th:text="${art.comeFrom}"></span>&nbsp;&nbsp;&nbsp;</div>
+                    <div class="content" th:utext="${art.content}">
+
+
+                    </div>
+                    <div id="pages" class="text-c"></div>
+                    <p style="margin-bottom:10px">
+
+                    <ul class="clearfix">
+                        <li class="pull-left" style="border: 0;"><strong>上一篇：</strong><a th:if="${up!=null}" th:text="${#strings.abbreviate(up.title,30)}" th:href="''+${up.id}"></a>
+                            <span th:if="${up==null}" th:text="没有了"></span></li>
+                        <li class="pull-right" style="border: 0;"><strong>下一篇：</strong><a th:if="${down!=null}" th:text="${#strings.abbreviate(down.title,30)}"
+                                                                                          th:href="''+${down.id}"></a>
+                            <span th:if="${down==null}" th:text="没有了"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="bk">
+                    <h2>联系我们</h2>
+                    <div class="contact"><p><strong>服务中心</strong></p>
+                        <p>地址：东莞市莞城街道东平街233号美汇名家2楼B23号铺位</p>
+                        <p>电话：0769-23020601</p>
+                        <p>手机：13713170013</p></div>
+                </div>
+                <div class="bk">
+                    <h2>长华产品</h2>
+                    <div class="contact row">
+                        <li class="col-xs-12" th:each="item:${leftPro}">
+                            <a th:href="'/productCenter/detail/'+${item.id}"><img
+                                    th:src="${item.imageUrl}" th:alt="${item.title}" width="100%" th:text="${item.title}"></a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </html>

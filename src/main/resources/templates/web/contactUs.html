@@ -3,11 +3,45 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="web/layout">
 <div layout:fragment="content">
-    <div class="container">
-        <div class="row rowMarginTop rowPaddingBottom">
-            <div class="row">
-                <div class="col-md-12"  th:utext="${art.content}"></div>
+    <div class="inline-banner" style="background:url(/uploadfile/20180321101438348.jpg) no-repeat center top fixed;">
+        <div class="container">
+            <h2>联系我们</h2>
+            <p>contactus</p>
+        </div>
+    </div>
+    <div class="inline-nav">
+        <div class="container clearfix">
+            <ul class="pull-right nav-ny hidden-xs">
+                <li class="pull-left cur"><a href="/contactUs">联系我们</a></li>
+            </ul>
+            <div class="pull-left">
+                <span class="now">当前位置：</span>
+                <span class="layui-breadcrumb" style="visibility: visible;">
+              <a href="/">首页</a><span lay-separator="">/</span>
+              <a><cite>联系我们</cite></a>
+            </span>
             </div>
         </div>
     </div>
+    <div class="container inline-content">
+        <div class="row">
+            <div class="col-md-18" style="line-height: 30px;" th:utext="${art.content}"></div>
+            <div class="col-md-6">
+                <div class="bk">
+                    <h2>联系我们</h2>
+                    <div class="contact"><p><strong>服务中心</strong></p><p>地址：东莞市莞城街道东平街233号美汇名家2楼B23号铺位</p><p>电话：0769-23020601</p><p>手机：13713170013</p></div>
+                </div>
+                <div class="bk">
+                    <h2>长华产品</h2>
+                    <div class="contact row">
+                        <li class="col-xs-12" th:each="item:${leftPro}">
+                            <a th:href="'/productCenter/detail/'+${item.id}"><img
+                                    th:src="${item.imageUrl}" th:alt="${item.title}" width="100%" th:text="${item.title}"></a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

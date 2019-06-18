@@ -25,9 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -51,94 +49,61 @@ public class IndexController {
     @Autowired
     private LeaveMessageService leaveMessageService;
 
+
     @RequestMapping({"/", "index"})
     public String index(Model model) {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
-        //获取推荐产品
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("limit", 6);
-//        map.put("classId", 54);
-//        map.put("recommend", "1");
-//        List<NewsInfo> productRecommendList = newsInfoService.selectByClassId(map);
-        //产品分类
-//        List<ClassInfo> productList = classInfoService.getNavByParentId(54);
-        //单类列表
-        //合作客户
-//        List<NewsInfo> cooperationList = pubComponent.getArtList(40, 0, 10);
-        //客户见证
-        List<NewsInfo> customList = pubComponent.getArtList(60, 0, 6);
-        //企业头条
-        List<NewsInfo> topNewsList = pubComponent.getArtList(42, 0, 4);
-        //公司动态
-        List<NewsInfo> companyDynamicsList = pubComponent.getArtList(43, 0, 4);
-        //技术学堂
-        List<NewsInfo> studyList = pubComponent.getArtList(61, 0, 4);
-        //技术答疑
-//        List<NewsInfo> questionList = pubComponent.getArtList(44, 0, 3);
-        //工厂环境
-//        List<NewsInfo> factoryList = pubComponent.getArtList(46, 0, 10);
-        //荣誉资质
-//        List<NewsInfo> honorList = pubComponent.getArtList(47, 0, 10);
-        //单条内容
+
+        //长华知识
+        List<NewsInfo> topNews = pubComponent.getArtList(32, 0, 1);
+        List<NewsInfo> otherNews = pubComponent.getArtList(32, 1, 2);
+        //污水泵
+        List<NewsInfo> wuShuiBeng = pubComponent.getArtList(62, 0, 5);
+        //地暖
+        List<NewsInfo> diNuan = pubComponent.getArtList(63, 0, 5);
+        //新风
+        List<NewsInfo> xinFeng = pubComponent.getArtList(64, 0, 5);
+        //空调
+        List<NewsInfo> kongTiao = pubComponent.getArtList(65, 0, 5);
         //关于我们
         NewsInfo aboutusContent = newsInfoService.selectByPrimaryKey("55");
 
-//        model.addAttribute("productList", productList);
-//        model.addAttribute("productRecommendList", productRecommendList);
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", webSiteBaseInfoDTO);
-//        model.addAttribute("cooperationList", cooperationList);
-        model.addAttribute("customList", customList);
-        model.addAttribute("topNewsList", topNewsList);
-        model.addAttribute("companyDynamicsList", companyDynamicsList);
-//        model.addAttribute("questionList", questionList);
+        model.addAttribute("topNews", topNews);
+        model.addAttribute("otherNews", otherNews);
         model.addAttribute("aboutusContent", aboutusContent);
-//        model.addAttribute("factoryList", factoryList);
-//        model.addAttribute("honorList", honorList);
-        model.addAttribute("studyList", studyList);
+        model.addAttribute("wuShuiBeng", wuShuiBeng);
+        model.addAttribute("diNuan", diNuan);
+        model.addAttribute("xinFeng", xinFeng);
+        model.addAttribute("kongTiao", kongTiao);
         return "web/index";
     }
 
-    @RequestMapping({"/van"})
-    public String classShow(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(55, pageIndex, 12, 31, 5, 0, null, 54);
-
-        model.addAttribute("productList", view.getPaginationDTO().getArtList());
-        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
-        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
-        model.addAttribute("navList", navComponent.getNavList());
-        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
-        model.addAttribute("productTypeList", view.getProductTypeList());
-        model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
-    }
-
-    @RequestMapping({"/truck"})
-    public String vacuumHeatTreatment(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(56, pageIndex, 12, 31, 5, 0, null, 54);
-
-        model.addAttribute("productList", view.getPaginationDTO().getArtList());
-        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
-        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
-        model.addAttribute("navList", navComponent.getNavList());
-        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
-        model.addAttribute("productTypeList", view.getProductTypeList());
-        model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
-    }
-
-
     @RequestMapping({"/productCenter"})
     public String productCenter(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(54, pageIndex, 12, 54, 5, 0, null, 54);
+        WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
+        //污水泵
+        String wuShuiIds = newsInfoService.selectChild(55);
+        List<NewsInfo> wuShuiBeng = newsInfoService.selectArtByClassId(wuShuiIds, 4);
 
-        model.addAttribute("productList", view.getPaginationDTO().getArtList());
-        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
-        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
-        model.addAttribute("navList", navComponent.getNavList());
-        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
-        model.addAttribute("productTypeList", view.getProductTypeList());
-        model.addAttribute("newsList", view.getNewsList());
+        //地暖
+        String diNuanIds = newsInfoService.selectChild(56);
+        List<NewsInfo> diNuan = newsInfoService.selectArtByClassId(diNuanIds, 4);
+
+        //新风
+        String xinFengIds = newsInfoService.selectChild(57);
+        List<NewsInfo> xinFeng = newsInfoService.selectArtByClassId(xinFengIds, 4);
+
+        //空调
+        String kongTiaoIds = newsInfoService.selectChild(58);
+        List<NewsInfo> kongTiao = newsInfoService.selectArtByClassId(kongTiaoIds, 4);
+
+        model.addAttribute("wushuibeng", wuShuiBeng);
+        model.addAttribute("dinuan", diNuan);
+        model.addAttribute("xinfeng", xinFeng);
+        model.addAttribute("kongtiao", kongTiao);
+        model.addAttribute("base", webSiteBaseInfoDTO);
         return "web/class";
     }
 
@@ -159,7 +124,31 @@ public class IndexController {
 
     @RequestMapping({"/productCenter/{id}"})
     public String productCenter(@PathVariable("id") int id, @RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(id, pageIndex, 10, 54, 5, 0, null, 54);
+        WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
+
+        String wuShuiIds = newsInfoService.selectChild(id);
+        ClassInfo classInfo = classInfoService.selectById(id);
+        List<NewsInfo> art = newsInfoService.selectArtByClassId(wuShuiIds, (pageIndex - 1) * 8, 8);
+        int totalCount = newsInfoService.selectArtByClassIdCount(wuShuiIds);
+        int totalPage = totalCount / 8;
+        if (totalCount % 8 > 0) {
+            totalPage++;
+        }
+        model.addAttribute("art", art);
+        model.addAttribute("base", webSiteBaseInfoDTO);
+        model.addAttribute("classInfo", classInfo);
+        model.addAttribute("totalPages", totalPage);
+        model.addAttribute("pageIndex", pageIndex);
+        return "web/classSingle";
+    }
+
+    @RequestMapping("/casePresentation")
+    public String casePresentation(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
+        ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 12, 31, 5, 0, null, 54);
+        ClassInfo classInfo = classInfoService.selectById(31);
+        String proClassId = newsInfoService.selectChild(54);
+        List<NewsInfo> leftPro = newsInfoService.selectArtByClassId(proClassId, 8);
+
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -168,7 +157,50 @@ public class IndexController {
         model.addAttribute("base", view.getWebSiteBaseInfoDTO());
         model.addAttribute("productTypeList", view.getProductTypeList());
         model.addAttribute("newsList", view.getNewsList());
-        return "web/class";
+        model.addAttribute("classInfo", classInfo);
+        model.addAttribute("leftPro", leftPro);
+        model.addAttribute("pageTitle","案例展示");
+        model.addAttribute("pageEnTitle","CASE");
+        return "web/casePresentation";
+    }
+
+    @RequestMapping("/casePresentation/{id}")
+    public String casePresentation(@PathVariable("id") int id, @RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
+        ViewClassListDTO view = pubComponent.viewClassList(id, pageIndex, 12, 31, 5, 0, null, 54);
+        ClassInfo classInfo = classInfoService.selectById(id);
+        model.addAttribute("productList", view.getPaginationDTO().getArtList());
+        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
+        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
+        model.addAttribute("navList", navComponent.getNavList());
+        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
+        model.addAttribute("productTypeList", view.getProductTypeList());
+        model.addAttribute("newsList", view.getNewsList());
+        model.addAttribute("classInfo", classInfo);
+        model.addAttribute("pageTitle","案例展示");
+        model.addAttribute("pageEnTitle","CASE");
+        return "web/casePresentation";
+    }
+
+    @RequestMapping("/honor")
+    public String honor(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
+        ViewClassListDTO view = pubComponent.viewClassList(80, pageIndex, 12, 31, 5, 0, null, 54);
+        ClassInfo classInfo = classInfoService.selectById(80);
+        String proClassId = newsInfoService.selectChild(54);
+        List<NewsInfo> leftPro = newsInfoService.selectArtByClassId(proClassId, 8);
+
+        model.addAttribute("productList", view.getPaginationDTO().getArtList());
+        model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
+        model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
+        model.addAttribute("navList", navComponent.getNavList());
+        model.addAttribute("base", view.getWebSiteBaseInfoDTO());
+        model.addAttribute("productTypeList", view.getProductTypeList());
+        model.addAttribute("newsList", view.getNewsList());
+        model.addAttribute("classInfo", classInfo);
+        model.addAttribute("leftPro", leftPro);
+        model.addAttribute("classInfo", classInfo);
+        model.addAttribute("pageTitle","荣誉资质");
+        model.addAttribute("pageEnTitle","HONOR");
+        return "web/casePresentation";
     }
 
     @RequestMapping("/productCenter/detail/{id}")
@@ -192,7 +224,10 @@ public class IndexController {
 
     @RequestMapping({"/news"})
     public String news(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 10, 31, 5, 0, null, 54);
+        ViewClassListDTO view = pubComponent.viewClassList(32, pageIndex, 10, 31, 5, 0, null, 54);
+
+        String proClassId = newsInfoService.selectChild(54);
+        List<NewsInfo> art = newsInfoService.selectArtByClassId(proClassId, 8);
 
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
@@ -201,6 +236,7 @@ public class IndexController {
         model.addAttribute("base", view.getWebSiteBaseInfoDTO());
         model.addAttribute("productTypeList", view.getProductTypeList());
         model.addAttribute("newsList", view.getNewsList());
+        model.addAttribute("art", art);
         return "web/newsClass";
     }
 
@@ -259,9 +295,13 @@ public class IndexController {
                 model.addAttribute("down", item);
             }
         }
+        String proClassId = newsInfoService.selectChild(54);
+        List<NewsInfo> leftPro = newsInfoService.selectArtByClassId(proClassId, 8);
+
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", webSiteBaseInfoDTO);
         model.addAttribute("art", aboutusContent);
+        model.addAttribute("leftPro", leftPro);
         return "web/newsDetail";
     }
 
@@ -277,11 +317,15 @@ public class IndexController {
 
     @RequestMapping({"/contactUs"})
     public String contactUs(Model model) {
+        String proClassId = newsInfoService.selectChild(54);
+        List<NewsInfo> leftPro = newsInfoService.selectArtByClassId(proClassId, 8);
+
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
         NewsInfo aboutusContent = newsInfoService.selectByPrimaryKey("90");
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", webSiteBaseInfoDTO);
         model.addAttribute("art", aboutusContent);
+        model.addAttribute("leftPro", leftPro);
         return "web/contactUs";
     }
 
