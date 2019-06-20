@@ -4,8 +4,11 @@
       layout:decorator="web/layout">
 <div layout:fragment="content">
     <div class="slider banner" style="overflow: hidden;margin-bottom: 40px;">
-        <div><a href="/#" title="舒适100"><img src="/uploadfile/20180403102702681.jpg" alt=""></a></div>
-        <div><a href="/#" title="舒适100"><img src="/uploadfile/20180403102631611.jpg" alt=""></a></div>
+        <div><a href="#" title=""><img src="/images/banner1.jpg" alt=""></a></div>
+        <div><a href="#" title=""><img src="/images/banner2.jpg" alt=""></a></div>
+        <div><a href="#" title=""><img src="/images/banner3.jpg" alt=""></a></div>
+        <div><a href="#" title=""><img src="/images/banner4.jpg" alt=""></a></div>
+        <div><a href="#" title=""><img src="/images/banner5.jpg" alt=""></a></div>
     </div>
     <div class="container" style="margin-bottom: 20px;">
         <div class="row">
@@ -83,11 +86,13 @@
                         <li class="col-md-6 col-sm-6 col-xs-12" th:each="item:${art}">
                             <a th:href="'/productCenter/detail/'+${item.id}" target="_blank">
                                 <div class="bk">
+                                    <div class="productImg">
                                     <img th:src="${item.imageUrl}" width="100%">
-
-                                    <h1 th:text="${item.title}">
+                                    </div>
+                                    <h1 th:title="${item.title}" th:text="${#strings.abbreviate(item.title,18)}">
                                     </h1>
-                                    <p th:text="${item.description}"></p>
+                                    <br>
+                                    <br>
                                     <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
                                 </div>
                             </a>

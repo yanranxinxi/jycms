@@ -137,8 +137,14 @@
                     <h2>长华产品</h2>
                     <div class="contact row">
                         <li class="col-xs-12" th:each="item:${leftPro}">
-                            <a th:href="'/productCenter/detail/'+${item.id}"><img
-                                    th:src="${item.imageUrl}" th:alt="${item.title}" width="100%" th:text="${item.title}"></a>
+                            <a th:href="'/productCenter/detail/'+${item.id}">
+                                <div style="height: 95px;">
+                                    <img
+                                            th:src="${item.imageUrl}" th:alt="${item.title}" width="100%" height="100%"
+                                            th:title="${item.title}">
+                                </div>
+                                <div th:text="${#strings.abbreviate(item.title,10)}" th:title="${item.title}"></div>
+                            </a>
                         </li>
                     </div>
                 </div>

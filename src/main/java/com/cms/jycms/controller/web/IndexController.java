@@ -168,6 +168,9 @@ public class IndexController {
     public String casePresentation(@PathVariable("id") int id, @RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(id, pageIndex, 12, 31, 5, 0, null, 54);
         ClassInfo classInfo = classInfoService.selectById(id);
+        String proClassId = newsInfoService.selectChild(54);
+        List<NewsInfo> leftPro = newsInfoService.selectArtByClassId(proClassId, 8);
+
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
         model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
@@ -178,6 +181,7 @@ public class IndexController {
         model.addAttribute("classInfo", classInfo);
         model.addAttribute("pageTitle","案例展示");
         model.addAttribute("pageEnTitle","CASE");
+        model.addAttribute("leftPro", leftPro);
         return "web/casePresentation";
     }
 

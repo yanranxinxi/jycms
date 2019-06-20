@@ -23,6 +23,7 @@ img {
 
 img {
     max-width: 100%;
+    max-height:100%;
     /* transition: .3s;
      -ms-transition: .3s;
      -moz-transition: .3s;
@@ -858,6 +859,7 @@ a:hover {
 .bk {
     border: 1px solid #dddddd;
     margin-bottom: 15px;
+    /*height: 350px;*/
 }
 
 .bk h2 {
@@ -1065,8 +1067,8 @@ a:hover {
 }
 
 .cpnr li h1 {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    /*font-weight: bold;*/
     line-height: 20px;
     margin: 10px auto;
     padding: 0 10px;
@@ -1083,6 +1085,9 @@ a:hover {
 .cpnr li i {
     float: right;
     margin: 10px;
+    position: absolute;
+    bottom: 13px;
+    right: 13px;
 }
 
 .cpnr li i:before {
@@ -1478,4 +1483,8 @@ a:hover {
 }
 .main-cp {
     max-width: 1000px;
+}
+
+.productImg{
+    height: 180px;
 }
