@@ -8,21 +8,21 @@
             <div class="col-md-1"></div>
             <div class="col-md-10">
                 <div class="row">
-                    <div class="productDetailDiv">
-                        <img th:src="${art.imageUrl}"/>
-                    </div>
-                    <div class="productDetailTitle">
+                    <div style="text-align: center;">
                         <h3 th:text="${art.enTitle}"></h3>
-                        <p>Introduction：</p>
-                        <p th:text="${art.enDescription}"></p>
+                        <!--<p>Introduction：</p>-->
+                        <!--<p th:text="${art.enDescription}"></p>-->
+                    </div>
+                    <div style="text-align: center;">
+                        <img th:src="${art.imageUrl}"/>
                     </div>
                 </div>
 
-                <div class="row rowMarginTop">
-                    <h3>Detailed introduction：</h3>
+                <div class="row rowMarginTop" style="padding:10px;">
+                    <h3 style="border-bottom:1px #ccc solid;padding-bottom: 20px;">Detailed introduction：</h3>
                     <p th:utext="${art.enContent}"></p>
                 </div>
-                <div class="row rowMarginTop rowPaddingBottom">
+                <div class="row rowMarginTop rowPaddingBottom" style="padding:15px;">
                     <div class="upDiv">
                         <strong>Previous：</strong><a th:if="${up!=null}" th:text="${#strings.abbreviate(up.enTitle,30)}" th:href="''+${up.id}"></a>
                         <span th:if="${up==null}">No more</span>

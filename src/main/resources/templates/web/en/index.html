@@ -39,7 +39,7 @@
                             <h4>Product introduction：</h4>
                             <p th:text="${topPro.enDescription}"></p>
                             <p>
-                                <button class="btn">Consult now</button>
+                                <button class="btn" onclick="window.location.href='/en/leaveMessage#message'">Consult now</button>
                                 <a class="btn btn-danger" th:href="'/en/productCenter/detail/'+${topPro.id}">details</a>
                             </p>
                         </div>
@@ -57,10 +57,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 clearPadding" th:each="proItem:${productRecommendList}">
+            <div class="col-md-3 col-xs-4 clearPadding" th:each="proItem:${productRecommendList}">
                 <div class="thumbnail">
                     <a th:href="'/en/productCenter/detail/'+${proItem.id}"><img th:src="${proItem.imageUrl}" th:alt="${proItem.enTitle}"
-                                                    style="width:272px;height:250px;"/></a>
+                                                    style="width:272px;height:250px;" class="hidden-xs"/>
+                        <img th:src="${proItem.imageUrl}" th:alt="${proItem.enTitle}"
+                             style="height:150px;" class="visible-xs-block"/>
+                    </a>
                     <div class="caption captionOverride">
                         <div><a th:href="'/en/productCenter/detail/'+${proItem.id}" th:text="${proItem.enTitle}"></a></div>
                     </div>
@@ -73,7 +76,7 @@
             </div>
         </div>
     </div>
-    <div class="container wow bounceInUp">
+    <div class="container wow bounceInUp hidden-xs">
         <div class="row">
             <div class="col-md-4">
                 <img src="/images/ysb_64.jpg"/>
@@ -96,138 +99,129 @@
             </div>
         </div>
     </div>
-    <div class="container wow bounceInUp">
+    <div class="container wow bounceInUp hidden-xs">
         <div class="row">
             <img src="/images/en_07.jpg"/>
         </div>
     </div>
-    <div class="container-fluid wow bounceInUp">
+    <div class="container-fluid wow bounceInUp hidden-xs">
         <div class="row youshiImgEn">
         </div>
     </div>
     <div class="container-fluid youshiBackground rowPaddingBottom wow bounceInUp">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 wow bounceInLeft" data-wow-delay="1s">
+                <div class="col-md-6 wow bounceInLeft">
                     <div class="row youshi1">
                         <div class="col-md-3">
                             <img src="/images/ysb_91.jpg"/>
                         </div>
                         <div class="col-md-9">
-                            <h3>强大的生产基地，打造优质产品</h3>
-                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                            <!--<h3>强大的生产基地，打造优质产品</h3>-->
+                            <h4>Years of industry experience, strong</h4>
                             <div class="doubleLine"></div>
                         </div>
                     </div>
                     <div class="row rowMarginTop">
-                        <div class="col-md-2 textRight">
+                        <div class="col-md-2 textRight hidden-xs">
                             <img src="/images/ysb_96.jpg"/>
                         </div>
                         <div class="col-md-10 youshiContent">
-                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
-                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
-                            <div class="youshi1_3">拥有高技术、多功能的热处理厂、钢材机加工厂，是中国华南地区最具影响力的优质特殊模具钢材供应基地之一。</div>
-                            <div class="youshi_button">
-                                <button class="youshi_button_1"></button>
-                                <button
-                                        class="youshi_button_2"></button>
-                            </div>
+                            <div class="youshi1_1">Over 15,000 tons of high quality die steel and steel for machinery and equipment have been reserved by Yishengbai Corporation for many years.</div>
+                            <div class="youshi1_2" style="margin-top:25px;">Laboratory with metallographic, mechanical, die wear, steel Village cold and thermal fatigue tester and other instruments and equipment.</div>
+                            <div class="youshi1_3">With high-tech, multi-functional heat treatment plant and steel processing plant, it is one of the most influential high-quality special die steel supply bases in South China.</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 wow bounceInRight" data-wow-delay="0.5s">
+                <div class="col-md-6 wow bounceInRight hidden-xs">
                     <img src="/images/ysb_87.jpg"/>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 rowMarginTop wow bounceInLeft" data-wow-delay="0.5s">
+                <div class="col-md-6 rowMarginTop wow bounceInLeft hidden-xs">
                     <img src="/images/ysb_110.jpg"/>
                 </div>
                 <div class="col-md-6">
-                    <div class="row youshi1 wow bounceInRight" data-wow-delay="1s">
+                    <div class="row youshi1 wow bounceInRight">
                         <div class="col-md-3">
                             <img src="/images/ysb_108.jpg"/>
                         </div>
                         <div class="col-md-9">
-                            <h3>强大的生产基地，打造优质产品</h3>
-                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                            <!--<h3>先进设备技术，满足多元化需求</h3>-->
+                            <h4>Advanced technology to meet diverse needs</h4>
                             <div class="doubleLine"></div>
                         </div>
                     </div>
-                    <div class="row rowMarginTop wow bounceInRight" data-wow-delay="1s">
-                        <div class="col-md-2 textRight">
+                    <div class="row rowMarginTop wow bounceInRight">
+                        <div class="col-md-2 textRight hidden-xs">
                             <img src="/images/ysb_114.jpg"/>
                         </div>
                         <div class="col-md-10 youshiContent">
-                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
-                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
+                            <div class="youshi1_1">Yishengbai vacuum heat treatment equipped with the most advanced vacuum furnace, 100 kg to 1200 kg of vacuum furnace capacity, to meet the diversified needs of customers.</div>
+                            <div class="youshi1_2" style="margin-top:20px;">With advanced equipment and equipment, experienced engineers in the industry provide customers with technical services such as vacuum high pressure quenching, tempering, stress relief tempering, gas nitriding, cryogenic treatment and quenching and tempering treatment.
+                            </div>
                         </div>
                     </div>
-                    <div class="row youshi1 wow bounceInRight" data-wow-delay="1s">
+                    <div class="row youshi1 wow bounceInRight">
                         <div class="col-md-3">
                             <img src="/images/ysb_131.jpg"/>
                         </div>
                         <div class="col-md-9">
-                            <h3>强大的生产基地，打造优质产品</h3>
-                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                            <!--<h3>严格品质管理，铸就高品质产品</h3>-->
+                            <h4>Strict management, casting high quality products</h4>
                             <div class="doubleLine"></div>
                         </div>
                     </div>
-                    <div class="row rowMarginTop wow bounceInRight" data-wow-delay="1s">
-                        <div class="col-md-2 textRight">
+                    <div class="row rowMarginTop wow bounceInRight">
+                        <div class="col-md-2 textRight hidden-xs">
                             <img src="/images/ysb_96.jpg"/>
                         </div>
                         <div class="col-md-10 youshiContent">
-                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
-                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
-                            <div class="youshi1_3">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
+                            <div class="youshi1_1">We have a rigorous quality control and upgrading system, each link can control and improve product quality.</div>
+                            <div class="youshi1_2" style="margin-top:25px;">IQC will carry out strict flaw detection and hardness testing for each batch of steel, and take samples for composition analysis, metallographic test, polishing test, toughness impact and other tests to ensure that the quality of incoming materials can meet the standards.
+                            </div>
+                            <div class="youshi1_3" style="margin-top:10px;">In the production process, operators in each process are strictly self-checked and mutual-checked. At the same time, IPQC will continuously conduct spot checks. In shipment, QC carries out strict inspection again to ensure that the product meets the customer's requirements.</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 wow bounceInLeft" data-wow-delay="0.5s">
+                <div class="col-md-6 wow bounceInLeft">
                     <div class="row youshi1">
                         <div class="col-md-3">
                             <img src="/images/ysb_118.jpg"/>
                         </div>
                         <div class="col-md-9">
-                            <h3>强大的生产基地，打造优质产品</h3>
-                            <h4>YEARS OF INDUSTRY EXPERIENCE,STRONG</h4>
+                            <!--<h3>金牌服务，特快交货速度</h3>-->
+                            <h4>YEARS OF Gold service, express delivery speed</h4>
                             <div class="doubleLine"></div>
                         </div>
                     </div>
                     <div class="row rowMarginTop">
-                        <div class="col-md-2 textRight">
-                            <img src="/images/ysb_96.jpg"/>
+                        <div class="col-md-2 textRight hidden-xs">
+                            <img src="/images/ysb_114.jpg"/>
                         </div>
                         <div class="col-md-10 youshiContent">
-                            <div class="youshi1_1">一胜百公司总公司常年储备各类优质模具钢及机械设备用钢达15000吨以上；</div>
-                            <div class="youshi1_2">拥有金相、力学、模具磨损、钢村冷热疲劳测试仪等多项仪器、设备的实验室。</div>
-                            <div class="youshi1_3">拥有高技术、多功能的热处理厂、钢材机加工厂，是中国华南地区最具影响力的优质特殊模具钢材供应基地之一。</div>
-                            <div class="youshi_button">
-                                <button class="youshi_button_1"></button>
-                                <button
-                                        class="youshi_button_2"></button>
-                            </div>
+                            <div class="youshi1_1">Yishengbai's concentrate processing has a fast delivery date. Customers in the Pearl River Delta region can receive crude materials 24 hours after placing orders and within 48 hours.</div>
+                            <div class="youshi1_2" style="margin-top:20px;">Pre-sale guide customers to select materials reasonably to help customers reduce the cost of molds; sales can satisfy customers at any time to inquire about the progress of orders, and keep communication at any time; after-sales also keep track of customer usage.</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 wow bounceInRight" data-wow-delay="0.5s">
+                <div class="col-md-6 wow bounceInRight hidden-xs">
                     <img src="/images/ysb_126.jpg"/>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid wow bounceInUp">
+    <div class="container-fluid wow bounceInUp hidden-xs">
         <div class="row changjiaImgEn">
         </div>
     </div>
-    <div class="container textCenter rowMarginTop rowPaddingBottom wow bounceInUp">
+    <div class="container textCenter rowMarginTop rowPaddingBottom wow bounceInUp hidden-xs">
         <img src="/images/en_13.jpg"/>
     </div>
     <!--客户见证-->
-    <div class="container wow bounceInUp">
+    <div class="container wow bounceInUp hidden-xs">
         <div class="row">
             <div id="divCustom" class="col-md-3 clearPadding" th:each="customItem:${customList}">
                 <div class="customShowNormal">
@@ -243,7 +237,7 @@
     </div>
     <!--客户见证-->
     <!--咨询报价-->
-    <div class="container textCenter roMarginTopBetter rowPaddingBottom wow bounceInUp">
+    <div class="container textCenter roMarginTopBetter rowPaddingBottom wow bounceInUp hidden-xs">
         <div class="row callMeEn">
             <div class="col-md-7 textRight"><span th:text="${base.tel}"></span></div>
             <div class="col-md-5 text-left">
@@ -253,7 +247,7 @@
     </div>
     <!--咨询报价-->
     <!--新闻资讯-->
-    <div class="container-fluid newinfo wow bounceInUp">
+    <div class="container-fluid newinfo wow bounceInUp hidden-xs">
         <div class="container textCenter rowMarginTop rowPaddingBottom">
             <img src="/images/en_17.jpg"/>
         </div>
@@ -273,7 +267,7 @@
                                 <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
                                 <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
                             </div>
-                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.enTitle,28)}"></div>
+                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.enTitle,40)}"></div>
                             <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
                                     src="/images/jiantouright_03.png"/></div>
                         </div>
@@ -283,9 +277,9 @@
                                 <img th:src="${newsItem.imageUrl}" class="newsImg"/>
                             </div>
                             <div class="col-md-6">
-                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.enTitle,20)}"></div>
+                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.enTitle,100)}"></div>
                                 <div class="row newsContent">
-                                    <p th:text="${#strings.abbreviate(newsItem.enDescription,60)}"></p>
+                                    <p th:text="${#strings.abbreviate(newsItem.enDescription,100)}"></p>
                                 </div>
                                 <div class="row">
                                     <a class="btn btn-primary active" th:href="${'/en/news/'+newsItem.id}"
@@ -302,7 +296,7 @@
                                 <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
                                 <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
                             </div>
-                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.enTitle,28)}"></div>
+                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.enTitle,40)}"></div>
                             <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
                                     src="/images/jiantouright_03.png"/></div>
                         </div>
@@ -312,9 +306,9 @@
                                 <img th:src="${newsItem.imageUrl}" class="newsImg"/>
                             </div>
                             <div class="col-md-6">
-                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.enTitle,20)}"></div>
+                                <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.enTitle,100)}"></div>
                                 <div class="row newsContent">
-                                    <p th:text="${#strings.abbreviate(newsItem.enDescription,60)}"></p>
+                                    <p th:text="${#strings.abbreviate(newsItem.enDescription,100)}"></p>
                                 </div>
                                 <div class="row">
                                     <a class="btn btn-primary active" th:href="${'/en/news/'+newsItem.id}"
@@ -332,15 +326,15 @@
                 </div>
                 <div class="dayiList" th:each="item:${questionList}">
                     <div class="dayiCTitle"><img src="/images/dayi_160.jpg"> <a th:href="${'/en/news/'+item.id}" target="_blank"><span
-                            th:text="${#strings.abbreviate(item.enTitle,30)}"></span></a></div>
-                    <div class="dayiContent" th:text="${#strings.abbreviate(item.enDescription,100)}"></div>
+                            th:text="${#strings.abbreviate(item.enTitle,50)}"></span></a></div>
+                    <div class="dayiContent" th:text="${#strings.abbreviate(item.enDescription,150)}"></div>
                 </div>
             </div>
         </div>
     </div>
     <!--新闻资讯-->
     <!--关于我们-->
-    <div class="container text-center wow bounceInUp">
+    <div class="container text-center wow bounceInUp hidden-xs">
         <img src="/images/en_23.jpg"/>
     </div>
     <div class="container-fluid aboutUsA wow bounceInUp">
@@ -360,7 +354,7 @@
                         <a class="btn btn-danger" href="/en/aboutUs">More+</a>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 hidden-xs">
                     <div class="row">
                         <div class="aboutUsBg"></div>
                     </div>
@@ -369,7 +363,7 @@
         </div>
     </div>
     <!--关于我们-->
-    <div class="container wow bounceInUp">
+    <div class="container wow bounceInUp hidden-xs">
         <div class="row gongchengLine">
         </div>
         <div class="row chongchangBtn">

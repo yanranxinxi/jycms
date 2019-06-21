@@ -5,7 +5,7 @@
 <div layout:fragment="content">
     <div class="container">
         <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-3">
+            <div class="col-md-3 hidden-xs">
                 <div class="productClass">
                     <div class="productTitle">
                         产品分类
@@ -40,11 +40,15 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-4 clearPadding" th:if="${productList.size()}>0" th:each="item:${productList}">
+                    <div class="col-xs-4 col-md-4 clearPadding" th:if="${productList.size()}>0" th:each="item:${productList}">
                         <div class="thumbnail">
                             <a th:href="'/productCenter/detail/'+${item.id}"><img th:src="${item.imageUrl}"
-                                                                                  class="productImg"
-                                                                                  style="width:250px;height:188px;"></a>
+                                                                                  class="productImg hidden-xs"
+                                                                                  style="width:250px;height:188px;">
+                                <img th:src="${item.imageUrl}"
+                                     class="productImg visible-xs"
+                                     style="height:150px;">
+                            </a>
                             <div class="caption captionOverride">
                                 <a th:href="'/productCenter/detail/'+${item.id}">
                                     <div th:text="${item.title}"></div>

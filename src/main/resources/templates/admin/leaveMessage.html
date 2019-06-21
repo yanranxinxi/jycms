@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html class="x-admin-sm">
+
+<head>
+    <meta charset="UTF-8">
+    <title>留言管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <link rel="stylesheet" href="/lib/zTree_v3/css/metroStyle/metroStyle.css"/>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <script type="text/javascript" src="./js/cookie.js"></script>
+    <script type="text/javascript" src="/lib/zTree_v3/js/jquery.ztree.core.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="">
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">网站管理</a>
+        <a>
+          <cite>留言管理</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="iconfont" style="line-height:30px">&#xe6aa;</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+    </div>
+    <table class="layui-table" lay-filter="test" id="myGrid">
+    </table>
+
+</div>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-danger" lay-event="getCheckData"><i class="layui-icon"></i>删除</button>
+    </div>
+</script>
+<script>
+    var tableIns;
+
+    layui.use('table', function () {
+        var table = layui.table;
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch (obj.event) {
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    if (data.length > 0) {
+                        var ids = "";
+                        for (i = 0; i < data.length; i++) {
+                            ids += data[i].id + ",";
+                        }
+                        if (ids.length > 0) {
+                            ids = ids.substr(0, ids.length - 1);
+                        }
+                        layer.confirm('确定要删除这些数据吗？', {icon: 9, btn: ['确定', '取消']},
+                            function (index, layero) {
+                                $.post("/admin/api/leaveMessage/deleteByIds", {"ids": ids}, function (result) {
+                                    if (result.code == 0) {
+                                        layer.alert("删除成功");
+                                        reloadGrid();
+                                    }
+                                });
+                            },
+                            function (index) {
+
+                            }
+                        );
+                    } else {
+                        layer.alert("请选择需要删除的数据！")
+                    }
+                    break;
+            }
+        });
+    });
+    layui.use('form', function () {
+        var form = layui.form;
+    });
+
+    layui.use('table', function () {
+        var table = layui.table;
+
+        //第一个实例
+        tableIns = table.render({
+            elem: '#myGrid'
+            , url: '/admin/api/leaveMessage/getList' //数据接口
+            , parseData: function (res) { //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.total, //解析数据长度
+                    "data": res.data //解析数据列表
+                };
+            }
+            , page: true //开启分页
+            , cols: [[ //表头
+                {type: 'checkbox', title: 'id'},
+                {field: 'customName', title: '联系人'},
+                {field: 'telNo', title: '手机'},
+                {field: 'message', title: '留言'},
+            ]],
+            toolbar: '#toolbarDemo'
+        });
+    });
+
+    $(function () {
+        $("#btnSearch").click(function () {
+            reloadGrid();
+        });
+    });
+
+    function reloadGrid() {
+        tableIns.reload({
+            url: '/admin/api/leaveMessage/getList',
+            where: {},
+            done: function (res, curr, count) {
+            }
+        });
+    }
+</script>
+</body>
+</html>

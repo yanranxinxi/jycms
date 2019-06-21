@@ -37,8 +37,11 @@
       and addDate<#{end}
     ]]>
         </if>
-        <if test="classId!=null">
+        <if test="classId!=null and classId!=-1">
             and a.classId in (select id from classinfo where parentId=#{classId} or id=#{classId})
+        </if>
+        <if test="classType!=null">
+            and b.classType=#{classType}
         </if>
         order by a.addDate desc
         limit #{offset},#{pageSize}
@@ -46,21 +49,24 @@
     <select id="selectCount" resultType="int">
         select
         count(0)
-        from newsInfo
+        from newsInfo a left join classinfo b on a.classId=b.id
         where isDel=0
         <if test="title!=null and title!=''">
-            and title like concat('%',#{title},'%')
+            and a.title like concat('%',#{title},'%')
         </if>
         <if test="start!=null and start!=''">
-            and addDate>=#{start}
+            and a.addDate>=#{start}
         </if>
         <if test="end!=null and end!=''">
             <![CDATA[
-      and addDate<#{end}
+      and a.addDate<#{end}
     ]]>
         </if>
-        <if test="classId!=null">
-            and classId in (select id from classinfo where parentId=#{classId} or id=#{classId})
+        <if test="classId!=null and classId!=-1">
+            and a.classId in (select id from classinfo where parentId=#{classId} or id=#{classId})
+        </if>
+        <if test="classType!=null">
+            and b.classType=#{classType}
         </if>
     </select>
     <delete id="delByIds">

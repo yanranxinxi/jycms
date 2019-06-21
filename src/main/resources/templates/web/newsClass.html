@@ -5,7 +5,7 @@
 <div layout:fragment="content">
     <div class="container">
         <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-3">
+            <div class="col-md-3 hidden-xs">
                 <div class="productClass">
                     <div class="productTitle">
                         产品分类
@@ -40,13 +40,13 @@
             </div>
             <div class="col-md-9">
                 <div id="newTop" class="row">
-                    <div th:each="newsItem:${productList}">
+                    <div th:each="newsItem:${productList}" class="hidden-xs">
                         <div class="newsList" th:onclick="'showNewsDetail('+${newsItem.id}+')'">
                             <div class="newsDate">
                                 <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
                                 <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
                             </div>
-                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.title,28)}"></div>
+                            <div class="newsC" style="width:80%;" th:text="${#strings.abbreviate(newsItem.title,35)}"></div>
                             <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
                                     src="/images/jiantouright_03.png"/>
                             </div>
@@ -65,6 +65,12 @@
                                     <a class="btn btn-primary active" th:href="${'/news/'+newsItem.id}" target="_blank">了解更多+</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row visible-xs" th:each="newsItem:${productList}">
+                        <div class="col-xs-12" style="border-bottom:1px #ccc solid;padding-bottom: 5px;padding-left: 25px;">
+                            <span><a th:href="'/news/'+${newsItem.id}" th:title="${newsItem.title}" target="_blank" th:text="${#strings.abbreviate(newsItem.title,20)}"></a> </span>
+                            <span style="float: right; margin-right:20px;" th:text="${#strings.substring(newsItem.addDate,0,10)}"></span>
                         </div>
                     </div>
                 </div>

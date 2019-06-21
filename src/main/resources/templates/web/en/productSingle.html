@@ -4,7 +4,7 @@
       layout:decorator="web/en/layout">
 <div layout:fragment="content">
     <div class="container" style="margin-top:10px;">
-        <div class="col-md-3">
+        <div class="col-md-3 hidden-xs">
             <div class="productClass">
                 <div class="productTitle">
                     Product Categories
@@ -24,7 +24,7 @@
                 <div class="newsClassShow">
                     <ul>
                         <li th:each="item:${newsList}"><a th:href="'/en/news/'+${item.id}"
-                                                          th:text="${#strings.abbreviate(item.enTitle,15)}"></a></li>
+                                                          th:text="${#strings.abbreviate(item.enTitle,28)}"></a></li>
                     </ul>
 
                 </div>

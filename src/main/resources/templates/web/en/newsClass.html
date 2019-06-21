@@ -5,7 +5,7 @@
 <div layout:fragment="content">
     <div class="container">
         <div class="row rowMarginTop rowPaddingBottom">
-            <div class="col-md-3">
+            <div class="col-md-3 hidden-xs">
                 <div class="productClass">
                     <div class="productTitle">
                         Product Categories
@@ -25,7 +25,7 @@
                     <div class="newsClassShow">
                         <ul>
                             <li th:each="item:${newsList}"><a th:href="'/en/news/'+${item.id}"
-                                                              th:text="${#strings.abbreviate(item.enTitle,15)}"></a></li>
+                                                              th:text="${#strings.abbreviate(item.enTitle,28)}"></a></li>
                         </ul>
 
                     </div>
@@ -40,13 +40,13 @@
             </div>
             <div class="col-md-9">
                 <div id="newTop" class="row">
-                    <div th:each="newsItem:${productList}">
+                    <div th:each="newsItem:${productList}" class="hidden-xs">
                         <div class="newsList" th:onclick="'showNewsDetail('+${newsItem.id}+')'">
                             <div class="newsDate">
                                 <div class="newsDateDay" th:text="${#strings.substring(newsItem.addDate,8,10)}"></div>
                                 <div class="newsDateYear" th:text="${#strings.substring(newsItem.addDate,0,7)}"></div>
                             </div>
-                            <div class="newsC" th:text="${#strings.abbreviate(newsItem.enTitle,28)}"></div>
+                            <div class="newsC" style="width:80%;" th:text="${#strings.abbreviate(newsItem.enTitle,35)}"></div>
                             <div class="newsCImg" th:id="'cimg_'+${newsItem.id}"><img
                                     src="/images/jiantouright_03.png"/>
                             </div>
@@ -59,12 +59,18 @@
                             <div class="col-md-8">
                                 <div class="row newsTitle" th:text="${#strings.abbreviate(newsItem.enTitle,20)}"></div>
                                 <div class="row newsContent">
-                                    <p th:text="${#strings.abbreviate(newsItem.enDescription,60)}"></p>
+                                    <p th:text="${#strings.abbreviate(newsItem.description,60)}"></p>
                                 </div>
                                 <div class="row">
-                                    <a class="btn btn-primary active" th:href="${'/en/news/'+newsItem.id}" target="_blank">More+</a>
+                                    <a class="btn btn-primary active" th:href="${'/en/news/'+newsItem.id}" target="_blank">了解更多+</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row visible-xs" th:each="newsItem:${productList}">
+                        <div class="col-xs-12" style="border-bottom:1px #ccc solid;padding-bottom: 5px;padding-left: 25px;">
+                            <span><a th:href="'/en/news/'+${newsItem.id}" th:title="${newsItem.enTitle}" target="_blank" th:text="${#strings.abbreviate(newsItem.enTitle,30)}"></a> </span>
+                            <span style="float: right; margin-right:20px;" th:text="${#strings.substring(newsItem.addDate,0,10)}"></span>
                         </div>
                     </div>
                 </div>
