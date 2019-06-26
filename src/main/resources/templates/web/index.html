@@ -3,29 +3,34 @@
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="web/layout">
 <div layout:fragment="content">
+
     <div class="container wow fadeInUp">
         <div class="row hidden-xs">
             <div class="col-md-12">
                 <div class="index1">
-                    <span>Product center</span>
-                    <p>合作伙伴</p>
+                    <span>WeiBang goods shelves</span>
+                    <p>玮邦货架</p>
                 </div>
             </div>
         </div>
-        <div class="row hidden-xs" style="margin-top:20px;">
-            <!--图片滚动-->
-            <div class='silder-box silder-box-2'>
-                <div class='silder'>
-                    <ul>
-                        <li th:each="hImgItem:${factoryList}">
-                            <a th:href="'/productCenter/detail/'+${hImgItem.id}"><img th:src="${hImgItem.imageUrl}"></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class='silder-button btl'></div>
-                <div class='silder-button btr'></div>
+        <div class="row hidden-xs" style="margin-top:20px;text-align:center;">
+            <div class="col-xs-12">
+                <iframe height=498 width=100% src='http://player.youku.com/embed/XNDI0NDA4MjE1Mg==' frameborder=0
+                'allowfullscreen'></iframe>
+                <!--图片滚动-->
+                <!--<div class='silder-box silder-box-2'>-->
+                <!--<div class='silder'>-->
+                <!--<ul>-->
+                <!--<li th:each="hImgItem:${factoryList}">-->
+                <!--<a th:href="'/productCenter/detail/'+${hImgItem.id}"><img th:src="${hImgItem.imageUrl}"></a>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--<div class='silder-button btl'></div>-->
+                <!--<div class='silder-button btr'></div>-->
+                <!--</div>-->
+                <!--图片滚动-->
             </div>
-            <!--图片滚动-->
         </div>
     </div>
     <div class="container-fluid blueBg">
@@ -240,8 +245,9 @@
                         <div class="col-md-10 youshiContent">
                             <ul>
                                 <li>
-                                    大型标准化厂房，多种自动化生产设备和工艺精湛的技术团队7-15天快速出方案 的同时，保证所产皆是精品</li>
-<li>
+                                    大型标准化厂房，多种自动化生产设备和工艺精湛的技术团队7-15天快速出方案 的同时，保证所产皆是精品
+                                </li>
+                                <li>
                                     所有生产工序均在自己车间完成，拒绝二次外包，源头直供，节约20%以上成本，最大程度让利于客户
                                 </li>
                             </ul>
@@ -262,7 +268,8 @@
                         <div class="col-md-10 youshiContent">
                             <ul>
                                 <li>
-                                    专业的售后服务团队，贴心服务，定期回访跟进展示状况，为你解决一切问题</li>
+                                    专业的售后服务团队，贴心服务，定期回访跟进展示状况，为你解决一切问题
+                                </li>
                                 <li>
                                     7X24小时待命，各部门协调配合，当天问题当天解决，保障客户利益，让您收获的是省心、放心服务。
                                 </li>
@@ -283,7 +290,8 @@
             <div class="row">
                 <div class="col-md-12 hidden-xs">
                     <div class="row">
-                        <div style="float: left;width:534px;"><img src="/images/home_pro.jpg" style="width:530px;"/></div>
+                        <div style="float: left;width:534px;"><img src="/images/home_pro.jpg" style="width:530px;"/>
+                        </div>
                         <div style="float: left;width:600px; padding-left:30px;">
                             <div class="aboutUsTitle">
                                 关于我们
