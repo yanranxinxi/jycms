@@ -5,12 +5,12 @@ import com.cms.jycms.component.PubComponent;
 import com.cms.jycms.domain.ClassInfo;
 import com.cms.jycms.domain.LeaveMessage;
 import com.cms.jycms.domain.NewsInfo;
+import com.cms.jycms.dto.MapDTO;
 import com.cms.jycms.dto.ViewClassListDTO;
 import com.cms.jycms.dto.WebSiteBaseInfoDTO;
 import com.cms.jycms.service.ClassInfoService;
 import com.cms.jycms.service.LeaveMessageService;
 import com.cms.jycms.service.NewsInfoService;
-import com.cms.jycms.service.SystemConfigService;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +26,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -100,7 +102,7 @@ public class IndexController {
     @RequestMapping({"/equipmentExhibition"})
     public String classShow(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(27, pageIndex, 12, 31, 5, 0, null);
-
+        view.getWebSiteBaseInfoDTO().setTitle("设备展示-" + view.getWebSiteBaseInfoDTO().getTitle());
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
         model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
@@ -128,7 +130,7 @@ public class IndexController {
     @RequestMapping({"/solution"})
     public String finePlateProcessing(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(29, pageIndex, 12, 31, 5, 0, null);
-
+        view.getWebSiteBaseInfoDTO().setTitle("成功案例-" + view.getWebSiteBaseInfoDTO().getTitle());
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
         model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
@@ -142,7 +144,7 @@ public class IndexController {
     @RequestMapping({"/productCenter"})
     public String productCenter(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(30, pageIndex, 12, 31, 5, 0, null);
-
+        view.getWebSiteBaseInfoDTO().setTitle("产品中心-" + view.getWebSiteBaseInfoDTO().getTitle());
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
         model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
@@ -171,7 +173,7 @@ public class IndexController {
     @RequestMapping({"/productCenter/{id}"})
     public String productCenter(@PathVariable("id") int id, @RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(id, pageIndex, 10, 31, 5, 0, null);
-
+        view.getWebSiteBaseInfoDTO().setTitle(view.getProductTypeList().stream().filter(p -> p.getId() == id).collect(Collectors.toList()).get(0).getName() + "-" + view.getWebSiteBaseInfoDTO().getTitle());
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
         model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
@@ -187,6 +189,8 @@ public class IndexController {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
         NewsInfo productDetail = newsInfoService.selectByPrimaryKey(id);
         List<NewsInfo> upDownList = newsInfoService.selectUpDown(productDetail);
+
+        webSiteBaseInfoDTO.setTitle(productDetail.getTitle() + "-" + webSiteBaseInfoDTO.getTitle());
 
         for (NewsInfo item : upDownList) {
             if (item.getId() < productDetail.getId()) {
@@ -204,7 +208,7 @@ public class IndexController {
     @RequestMapping({"/news"})
     public String news(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 10, 31, 5, 0, null);
-
+        view.getWebSiteBaseInfoDTO().setTitle("新闻资讯-" + view.getWebSiteBaseInfoDTO().getTitle());
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
         model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
@@ -218,7 +222,7 @@ public class IndexController {
     @RequestMapping({"/question"})
     public String question(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
         ViewClassListDTO view = pubComponent.viewClassList(44, pageIndex, 10, 31, 5, 0, null);
-
+        view.getWebSiteBaseInfoDTO().setTitle("常见问题解答-" + view.getWebSiteBaseInfoDTO().getTitle());
         model.addAttribute("productList", view.getPaginationDTO().getArtList());
         model.addAttribute("totalPages", view.getPaginationDTO().getTotalPages());
         model.addAttribute("pageIndex", view.getPaginationDTO().getPageIndex());
@@ -233,6 +237,9 @@ public class IndexController {
     public String news(@PathVariable String id, Model model) {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
         NewsInfo aboutusContent = newsInfoService.selectByPrimaryKey(id);
+
+        webSiteBaseInfoDTO.setTitle(aboutusContent.getTitle() + "-" + webSiteBaseInfoDTO.getTitle());
+
         List<NewsInfo> upDownList = newsInfoService.selectUpDown(aboutusContent);
 
         for (NewsInfo item : upDownList) {
@@ -251,6 +258,7 @@ public class IndexController {
     @RequestMapping({"/aboutUs"})
     public String artShow(Model model) {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
+        webSiteBaseInfoDTO.setTitle("关于我们-" + webSiteBaseInfoDTO.getTitle());
         NewsInfo aboutusContent = newsInfoService.selectByPrimaryKey("89");
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", webSiteBaseInfoDTO);
@@ -261,6 +269,7 @@ public class IndexController {
     @RequestMapping({"/contactUs"})
     public String contactUs(Model model) {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
+        webSiteBaseInfoDTO.setTitle("联系我们-" + webSiteBaseInfoDTO.getTitle());
         NewsInfo aboutusContent = newsInfoService.selectByPrimaryKey("90");
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", webSiteBaseInfoDTO);
@@ -271,6 +280,7 @@ public class IndexController {
     @RequestMapping("/leaveMessage")
     public String leaveMessage(Model model) {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
+        webSiteBaseInfoDTO.setTitle("在线留言-" + webSiteBaseInfoDTO.getTitle());
         model.addAttribute("navList", navComponent.getNavList());
         model.addAttribute("base", webSiteBaseInfoDTO);
         return "web/leaveMessage";
@@ -326,5 +336,40 @@ public class IndexController {
         responseOutputStream.write(captchaChallengeAsJpeg);
         responseOutputStream.flush();
         responseOutputStream.close();
+    }
+
+    @RequestMapping("/sitemap.html")
+    public String sitemap_html(Model model) {
+        List<MapDTO> list = new ArrayList<>();
+        List<ClassInfo> classList = classInfoService.getNavByParentId(0);
+        for (ClassInfo item : classList) {
+            MapDTO tempModel = new MapDTO();
+            tempModel.setTitle(item.getName());
+            tempModel.setUrl(item.getUrl());
+            list.add(tempModel);
+            List<ClassInfo> secondList = classInfoService.getNavByParentId(item.getId());
+            for (ClassInfo secondClass : secondList) {
+                tempModel = new MapDTO();
+                tempModel.setTitle(secondClass.getName());
+                tempModel.setUrl(secondClass.getUrl());
+                list.add(tempModel);
+                NewsInfo tempNewsInfo = new NewsInfo();
+                tempNewsInfo.setClassId(secondClass.getId());
+                List<NewsInfo> newsInfoList = newsInfoService.selectListByClassId(tempNewsInfo);
+                for (NewsInfo newsInfo : newsInfoList) {
+                    ClassInfo classInfoModel = classInfoService.selectById(newsInfo.getClassId());
+                    tempModel = new MapDTO();
+                    tempModel.setTitle(newsInfo.getTitle());
+                    if (classInfoModel.getClassType() == 1) {
+                        tempModel.setUrl("/productCenter/detail/" + newsInfo.getId());
+                    } else {
+                        tempModel.setUrl("/news/" + newsInfo.getId());
+                    }
+                    list.add(tempModel);
+                }
+            }
+        }
+        model.addAttribute("list", list);
+        return "web/sitemap";
     }
 }

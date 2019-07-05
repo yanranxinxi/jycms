@@ -20,4 +20,7 @@
         insert into classInfo(name,enName,parentId,url,`order`,keyword,description)
         values(#{name},#{enName},#{parentId},#{url},#{order},#{keyword},#{description});
     </insert>
+    <select id="selectById" resultType="com.cms.jycms.domain.ClassInfo">
+        select * from classInfo where id=#{id}
+    </select>
 </mapper>

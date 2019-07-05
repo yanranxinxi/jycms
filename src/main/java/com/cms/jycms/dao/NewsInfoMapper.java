@@ -20,4 +20,6 @@ public interface NewsInfoMapper {
     int updateContent(NewsInfo model);
 
     List<NewsInfo> selectUpDown(NewsInfo model);
+
+    List<NewsInfo> selectListByClassId(NewsInfo model);
 }

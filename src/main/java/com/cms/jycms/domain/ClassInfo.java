@@ -9,6 +9,7 @@ public class ClassInfo {
     private String keyword;
     private String description;
     private String enName;
+    private int classType;
 
     public int getId() {
         return id;
@@ -80,5 +81,13 @@ public class ClassInfo {
     public ClassInfo setEnName(String enName) {
         this.enName = enName;
         return this;
+    }
+
+    public int getClassType() {
+        return classType;
+    }
+
+    public void setClassType(int classType) {
+        this.classType = classType;
     }
 }

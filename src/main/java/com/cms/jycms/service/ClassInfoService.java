@@ -35,4 +35,9 @@ public class ClassInfoService {
     public int insert(ClassInfo model) {
         return mapper.insert(model);
     }
+
+    public ClassInfo selectById(int id)
+    {
+        return mapper.selectById(id);
+    }
 }

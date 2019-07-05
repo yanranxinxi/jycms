@@ -11,4 +11,5 @@ public interface ClassInfoMapper {
     int delete(int id);
     int update(ClassInfo model);
     int insert(ClassInfo model);
+    ClassInfo selectById(int id);
 }

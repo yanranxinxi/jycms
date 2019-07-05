@@ -94,4 +94,7 @@
 
         ]]>
     </select>
+    <select id="selectListByClassId" resultType="com.cms.jycms.domain.NewsInfo">
+        select * from newsinfo where classid=#{classId};
+    </select>
 </mapper>

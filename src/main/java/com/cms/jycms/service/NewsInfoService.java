@@ -44,4 +44,9 @@ public class NewsInfoService {
     public List<NewsInfo> selectUpDown(NewsInfo model) {
         return mapper.selectUpDown(model);
     }
+
+    public List<NewsInfo> selectListByClassId(NewsInfo model)
+    {
+        return mapper.selectListByClassId(model);
+    }
 }
