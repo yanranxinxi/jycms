@@ -24,6 +24,11 @@ public class ClassInfoService {
         return mapper.getNavByParentId(parentId);
     }
 
+    public List<ClassInfo> getNavSubClassByParentId(int parentId)
+    {
+        return mapper.getNavSubClassByParentId(parentId);
+    }
+
     public int delete(int id) {
         return mapper.delete(id);
     }

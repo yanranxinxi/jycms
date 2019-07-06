@@ -27,21 +27,25 @@
     <script type="text/javascript" src="/comm/public.js"></script>
     <script src="/comm/wow.min.js"></script>
     <!--<script src="/lib/scrollup/jquery.scrollUp.js"></script>-->
-    <script> var _hmt = _hmt || []; (function() { var hm = document.createElement("script"); hm.src = "https://hm.baidu.com/hm.js?54d9e3568d465129661cc91b982c616b"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s); })(); </script>
 </head>
 <div layout:fragment="headContent"></div>
 <body>
 <!--头部开始-->
-<div class="container-fluid" style="max-width:1920px;">
+<div class="container-fluid">
     <div class="row top">
         <div class="col-sm-1"></div>
-        <div class="col-sm-7">玮邦仓储货架制造商欢迎您</div>
+        <div class="col-sm-7">欢迎来到东莞市威格自动化设备有限公司官网！</div>
         <div class="col-sm-4 headLink"><a href="/leaveMessage#message">在线留言</a> | <a href="/aboutUs">关于我们</a> | <a
-                href="/question">常见问题解答</a> | <a href="/sitemap.html" target="_blank">网站地图</a> </div>
+                href="/question">常见问题解答</a> | <a href="/sitemap.html" target="_blank">网站地图</a></div>
     </div>
+</div>
+<div class="container-fluid" style="max-width:1920px;">
     <div class="row topShow visible-lg-block visible-md-block">
-        <div class="col-md-12 textCenter">
-            <img src="/images/head_02.png">
+        <div class="col-md-6 textCenter">
+            <img src="/images/head.png">
+        </div>
+        <div class="col-md-6 textCenter">
+            <img src="/images/tel.png">
         </div>
     </div>
     <div class="row navRow" role="navigation">
@@ -59,13 +63,25 @@
             </div>
             <div class="collapse navbar-collapse navbar-responsive-collapse">
                 <ul class="nav navbar-pills nav-justified navbar-right">
-                    <li role="presentation" th:each="navItem:${navList}"><a th:href="${navItem.url}"
-                                                                            th:text="${navItem.name}"></a></li>
+                    <li role="presentation" class="dropdown" th:each="navItem:${navList}">
+                        <a th:href="${navItem.url}" th:text="${navItem.className}"></a>
+                        <ul class="dropdown-menu" style="margin-top:0;">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="col-md-1"></div>
     </div>
+</div>
+<div class="container-fluid" style="max-width:1920px;">
     <div class="row">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -78,17 +94,17 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <img src="/images/b1.png">
+                    <img src="/images/banner1.jpg">
                     <div class="carousel-caption">
                     </div>
                 </div>
                 <div class="item">
-                    <img src="/images/b2.png">
+                    <img src="/images/banner2.jpg">
                     <div class="carousel-caption">
                     </div>
                 </div>
                 <div class="item">
-                    <img src="/images/b3.png">
+                    <img src="/images/banner3.jpg">
                     <div class="carousel-caption">
                     </div>
                 </div>
@@ -111,7 +127,7 @@
 <div class="container">
     <div class="row hidden-xs searchKey">
         <div class="col-md-8">
-            <b>热门关键词</b>：重型横梁式货架、阁楼货架
+            <b>热门关键词</b>：行星减速机 精密行星减速机 行星减速机厂家
         </div>
         <div class="col-md-4 form-inline">
             <input type="text" placeholder="请输入您要查找的关键词" class="form-control" id="tbxKeyword" name="tbxKeyword">
@@ -126,15 +142,39 @@
 </div>
 <!--内容结束-->
 <!--底部版本开始-->
-<div class="container-fluid copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 copyrightContentText textCenter" th:utext="${base.copyright}">
-
+<div class="container-fluid">
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="foot">
+                <div id="footer" class="clearfix">
+                    <div class="logo1"><p><img src="/images/bottom_logo.png" title="威格自动化LOGO" alt="威格自动化LOGO"
+                                               width="341" height="123" border="0" vspace="0"
+                                               style="width: 341px; height: 123px;"></p></div>
+                    <div class="copyright">
+                        Copyright © http://www.gdvige.com/ 威格自动化设备,东莞市威格自动化设备有限公司 专业从事于<a
+                            href="http://www.gdvige.com/search.php?wd=行星减速机">行星减速机</a>,<a
+                            href="http://www.gdvige.com/search.php?wd=精密行星减速机">精密行星减速机</a>,<a
+                            href="http://www.gdvige.com/search.php?wd=行星减速机厂家">行星减速机厂家</a>, 欢迎来电咨询!<br><a
+                            href="http://beian.miit.gov.cn/">粤ICP备15086135号</a>&nbsp;&nbsp;技术支持：<a rel="nofollow"
+                                                                                                   href="http://www.gdvige.com"
+                                                                                                   target="_blank">威格自动化</a>
+                        <div><a href="http://www.gdvige.com/getkey/" title="热推产品">热推产品</a>&nbsp;&nbsp;|&nbsp;&nbsp;主营区域：
+                            <span><a href="http://www.gdvige.com/jiangsu.html">广州</a></span>
+                            <span><a href="http://www.gdvige.com/wujiang.html">深圳</a></span>
+                            <span><a href="http://www.gdvige.com/kunshan.html">汕头</a></span>
+                            <span><a href="http://www.gdvige.com/changshu.html">上海</a></span>
+                            <span><a href="http://www.gdvige.com/taicang.html">苏州</a></span>
+                            <span><a href="http://www.gdvige.com/wuzhong.html">成都</a></span>
+                            <span><a href="http://www.gdvige.com/tianjin.html">北京</a></span>
+                            <span><a href="http://www.gdvige.com/wuhan.html">厦门</a></span>
+                            <span><a href="http://www.gdvige.com/shanghai.html">长沙</a></span>
+                            <span><a href="http://www.gdvige.com/beijing.html">武汉</a></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row navLink text-center hidden-xs">
-            <a th:each="navItem:${navList}" th:text="${navItem.name}" th:href="${navItem.url}"></a>
         </div>
     </div>
 </div>
@@ -151,7 +191,9 @@
             <i class="arrow"></i>
             <div class="inner-box">
                 <div class="d-service-item clearfix">
-                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=573929221&site=qq&menu=yes" class="clearfix"><span class="circle"><i class="i-qq"></i></span><h3 style="margin:0;padding:0;">咨询在线客服</h3></a>
+                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=573929221&site=qq&menu=yes"
+                       class="clearfix"><span class="circle"><i class="i-qq"></i></span>
+                        <h3 style="margin:0;padding:0;">咨询在线客服</h3></a>
                 </div>
             </div>
         </div>
@@ -166,9 +208,9 @@
                     </div>
                 </div>
                 <!--<div class="d-service-intro clearfix">-->
-                    <!--<p><i></i>功能和特性</p>-->
-                    <!--<p><i></i>价格和优惠</p>-->
-                    <!--<p><i></i>获取内部资料</p>-->
+                <!--<p><i></i>功能和特性</p>-->
+                <!--<p><i></i>价格和优惠</p>-->
+                <!--<p><i></i>获取内部资料</p>-->
                 <!--</div>-->
             </div>
         </div>
@@ -198,31 +240,37 @@
         // });
 
         /* ----- 侧边悬浮 ---- */
-        $(document).on("mouseenter", ".suspension .a", function(){
+        $(document).on("mouseenter", ".suspension .a", function () {
             var _this = $(this);
             var s = $(".suspension");
             var isService = _this.hasClass("a-service");
             var isServicePhone = _this.hasClass("a-service-phone");
             var isQrcode = _this.hasClass("a-qrcode");
-            if(isService){ s.find(".d-service").show().siblings(".d").hide();}
-            if(isServicePhone){ s.find(".d-service-phone").show().siblings(".d").hide();}
-            if(isQrcode){ s.find(".d-qrcode").show().siblings(".d").hide();}
+            if (isService) {
+                s.find(".d-service").show().siblings(".d").hide();
+            }
+            if (isServicePhone) {
+                s.find(".d-service-phone").show().siblings(".d").hide();
+            }
+            if (isQrcode) {
+                s.find(".d-qrcode").show().siblings(".d").hide();
+            }
         });
-        $(document).on("mouseleave", ".suspension, .suspension .a-top", function(){
+        $(document).on("mouseleave", ".suspension, .suspension .a-top", function () {
             $(".suspension").find(".d").hide();
         });
-        $(document).on("mouseenter", ".suspension .a-top", function(){
+        $(document).on("mouseenter", ".suspension .a-top", function () {
             $(".suspension").find(".d").hide();
         });
-        $(document).on("click", ".suspension .a-top", function(){
+        $(document).on("click", ".suspension .a-top", function () {
             $("html,body").animate({scrollTop: 0});
         });
-        $(window).scroll(function(){
+        $(window).scroll(function () {
             var st = $(document).scrollTop();
             var $top = $(".suspension .a-top");
-            if(st > 400){
+            if (st > 400) {
                 $top.css({display: 'block'});
-            }else{
+            } else {
                 if ($top.is(":visible")) {
                     $top.hide();
                 }
@@ -240,12 +288,21 @@
             $("#tbxKeyword").focus();
         }
     }
+
+    $(document).ready(function(){
+        dropdownOpen();//调用
+    });
+    /**
+     * 鼠标划过就展开子菜单，免得需要点击才能展开
+     */
+    function dropdownOpen() {
+
+        var $dropdownLi = $('li.dropdown');
+
+        $dropdownLi.mouseover(function() {
+            $(this).addClass('open');
+        }).mouseout(function() {
+            $(this).removeClass('open');
+        });
+    }
 </script>
-<script>
-    (function(b,a,e,h,f,c,g,s){b[h]=b[h]||function(){(b[h].c=b[h].c||[]).push(arguments)};
-        b[h].s=!!c;g=a.getElementsByTagName(e)[0];s=a.createElement(e);
-        s.src="//s.union.360.cn/"+f+".js";s.defer=!0;s.async=!0;g.parentNode.insertBefore(s,g)
-    })(window,document,"script","_qha",316130,false);
-</script>
-<script src="//baike.shuidi.cn/wiki/trusted-link.js?digest=81d0ac247ae90f372938cf5be37f03b7&link_type=1"></script>
-<script id="baikeCornerMarkerScript" src="//baike.shuidi.cn/wiki/trusted-link.js?digest=81d0ac247ae90f372938cf5be37f03b7&link_type=2"></script>

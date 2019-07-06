@@ -6,6 +6,7 @@ import com.cms.jycms.domain.ClassInfo;
 import com.cms.jycms.domain.LeaveMessage;
 import com.cms.jycms.domain.NewsInfo;
 import com.cms.jycms.dto.MapDTO;
+import com.cms.jycms.dto.NavClassDTO;
 import com.cms.jycms.dto.ViewClassListDTO;
 import com.cms.jycms.dto.WebSiteBaseInfoDTO;
 import com.cms.jycms.service.ClassInfoService;
@@ -59,7 +60,7 @@ public class IndexController {
         WebSiteBaseInfoDTO webSiteBaseInfoDTO = pubComponent.getBaseInfo();
         //获取推荐产品
         Map<String, Object> map = new HashMap<>();
-        map.put("limit", 9);
+        map.put("limit", 6);
         map.put("classId", 30);
         map.put("recommend", "1");
         List<NewsInfo> productRecommendList = newsInfoService.selectByClassId(map);
@@ -84,9 +85,30 @@ public class IndexController {
         //关于我们
         NewsInfo aboutusContent = newsInfoService.selectByPrimaryKey("55");
 
+        //导航
+        List<ClassInfo> classList = navComponent.getNavList();
+        List<NavClassDTO> navClassDTOList = new ArrayList<>();
+        for (ClassInfo classItem : classList) {
+            NavClassDTO navModel = new NavClassDTO();
+            navModel.setClassName(classItem.getName());
+            navModel.setId(classItem.getId());
+            navModel.setUrl(classItem.getUrl());
+            List<ClassInfo> secondList = classInfoService.getNavSubClassByParentId(classItem.getId());
+            List<NavClassDTO> secondNavClassList = new ArrayList<>();
+            for (ClassInfo secondItem : secondList) {
+                NavClassDTO secNavModel = new NavClassDTO();
+                secNavModel.setClassName(secondItem.getName());
+                secNavModel.setId(secondItem.getId());
+                secNavModel.setUrl(secondItem.getUrl());
+                secondNavClassList.add(secNavModel);
+            }
+            navModel.setSecondClass(secondNavClassList);
+            navClassDTOList.add(navModel);
+        }
+
         model.addAttribute("productList", productList);
         model.addAttribute("productRecommendList", productRecommendList);
-        model.addAttribute("navList", navComponent.getNavList());
+        model.addAttribute("navList", navClassDTOList);
         model.addAttribute("base", webSiteBaseInfoDTO);
         model.addAttribute("cooperationList", cooperationList);
         model.addAttribute("customList", customList);

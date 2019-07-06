@@ -8,11 +8,11 @@
     where id = #{id}
   </select>
     <select id="selectByClassId" resultType="com.cms.jycms.domain.NewsInfo">
-        select id,title,classId,content,comeFrom,addDate,updateDate,isDel,imageUrl,description,enTitle,enContent,enComeFrom,enDescription,recommend
-        from newsInfo
-        where classId in (
+        select a.*,b.name className
+        from newsInfo a left join classInfo b on a.classId=b.id
+        where a.classId in (
         select id from classinfo where parentId=#{classId}
-        ) and recommend=#{recommend} order by updateDate desc limit #{limit};
+        ) and a.recommend=#{recommend} order by a.updateDate desc limit #{limit};
     </select>
     <select id="selectAll" resultType="com.cms.jycms.domain.NewsInfo">
         select

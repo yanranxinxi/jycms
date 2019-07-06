@@ -10,6 +10,9 @@
     <select id="getNavByParentId" resultType="com.cms.jycms.domain.ClassInfo">
         select id,`name`,enName,parentId,url,`order`,keyword,description from classInfo where parentId=#{parentId} order by `order` asc
     </select>
+    <select id="getNavSubClassByParentId" resultType="com.cms.jycms.domain.ClassInfo">
+        select  * from classInfo where parentId=#{parentId} and isNav=1 order by `order` asc;
+    </select>
     <delete id="delete">
         delete from classInfo where id=#{id}
     </delete>
