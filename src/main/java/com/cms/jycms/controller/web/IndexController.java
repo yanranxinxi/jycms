@@ -144,7 +144,7 @@ public class IndexController {
 
     @RequestMapping("/casePresentation")
     public String casePresentation(@RequestParam(value = "pageIndex", defaultValue = "1") int pageIndex, Model model) {
-        ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 12, 31, 5, 0, null, 54);
+        ViewClassListDTO view = pubComponent.viewClassList(31, pageIndex, 8, 31, 5, 0, null, 54);
         ClassInfo classInfo = classInfoService.selectById(31);
         String proClassId = newsInfoService.selectChild(54);
         List<NewsInfo> leftPro = newsInfoService.selectArtByClassId(proClassId, 8);

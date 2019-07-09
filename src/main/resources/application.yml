@@ -11,7 +11,7 @@ spring:
     username: root
     password: dmfuck
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     filters: stat
     maxActive: 20
     initialSize: 1

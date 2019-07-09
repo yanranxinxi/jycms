@@ -1488,3 +1488,7 @@ a:hover {
 .productImg{
     height: 180px;
 }
+
+.bk h1{
+    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+}
